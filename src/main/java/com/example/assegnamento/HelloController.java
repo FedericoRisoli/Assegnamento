@@ -25,6 +25,7 @@ public class HelloController {
     void onLoginButtonClick(ActionEvent event) {
         //qui funzione_login()
 
+
         //in caso di errore
         errorText.setOpacity(1);
 

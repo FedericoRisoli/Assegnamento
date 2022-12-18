@@ -16,4 +16,5 @@
 
     <Label fx:id="errorText" opacity="0.0" text="Username/Password errati (non implementati)" textFill="#c90000" />
     <Button fx:id="login" onAction="#onLoginButtonClick" text="Login" />
+   <Button mnemonicParsing="false" text="Registrati" />
 </VBox>
