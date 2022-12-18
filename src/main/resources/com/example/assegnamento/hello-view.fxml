@@ -14,6 +14,6 @@
    <TextField fx:id="username" maxWidth="200.0" prefWidth="200.0" promptText="Username" />
    <PasswordField fx:id="password" maxWidth="200.0" prefHeight="25.0" prefWidth="190.0" promptText="Password" />
 
-    <Label fx:id="errorText" opacity="0.0" text="Useranme/Password errati (non implementati)" textFill="#c90000" />
+    <Label fx:id="errorText" opacity="0.0" text="Username/Password errati (non implementati)" textFill="#c90000" />
     <Button fx:id="login" onAction="#onLoginButtonClick" text="Login" />
 </VBox>
