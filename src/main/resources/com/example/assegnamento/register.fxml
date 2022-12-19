@@ -24,7 +24,7 @@
       <Button fx:id="Indietro" alignment="CENTER" mnemonicParsing="false" onAction="#OnClickClose" text="Indietro" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
       <TextField fx:id="usr" alignment="CENTER" maxWidth="250.0" promptText="Username" GridPane.halignment="CENTER" />
       <TextField fx:id="cfiscale" alignment="CENTER" maxWidth="250.0" promptText="Codice Fiscale" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-      <TextField fx:id="cogmone" alignment="CENTER" maxWidth="250.0" promptText="Cognome" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <TextField fx:id="cognome" alignment="CENTER" maxWidth="250.0" promptText="Cognome" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <TextField fx:id="nome" alignment="CENTER" maxWidth="250.0" promptText="Nome" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
       <PasswordField fx:id="pass" alignment="CENTER" maxWidth="250.0" promptText="Password" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
       <TextField fx:id="mail" alignment="CENTER" maxWidth="250.0" promptText="E-Mail" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
