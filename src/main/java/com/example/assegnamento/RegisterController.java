@@ -60,7 +60,7 @@ public class RegisterController {
             alert.showAndWait();
             return;
         }
-        
+
 
     }
 
