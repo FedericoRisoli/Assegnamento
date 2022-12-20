@@ -15,9 +15,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
+import javafx.scene.Node;
+
+
 //import com.example.assegnamento.DBHelper; ??????? ci va o no?
 
 public class HelloController {
+
+    Stage stage;
+    Scene scene;
+    Parent root;
 
     @FXML
     private Label errorText;
@@ -50,7 +57,7 @@ public class HelloController {
     }
 
     @FXML
-    void onLoginButtonClick(ActionEvent event) throws SQLException {
+    void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         //qui funzione_login()
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
@@ -59,11 +66,14 @@ public class HelloController {
         if (!r.next())
         {
             errorText.setOpacity(1);
+            return;
         }
-        else{
-            errorText.setOpacity(0.5);
-        }
-
+        //cambio scena
+        root = FXMLLoader.load(getClass().getResource("mainpage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
