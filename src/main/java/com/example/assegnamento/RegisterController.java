@@ -74,7 +74,14 @@ public class RegisterController {
         }
         //Registro
         DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \""+usr.getText()+"\" , \""+pass.getText()+"\", \""+nome.getText()+"\", \""+cognome.getText()+"\" , \""+cfiscale.getText()+"\", \""+mail.getText()+"\", \""+telefono.getText()+"\", \""+indirizzo.getText()+"\") ");
-     //   INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cognome`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES (NULL, 'client', 'fede', 'fede', 'fede', 'fede', 'fede', 'fefde', 'fede', 'fed') //query del DB ce'da capire come vuole la Sintassi
+
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Resitrazione avvenuta ");
+        alert.setHeaderText("Registrazione avvenuta con Successo");
+        alert.showAndWait();
+        Stage stage = (Stage) Indietro.getScene().getWindow();
+        stage.close();
+
 
 
     }
