@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 19, 2022 alle 16:34
+-- Creato il: Dic 20, 2022 alle 12:59
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 7.4.33
+-- Versione PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,6 +43,23 @@ INSERT INTO `test` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `thirdparty`
+--
+
+CREATE TABLE `thirdparty` (
+  `id` int(11) NOT NULL,
+  `servizio` enum('corriere','fornitore') NOT NULL,
+  `nome` char(30) NOT NULL,
+  `cognome` char(30) NOT NULL,
+  `mail` char(30) NOT NULL,
+  `telefono` char(13) NOT NULL,
+  `codicefiscale` char(20) NOT NULL,
+  `indirizzoaziendale` char(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `utenti`
 --
 
@@ -66,6 +83,25 @@ CREATE TABLE `utenti` (
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cogmone`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
 (1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1');
 
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `wines`
+--
+
+CREATE TABLE `wines` (
+  `id` int(11) NOT NULL,
+  `nome` char(50) NOT NULL,
+  `produttore` char(50) NOT NULL,
+  `provenienza` char(50) NOT NULL,
+  `anno` date NOT NULL,
+  `vitigno` char(50) NOT NULL,
+  `notetechinche` text NOT NULL,
+  `prezzo` float NOT NULL COMMENT 'prezzo a bottiglia',
+  `promo` tinyint(1) NOT NULL,
+  `quantita` int(11) NOT NULL COMMENT 'in bottiglie'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indici per le tabelle scaricate
 --
@@ -77,12 +113,24 @@ ALTER TABLE `test`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `thirdparty`
+--
+ALTER TABLE `thirdparty`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `c_fiscale` (`c_fiscale`),
   ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indici per le tabelle `wines`
+--
+ALTER TABLE `wines`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -95,10 +143,22 @@ ALTER TABLE `test`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT per la tabella `thirdparty`
+--
+ALTER TABLE `thirdparty`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT per la tabella `wines`
+--
+ALTER TABLE `wines`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

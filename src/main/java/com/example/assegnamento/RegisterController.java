@@ -82,8 +82,6 @@ public class RegisterController {
         Stage stage = (Stage) Indietro.getScene().getWindow();
         stage.close();
 
-
-
     }
 
 }
