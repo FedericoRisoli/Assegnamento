@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 20, 2022 alle 12:59
+-- Creato il: Dic 21, 2022 alle 23:21
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.1.12
+-- Versione PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -81,7 +81,8 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cogmone`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
-(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1');
+(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1'),
+(18, 'admin', 'user', 'user', 'user', 'usercognome', 'codfisc', 'mail@mail.it', '4544545456', 'via Campus 3');
 
 -- --------------------------------------------------------
 
@@ -152,7 +153,7 @@ ALTER TABLE `thirdparty`
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT per la tabella `wines`
