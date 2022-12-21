@@ -68,12 +68,30 @@ public class HelloController {
             errorText.setOpacity(1);
             return;
         }
+        ResultSet c = DBHelper.query("SELECT `ruolo` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
         //cambio scena
-        root = FXMLLoader.load(getClass().getResource("mainpage.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        if(c.next())
+        {
+            String role = c.getString("ruolo");
+            if(role.equals("admin")||role.equals("employee")) //if role is admin or employee go to page with more function
+            {
+                root = FXMLLoader.load(getClass().getResource("employeemainpage.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else if (role.equals("client")) {
+                root = FXMLLoader.load(getClass().getResource("clientmainpage.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+
+        }
+
 
     }
 

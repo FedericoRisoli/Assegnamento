@@ -1,17 +1,14 @@
 package com.example.assegnamento;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MainpageController {
+public class ClientmainpageController {
 
 
     //guardare https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
