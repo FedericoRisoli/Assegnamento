@@ -19,6 +19,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 848, 476);
         stage.setTitle("Welcome to Wine Shop!");
         stage.setScene(scene);
+        stage.setResizable(false); //make scenes Unresizables
         stage.show();
     }
 
