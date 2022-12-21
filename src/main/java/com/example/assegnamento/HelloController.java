@@ -26,6 +26,8 @@ public class HelloController {
     Scene scene;
     Parent root;
 
+
+
     @FXML
     private Label errorText;
 
@@ -72,6 +74,7 @@ public class HelloController {
         //cambio scena
         if(c.next())
         {
+
             String role = c.getString("ruolo");
             if(role.equals("admin")||role.equals("employee")) //if role is admin or employee go to page with more function
             {

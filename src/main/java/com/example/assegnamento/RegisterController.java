@@ -74,7 +74,6 @@ public class RegisterController {
         }
         //Registro
         DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \""+usr.getText()+"\" , \""+pass.getText()+"\", \""+nome.getText()+"\", \""+cognome.getText()+"\" , \""+cfiscale.getText()+"\", \""+mail.getText()+"\", \""+telefono.getText()+"\", \""+indirizzo.getText()+"\") ");
-
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Resitrazione avvenuta ");
         alert.setHeaderText("Registrazione avvenuta con Successo");
