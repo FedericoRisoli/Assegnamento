@@ -30,22 +30,45 @@ public class ModifypswController {
 
     public void OnButtonModifyPSWClick(ActionEvent actionEvent) {
         Alert alert = null;
-        //ce'un errore nella query da correggere ora devo andare a lavoro vedi se riesci a fixarlo (dobbiamo trovare un modo di salvarci líd di un utente loggato)
+        //da aggiungere (Controllare se l'utente che e' loggato e' l' admin allora puo modificare le psw altrui altrimenti solo la propria)
+        //in questo momento si possono modificare tutte le psw da ***FIXARE***
 
-       /* if (newpsw != confirmpsw||newpsw.equals(oldpsw)||newpsw.getText().isBlank()||confirmpsw.getText().isBlank()||mail.getText().isBlank()||oldpsw.getText().isBlank())
+        if (!newpsw.getText().equals(confirmpsw.getText()))
         {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Password Modify Error");
-            alert.setHeaderText("Devi Compilare tutti i campi, la nuova mail e quella vecchia devono essere differente \n Controlla di aver scritto correttamente tutti i campi");
+            alert.setHeaderText("La nuova password e la password di conferma non coincidono");
+            alert.showAndWait();
+            return;
+        }
+        else if (newpsw.getText().equals(oldpsw.getText()))
+        {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Password Modify Error");
+            alert.setHeaderText("Le Password deve essere diversa da quella precedentemente utilizzata");
+            alert.showAndWait();
+            return;
+        }
+        else if (newpsw.getText().isBlank()||oldpsw.getText().isBlank()||mail.getText().isBlank()||confirmpsw.getText().isBlank())
+        {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Password Modify Error");
+            alert.setHeaderText("Compilare Tutti i campi");
             alert.showAndWait();
             return;
         }
         else
         {
-*/
-        //    DBHelper.update("UPDATE `utenti` SET `password` = \""+newpsw.getText()+"\" WHERE `utenti`.`mail` = \""+mail.getText()+"\"" );
-         //   System.out.println("modificafatta");
+
+         DBHelper.update("UPDATE `utenti` SET `password` = \""+confirmpsw.getText()+"\" WHERE `utenti`.`mail` = \""+mail.getText()+"\"" );
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Password Modify Confirmation");
+            alert.setHeaderText("Password Modificata con Successo!");
+            alert.showAndWait();
+            return;
+
         }
 
+}
 }
 

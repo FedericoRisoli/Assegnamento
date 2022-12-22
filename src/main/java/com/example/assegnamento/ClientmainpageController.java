@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ClientmainpageController {
@@ -26,16 +27,17 @@ public class ClientmainpageController {
     private Button search;
 
     @FXML
-    void OnButtonClickSearch(ActionEvent event) throws SQLException {
-        System.out.println("Client Search");
+    void OnButtonClickSearch(ActionEvent event) throws SQLException
+    {
         String anno = annata.getValue();
         String nome = nome_vino.getText();
 
         ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\" AND anno = "+anno);
         while(r.next())
         {
-            System.out.println("Risultato trovato");}
+            System.out.println("Risultato trovato");
         }
+    }
 
     @FXML
     private void initialize() throws SQLException {
@@ -51,7 +53,7 @@ public class ClientmainpageController {
         {
             a = r.getInt("anno");
             if(!anni.contains(a))
-                {anni.add(a); annata.getItems().add(Integer.toString(a));}
+                {anni.add(a);annata.getItems().add(Integer.toString(a));}
         }
 
     }
