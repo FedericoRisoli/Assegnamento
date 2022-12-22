@@ -47,12 +47,6 @@ public class ClientmainpageController {
                 {anni.add(a); annata.getItems().add(Integer.toString(a));}
         }
 
-
-        //
-
     }
-
-
-
 
 }
