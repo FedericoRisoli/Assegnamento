@@ -2,17 +2,14 @@ package com.example.assegnamento;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClientmainpageController {
 
@@ -38,12 +35,20 @@ public class ClientmainpageController {
         System.out.println("Richiedere Gli anni e aggiungerli a ComboBox annata");
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB
-        //ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` WHERE 1");
+        ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY 'anno' ASC");
+
+        //tolgo duplicati
+        List<Integer> anni = new ArrayList<>();
+        int a;
+        while(r.next())
+        {
+            a = r.getInt("anno");
+            if(!anni.contains(a))
+                {anni.add(a); annata.getItems().add(Integer.toString(a));}
+        }
 
 
-        annata.getItems().addAll(
-                "Option 4", "option5"
-        );
+        //
 
     }
 
