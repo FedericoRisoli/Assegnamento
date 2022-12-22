@@ -32,7 +32,7 @@ public class AdminmainpageController {
     @FXML
     void OnButtonModifyPSWClick(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(HelloApplication.class.getResource("modifypsw.fxml"));
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("adminmodifypsw.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Registrazione Cliente");
             stage.setScene(new Scene(root));

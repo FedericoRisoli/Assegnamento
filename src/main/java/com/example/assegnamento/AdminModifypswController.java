@@ -6,12 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class ModifypswController {
+public class AdminModifypswController {
     Data data = Data.getInstance();
 
 
@@ -25,8 +20,7 @@ public class ModifypswController {
     @FXML
     private PasswordField newpsw;
 
-    @FXML
-    private PasswordField oldpsw;
+
 
     @FXML
     void OnButtonClickBack(ActionEvent event) {
@@ -51,15 +45,8 @@ public class ModifypswController {
             alert.showAndWait();
             return;
         }
-        else if (newpsw.getText().equals(oldpsw.getText()))
-        {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Password Modify Error");
-            alert.setHeaderText("Le Password deve essere diversa da quella precedentemente utilizzata");
-            alert.showAndWait();
-            return;
-        }
-        else if (newpsw.getText().isBlank()||oldpsw.getText().isBlank()||mail.getText().isBlank()||confirmpsw.getText().isBlank())
+
+        else if (newpsw.getText().isBlank()||mail.getText().isBlank()||confirmpsw.getText().isBlank())
         {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Password Modify Error");
@@ -70,7 +57,7 @@ public class ModifypswController {
         else
         {
 
-         DBHelper.update("UPDATE `utenti` SET `password` = \""+confirmpsw.getText()+"\" WHERE `utenti`.`id` = \""+id+"\"" );
+         DBHelper.update("UPDATE `utenti` SET `password` = \""+confirmpsw.getText()+"\" WHERE `utenti`.`mail` = \""+mail.getText()+"\"" );
             alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Password Modify Confirmation");
             alert.setHeaderText("Password Modificata con Successo!");
@@ -78,6 +65,9 @@ public class ModifypswController {
             return;
 
         }
+
+}
+private void initialize(){
 
 }
 }
