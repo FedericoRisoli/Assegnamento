@@ -26,9 +26,16 @@ public class ClientmainpageController {
     private Button search;
 
     @FXML
-    void OnButtonClickSearch(ActionEvent event) {
-    System.out.println("Client Search");
-    }
+    void OnButtonClickSearch(ActionEvent event) throws SQLException {
+        System.out.println("Client Search");
+        String anno = annata.getValue();
+        String nome = nome_vino.getText();
+
+        ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\" AND anno = "+anno);
+        while(r.next())
+        {
+            System.out.println("Risultato trovato");}
+        }
 
     @FXML
     private void initialize() throws SQLException {
