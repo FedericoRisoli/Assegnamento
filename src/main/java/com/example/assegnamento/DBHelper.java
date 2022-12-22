@@ -1,4 +1,6 @@
 package com.example.assegnamento;
+import javafx.scene.control.TextField;
+
 import java.sql.*;
 
 public class DBHelper {
@@ -25,6 +27,25 @@ public class DBHelper {
             Statement statement = con.createStatement();
 
             statement.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static int idgetter(TextField user)    //return id
+    {
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wineshop","root","");
+
+            Statement statement = con.createStatement();
+
+            ResultSet i=statement.executeQuery("SELECT `id` FROM `utenti` WHERE `username` LIKE \""+user.getText()+"\"");
+            if(i.next())
+            {
+                return  i.getInt("id");
+            }
+            return i.getInt("id");
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

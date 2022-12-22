@@ -63,6 +63,7 @@ public class HelloController {
         //qui funzione_login()
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
+        int id=DBHelper.idgetter(username); //questo devo riuscirlo a passare in un altra scena idee?
 
         //in caso di errore
         if (!r.next())
