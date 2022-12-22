@@ -30,7 +30,7 @@ public class ClientmainpageController {
 
     @FXML
     void OnButtonClickSearch(ActionEvent event) {
-
+    System.out.println("Client Search");
     }
 
     @FXML

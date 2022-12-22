@@ -76,7 +76,7 @@ public class HelloController {
         {
 
             String role = c.getString("ruolo");
-            if(role.equals("admin")||role.equals("employee")) //if role is admin or employee go to page with more function
+            if(role.equals("employee")) //if role is admin or employee go to page with more function
             {
                 root = FXMLLoader.load(getClass().getResource("employeemainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -86,6 +86,15 @@ public class HelloController {
             }
             else if (role.equals("client")) {
                 root = FXMLLoader.load(getClass().getResource("clientmainpage.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+            else if (role.equals("admin"))
+            {
+                root = FXMLLoader.load(getClass().getResource("adminmainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);

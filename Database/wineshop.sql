@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 21, 2022 alle 23:21
+-- Creato il: Dic 22, 2022 alle 09:32
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 7.4.33
+-- Versione PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,7 +82,8 @@ CREATE TABLE `utenti` (
 
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cogmone`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
 (1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1'),
-(18, 'admin', 'user', 'user', 'user', 'usercognome', 'codfisc', 'mail@mail.it', '4544545456', 'via Campus 3');
+(18, 'client', 'user', 'user', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg'),
+(20, 'employee', 'emp', 'emp', 'des', 'des', 'des', 'des', 'des', 'dse');
 
 -- --------------------------------------------------------
 
@@ -95,13 +96,20 @@ CREATE TABLE `wines` (
   `nome` char(50) NOT NULL,
   `produttore` char(50) NOT NULL,
   `provenienza` char(50) NOT NULL,
-  `anno` date NOT NULL,
+  `anno` int(4) NOT NULL,
   `vitigno` char(50) NOT NULL,
   `notetechinche` text NOT NULL,
   `prezzo` float NOT NULL COMMENT 'prezzo a bottiglia',
   `promo` tinyint(1) NOT NULL,
   `quantita` int(11) NOT NULL COMMENT 'in bottiglie'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `wines`
+--
+
+INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetechinche`, `prezzo`, `promo`, `quantita`) VALUES
+(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 35, 0, 5);
 
 --
 -- Indici per le tabelle scaricate
@@ -153,13 +161,13 @@ ALTER TABLE `thirdparty`
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT per la tabella `wines`
 --
 ALTER TABLE `wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

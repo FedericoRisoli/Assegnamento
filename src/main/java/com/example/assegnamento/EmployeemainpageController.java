@@ -12,11 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class EmployeemainpageController {
 
     @FXML
-    private ComboBox<?> annata;
+    private ComboBox<String> annata;
 
     @FXML
     private TextField nome_vino;
@@ -26,8 +27,9 @@ public class EmployeemainpageController {
 
     @FXML
     void OnButtonClickSearch(ActionEvent event) {
-
+        System.out.println("Employee search");
     }
+
 
     @FXML
     void OnButtonModifyPSWClick(ActionEvent event) {
@@ -46,7 +48,8 @@ public class EmployeemainpageController {
 
     }
 
-    public void OnButtonClickBack(ActionEvent actionEvent) {
-    }
+
+
+
 }
 
