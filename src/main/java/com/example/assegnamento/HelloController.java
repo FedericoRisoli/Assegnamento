@@ -26,7 +26,7 @@ public class HelloController {
     Scene scene;
     Parent root;
 
-
+    Data data=Data.getInstance();
 
     @FXML
     private Label errorText;
@@ -45,6 +45,7 @@ public class HelloController {
 
 
         try {
+
             Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Registrazione Cliente");
@@ -59,11 +60,13 @@ public class HelloController {
     }
 
     @FXML
+
     void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         //qui funzione_login()
-
-        ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
         int id=DBHelper.idgetter(username); //questo devo riuscirlo a passare in un altra scena idee?
+        data.SetData(id);
+        ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
+
 
         //in caso di errore
         if (!r.next())
@@ -79,6 +82,7 @@ public class HelloController {
             String role = c.getString("ruolo");
             if(role.equals("employee")) //if role is admin or employee go to page with more function
             {
+
                 root = FXMLLoader.load(getClass().getResource("employeemainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -107,5 +111,6 @@ public class HelloController {
 
 
     }
+
 
 }

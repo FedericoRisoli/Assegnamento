@@ -12,10 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class EmployeemainpageController {
-
+    Data data = Data.getInstance();
     @FXML
     private ComboBox<String> annata;
 
@@ -25,9 +24,11 @@ public class EmployeemainpageController {
     @FXML
     private Button search;
 
+
     @FXML
     void OnButtonClickSearch(ActionEvent event) {
-        System.out.println("Employee search");
+
+
     }
 
 
@@ -48,6 +49,8 @@ public class EmployeemainpageController {
         }
 
     }
+
+
 
 
 

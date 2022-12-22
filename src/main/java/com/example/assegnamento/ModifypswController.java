@@ -6,13 +6,21 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModifypswController {
+    Data data = Data.getInstance();
+
 
     @FXML
     private PasswordField confirmpsw;
 
     @FXML
     private TextField mail;
+
 
     @FXML
     private PasswordField newpsw;
@@ -30,8 +38,10 @@ public class ModifypswController {
 
     public void OnButtonModifyPSWClick(ActionEvent actionEvent) {
         Alert alert = null;
+
         //da aggiungere (Controllare se l'utente che e' loggato e' l' admin allora puo modificare le psw altrui altrimenti solo la propria)
         //in questo momento si possono modificare tutte le psw da ***FIXARE***
+        int id= data.GetId();
 
         if (!newpsw.getText().equals(confirmpsw.getText()))
         {
@@ -60,7 +70,7 @@ public class ModifypswController {
         else
         {
 
-         DBHelper.update("UPDATE `utenti` SET `password` = \""+confirmpsw.getText()+"\" WHERE `utenti`.`mail` = \""+mail.getText()+"\"" );
+         DBHelper.update("UPDATE `utenti` SET `password` = \""+confirmpsw.getText()+"\" WHERE `utenti`.`id` = \""+id+"\"" );
             alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Password Modify Confirmation");
             alert.setHeaderText("Password Modificata con Successo!");
