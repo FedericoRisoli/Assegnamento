@@ -82,24 +82,13 @@ public class HelloController {
         {
 
             String role = c.getString("ruolo");
-            if(role.equals("employee")||role.equals("admin")) //if role is admin or employee go to page with more function
-            {
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
-                root = FXMLLoader.load(getClass().getResource("employeemainpage.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            }
-            else if (role.equals("client")) {
-                data.SetRole(role);
-                root = FXMLLoader.load(getClass().getResource("clientmainpage.fxml"));
+                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
 
-            }
 
 
         }

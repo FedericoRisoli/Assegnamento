@@ -3,18 +3,25 @@ package com.example.assegnamento;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-public class ClientmainpageController {
 
+public class UsermainpageController {
 
+    Data data =Data.getInstance();
     //guardare https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
     @FXML
     private ComboBox<String> annata;
@@ -25,6 +32,8 @@ public class ClientmainpageController {
 
     @FXML
     private Button search;
+    @FXML
+    private Button modifypswbutton;
 
     @FXML
     void OnButtonClickSearch(ActionEvent event) throws SQLException
@@ -36,6 +45,34 @@ public class ClientmainpageController {
         while(r.next())
         {
             System.out.println("Risultato trovato");
+        }
+    }
+    @FXML
+    void OnModifyPSWButtonClick()
+    {
+        try {
+
+            if(data.Getrole().equals("employee")) {
+                Parent root = FXMLLoader.load(HelloApplication.class.getResource("empmodifypsw.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Registrazione Cliente");
+                stage.setScene(new Scene(root));
+                //blocca finestra prima
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+            } else if (data.Getrole().equals("admin")) {
+                Parent root = FXMLLoader.load(HelloApplication.class.getResource("adminmodifypsw.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Registrazione Cliente");
+                stage.setScene(new Scene(root));
+                //blocca finestra prima
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -54,6 +91,10 @@ public class ClientmainpageController {
             a = r.getInt("anno");
             if(!anni.contains(a))
                 {anni.add(a);annata.getItems().add(Integer.toString(a));}
+        }
+        if(data.Getrole().equals("client"))
+        {
+            modifypswbutton.setVisible(false);
         }
 
     }

@@ -6,6 +6,23 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class AdminModifypswController {
     Data data = Data.getInstance();
 
@@ -67,7 +84,13 @@ public class AdminModifypswController {
         }
 
 }
-private void initialize(){
+public void initialize()
+{
+    if (data.Getrole().equals("emp"))
+    {
+        mail.setVisible(false);
+    }
+
 
 }
 }

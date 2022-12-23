@@ -9,10 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.ClientmainpageController">
+<AnchorPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.UsermainpageController">
    <children>
       <ButtonBar layoutX="-3.0" layoutY="40.0" prefHeight="40.0" prefWidth="1638.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
         <buttons>
+            <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" text="ModifyPSW" />
             <TextField fx:id="nome_vino" maxWidth="300.0" prefWidth="300.0" promptText="Nome Vino" />
             <ComboBox fx:id="annata" maxWidth="100.0" prefWidth="150.0" promptText="Annata" />
           <Button fx:id="search" alignment="CENTER" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="25.0" prefWidth="50.0" text="Search" />
