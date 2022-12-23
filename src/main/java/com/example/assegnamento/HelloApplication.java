@@ -6,11 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-//import java.nio.channels.ConnectionPendingException;
-
-//import java.sql.Connection;
-//import java.sql.DriverManager;
-//import java.sql.*;
 
 public class HelloApplication extends Application {
     @Override

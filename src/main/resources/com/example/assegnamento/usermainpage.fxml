@@ -3,36 +3,47 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.UsermainpageController">
    <children>
       <ButtonBar layoutX="-3.0" layoutY="40.0" prefHeight="40.0" prefWidth="1638.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
         <buttons>
-            <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" text="ModifyPSW" />
             <TextField fx:id="nome_vino" maxWidth="300.0" prefWidth="300.0" promptText="Nome Vino" />
             <ComboBox fx:id="annata" maxWidth="100.0" prefWidth="150.0" promptText="Annata" />
           <Button fx:id="search" alignment="CENTER" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="25.0" prefWidth="50.0" text="Search" />
         </buttons>
       </ButtonBar>
-      <GridPane layoutX="26.0" layoutY="125.0" prefHeight="645.0" prefWidth="1657.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="100.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="100.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="100.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="100.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" percentWidth="100.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="151.0" minHeight="10.0" percentHeight="100.0" prefHeight="200.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="203.0" minHeight="10.0" percentHeight="100.0" prefHeight="200.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="280.0" minHeight="10.0" percentHeight="100.0" prefHeight="200.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="230.0" minHeight="10.0" percentHeight="100.0" prefHeight="200.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
+      <VBox alignment="CENTER" layoutX="33.0" layoutY="552.0" prefHeight="130.0" prefWidth="110.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+         <children>
+            <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" prefHeight="25.0" prefWidth="131.0" text="ModifyPSW" />
+            <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="25.0" prefWidth="124.0" text="Log Out" />
+         </children>
+      </VBox>
+      <ListView fx:id="wine_list" fixedCellSize="30.0" layoutX="204.0" layoutY="137.0" prefHeight="528.0" prefWidth="945.0" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="137.0" />
+      <Button fx:id="compra" layoutX="1067.0" layoutY="677.0" mnemonicParsing="false" onAction="#OnButtonClickBuy" prefHeight="25.0" prefWidth="82.0" text="Compra" AnchorPane.bottomAnchor="98.0" AnchorPane.rightAnchor="51.0" />
+      <ImageView fitHeight="113.0" fitWidth="153.0" layoutX="24.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../img/wine-bottle.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="204.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Che Vino Desideri?">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Label layoutX="340.0" layoutY="378.0" opacity="0.0" text="Nessun Vino trovato, prova con una diversa annata" textFill="#c92020">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

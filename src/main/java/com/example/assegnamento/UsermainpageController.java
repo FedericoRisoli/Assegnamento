@@ -6,9 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,15 +23,38 @@ public class UsermainpageController {
     //guardare https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
     @FXML
     private ComboBox<String> annata;
-
-
     @FXML
     private TextField nome_vino;
-
     @FXML
     private Button search;
     @FXML
     private Button modifypswbutton;
+
+    @FXML
+    private ListView<String> wine_list;
+
+    @FXML
+    private Button log_out;
+
+    @FXML
+    private Label error_text;
+
+    @FXML
+    private Button compra;
+
+    //non finito
+    @FXML
+    void OnButtonClickBuy(ActionEvent event) {
+        String selected = wine_list.getSelectionModel().getSelectedItem();
+        selected = selected.replace(" IN OFFERTA! -25%", "");
+        System.out.println(selected);
+        //aprire pop-up per maggiori info sul vino e comprare
+    }
+
+    @FXML
+    void OnButtonClickLogOut(ActionEvent event) {
+
+    }
 
     @FXML
     void OnButtonClickSearch(ActionEvent event) throws SQLException
@@ -42,8 +63,25 @@ public class UsermainpageController {
         String nome = nome_vino.getText();
 
         ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\" AND anno = "+anno);
+
+        //clear
+        wine_list.getItems().clear();
+        //popolo primo e check errori
+        if(!r.next())
+            {error_text.setOpacity(1); return;}
+        if(r.getInt("promo")==1)
+            wine_list.getItems().add(r.getString("nome")+" IN OFFERTA! -25%");
+        else
+            wine_list.getItems().add(r.getString("nome"));
+        System.out.println("Risultato trovato");
+
+
         while(r.next())
         {
+            if(r.getInt("promo")==1)
+                wine_list.getItems().add(r.getString("nome")+" IN OFFERTA! -25%");
+            else
+                wine_list.getItems().add(r.getString("nome"));
             System.out.println("Risultato trovato");
         }
     }
@@ -95,6 +133,19 @@ public class UsermainpageController {
         if(data.Getrole().equals("client"))
         {
             modifypswbutton.setVisible(false);
+        }
+
+        //popolo ListView con offerte
+        r = DBHelper.query("SELECT `nome`, `promo` FROM `wines` WHERE `promo`=1");
+        while(r.next())
+        {
+            wine_list.getItems().add(r.getString("nome")+" IN OFFERTA! -25%");
+        }
+        //popolo ListView con resto
+        r = DBHelper.query("SELECT `nome`, `promo` FROM `wines` WHERE `promo`=0");
+        while(r.next())
+        {
+            wine_list.getItems().add(r.getString("nome"));
         }
 
     }
