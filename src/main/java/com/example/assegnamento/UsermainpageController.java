@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -53,6 +54,18 @@ public class UsermainpageController {
 
     @FXML
     void OnButtonClickLogOut(ActionEvent event) {
+        Stage stage;
+        Scene scene;
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -74,7 +87,6 @@ public class UsermainpageController {
         else
             wine_list.getItems().add(r.getString("nome"));
         System.out.println("Risultato trovato");
-
 
         while(r.next())
         {
@@ -106,9 +118,7 @@ public class UsermainpageController {
                 //blocca finestra prima
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
-
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

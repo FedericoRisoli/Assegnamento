@@ -2,7 +2,6 @@ package com.example.assegnamento;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,9 +15,6 @@ import java.io.IOException;
 import java.sql.*;
 
 import javafx.scene.Node;
-
-
-//import com.example.assegnamento.DBHelper; ??????? ci va o no?
 
 public class HelloController {
 
@@ -69,18 +65,16 @@ public class HelloController {
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
 
-
         //in caso di errore
         if (!r.next())
         {
-            errorText.setOpacity(1);
+            errorText.setOpacity(1);//QUESTO GENERA ERRORE FIXAMI
             return;
         }
         ResultSet c = DBHelper.query("SELECT `ruolo` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
         //cambio scena
         if(c.next())
         {
-
             String role = c.getString("ruolo");
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
@@ -88,13 +82,6 @@ public class HelloController {
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-
-
-
         }
-
-
     }
-
-
 }
