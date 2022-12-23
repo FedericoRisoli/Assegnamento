@@ -22,20 +22,21 @@
           <Button fx:id="search" alignment="CENTER" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="25.0" prefWidth="50.0" text="Search" />
         </buttons>
       </ButtonBar>
-      <VBox alignment="CENTER" layoutX="33.0" layoutY="552.0" prefHeight="130.0" prefWidth="110.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+      <VBox alignment="CENTER" layoutX="33.0" layoutY="552.0" prefHeight="156.0" prefWidth="128.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
          <children>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="140.0" text="Gestisci Dipendenti" />
             <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" prefHeight="25.0" prefWidth="131.0" text="ModifyPSW" />
             <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="25.0" prefWidth="124.0" text="Log Out" />
          </children>
       </VBox>
-      <ListView fx:id="wine_list" fixedCellSize="30.0" layoutX="204.0" layoutY="137.0" prefHeight="528.0" prefWidth="945.0" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="204.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="137.0" />
+      <ListView fx:id="wine_list" fixedCellSize="30.0" layoutX="219.0" layoutY="137.0" prefHeight="530.0" prefWidth="930.0" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="219.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="137.0" />
       <Button fx:id="compra" layoutX="1067.0" layoutY="677.0" mnemonicParsing="false" onAction="#OnButtonClickBuy" prefHeight="25.0" prefWidth="82.0" text="Compra" AnchorPane.bottomAnchor="98.0" AnchorPane.rightAnchor="51.0" />
-      <ImageView fitHeight="113.0" fitWidth="153.0" layoutX="24.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="133.0" fitWidth="128.0" layoutX="50.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../img/wine-bottle.png" />
          </image>
       </ImageView>
-      <Text layoutX="204.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Che Vino Desideri?">
+      <Text layoutX="219.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Che Vino Desideri?">
          <font>
             <Font size="24.0" />
          </font>
