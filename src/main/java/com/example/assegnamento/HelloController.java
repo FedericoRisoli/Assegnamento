@@ -64,7 +64,9 @@ public class HelloController {
     void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         //qui funzione_login()
         int id=DBHelper.idgetter(username); //questo devo riuscirlo a passare in un altra scena idee?
-        data.SetData(id);
+        data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
+        data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
+
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
 
 
@@ -80,9 +82,9 @@ public class HelloController {
         {
 
             String role = c.getString("ruolo");
-            if(role.equals("employee")) //if role is admin or employee go to page with more function
+            if(role.equals("employee")||role.equals("admin")) //if role is admin or employee go to page with more function
             {
-
+                data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
                 root = FXMLLoader.load(getClass().getResource("employeemainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -90,6 +92,7 @@ public class HelloController {
                 stage.show();
             }
             else if (role.equals("client")) {
+                data.SetRole(role);
                 root = FXMLLoader.load(getClass().getResource("clientmainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -97,15 +100,7 @@ public class HelloController {
                 stage.show();
 
             }
-            else if (role.equals("admin"))
-            {
-                root = FXMLLoader.load(getClass().getResource("adminmainpage.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
 
-            }
 
         }
 
