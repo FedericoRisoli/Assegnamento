@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="450.0" maxWidth="385.0" minHeight="450.0" minWidth="385.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/nord-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.AdminModifypswController">
+<VBox maxHeight="450.0" maxWidth="385.0" minHeight="450.0" minWidth="385.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.AdminModifypswController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci Mail" translateX="95.0" translateY="45.0" />
       <TextField fx:id="mail" maxWidth="-Infinity" prefWidth="200.0" translateX="95.0" translateY="50.0" />
