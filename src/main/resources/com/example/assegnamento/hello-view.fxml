@@ -15,6 +15,6 @@
    <PasswordField fx:id="password" maxWidth="200.0" prefHeight="25.0" prefWidth="190.0" promptText="Password" />
 
     <Label fx:id="errorText" opacity="0.0" text="Username/Password non corretti" textFill="#c90000" />
-    <Button fx:id="login" onAction="#onLoginButtonClick" text="Login" />
+    <Button fx:id="login" onAction="#onLoginButtonClick" styleClass="accent" text="Login" />
    <Button mnemonicParsing="false" onAction="#OnClickOpenRegister" text="Registra Cliente" />
 </VBox>

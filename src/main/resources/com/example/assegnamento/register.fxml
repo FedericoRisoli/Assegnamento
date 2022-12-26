@@ -20,7 +20,7 @@
       <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="Registrati" alignment="CENTER" mnemonicParsing="false" onAction="#OnClickRegister" text="Registrati" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <Button fx:id="Registrati" alignment="CENTER" mnemonicParsing="false" onAction="#OnClickRegister" styleClass="accent" text="Registrati" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
       <Button fx:id="Indietro" alignment="CENTER" mnemonicParsing="false" onAction="#OnClickClose" text="Indietro" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
       <TextField fx:id="usr" alignment="CENTER" maxWidth="250.0" promptText="Username" GridPane.halignment="CENTER" />
       <TextField fx:id="cfiscale" alignment="CENTER" maxWidth="250.0" promptText="Codice Fiscale" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
