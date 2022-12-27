@@ -1,5 +1,7 @@
 package com.example.assegnamento;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -8,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -16,7 +19,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 public class UsermainpageController {
 
@@ -32,7 +37,27 @@ public class UsermainpageController {
     private Button modifypswbutton;
 
     @FXML
-    private ListView<String> wine_list;
+    private TableView<Vini> tabella;
+    @FXML
+    private TableColumn<Vini, String> t_anno;
+    @FXML
+    private TableColumn<Vini, String> t_nome;
+    @FXML
+    private TableColumn<Vini, String> t_note;
+    @FXML
+    private TableColumn<Vini, String> t_offerta;
+    @FXML
+    private TableColumn<Vini, Double> t_prezzo;
+    @FXML
+    private TableColumn<Vini, String> t_produttore;
+    @FXML
+    private TableColumn<Vini, Spinner<Integer>> t_qta;
+    @FXML
+    private TableColumn<Vini, CheckBox> t_selected;
+    @FXML
+    private TableColumn<Vini, String> t_vitigno;
+    @FXML
+    private TableColumn<Vini, String> t_provenienza;
 
     @FXML
     private Button log_out;
@@ -46,10 +71,17 @@ public class UsermainpageController {
     //non finito
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
-        String selected = wine_list.getSelectionModel().getSelectedItem();
+        ObservableList<Vini> lista = FXCollections.observableArrayList();
+        for (Vini item : tabella.getItems() )
+        {
+            if(item.getCheck().isSelected())
+                lista.add(item);
+        }
+        System.out.println(lista);
+       /* String selected = wine_list.getSelectionModel().getSelectedItem();
         selected = selected.replace(" IN OFFERTA! -25%", "");
         System.out.println(selected);
-        //aprire pop-up per maggiori info sul vino e comprare
+        //aprire pop-up per maggiori info sul vino e comprare*/
     }
 
     @FXML
@@ -78,24 +110,15 @@ public class UsermainpageController {
         ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\" AND anno = "+anno);
 
         //clear
-        wine_list.getItems().clear();
-        //popolo primo e check errori
-        if(!r.next())
-            {error_text.setOpacity(1); return;}
-        if(r.getInt("promo")==1)
-            wine_list.getItems().add(r.getString("nome")+" IN OFFERTA! -25%");
-        else
-            wine_list.getItems().add(r.getString("nome"));
-        System.out.println("Risultato trovato");
+        tabella.getItems().clear();
+        //popolo
+        ObservableList<Vini> tmp = FXCollections.observableArrayList();
 
         while(r.next())
         {
-            if(r.getInt("promo")==1)
-                wine_list.getItems().add(r.getString("nome")+" IN OFFERTA! -25%");
-            else
-                wine_list.getItems().add(r.getString("nome"));
-            System.out.println("Risultato trovato");
+            tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
         }
+        tabella.setItems(tmp);
     }
     @FXML
     void OnModifyPSWButtonClick()
@@ -145,17 +168,38 @@ public class UsermainpageController {
             modifypswbutton.setVisible(false);
         }
 
+
+        t_nome.setCellValueFactory(new PropertyValueFactory<Vini, String>("Nome"));
+        t_produttore.setCellValueFactory(new PropertyValueFactory<Vini, String>("p1"));
+        t_provenienza.setCellValueFactory(new PropertyValueFactory<Vini, String>("p2"));
+        t_anno.setCellValueFactory(new PropertyValueFactory<Vini, String>("a"));
+        t_vitigno.setCellValueFactory(new PropertyValueFactory<Vini, String>("v"));
+        t_note.setCellValueFactory(new PropertyValueFactory<Vini, String>("not"));
+        t_offerta.setCellValueFactory(new PropertyValueFactory<Vini, String>("p"));
+        t_selected.setCellValueFactory(new PropertyValueFactory<Vini, CheckBox>("check"));
+        t_qta.setCellValueFactory(new PropertyValueFactory<Vini, Spinner<Integer>>("spin"));
+        t_prezzo.setCellValueFactory(new PropertyValueFactory<Vini, Double>("prezzo"));
+
+        ObservableList<Vini> tmp = FXCollections.observableArrayList();
+        //FXCollections.observableArrayList().add();
+
+
         //popolo ListView con offerte
-        r = DBHelper.query("SELECT `nome`, `promo` FROM `wines` WHERE `promo`=1");
+        r = DBHelper.query("SELECT * FROM `wines` WHERE `promo`=1");
         while(r.next())
         {
-            wine_list.getItems().add(r.getString("nome")+" IN OFFERTA! -25%");
+            tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
+            //Vini v = new Vini("test","test","test","test","test","test","Alta","0","1");
+            tabella.setItems(tmp);
         }
+
         //popolo ListView con resto
-        r = DBHelper.query("SELECT `nome`, `promo` FROM `wines` WHERE `promo`=0");
+        r = DBHelper.query("SELECT * FROM `wines` WHERE `promo`=0");
         while(r.next())
         {
-            wine_list.getItems().add(r.getString("nome"));
+            tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
+            //Vini v = new Vini("test","test","test","test","test","test","Alta","0","1");
+            tabella.setItems(tmp);
         }
 
     }

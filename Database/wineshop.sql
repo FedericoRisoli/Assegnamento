@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 22, 2022 alle 09:32
+-- Creato il: Dic 27, 2022 alle 14:43
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.1.12
+-- Versione PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,7 +83,8 @@ CREATE TABLE `utenti` (
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cogmone`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
 (1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1'),
 (18, 'client', 'user', 'user', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg'),
-(20, 'employee', 'emp', 'emp', 'des', 'des', 'des', 'des', 'des', 'dse');
+(20, 'employee', 'emp', 'emp', 'des', 'des', 'des', 'des', 'des', 'dse'),
+(21, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -98,8 +99,9 @@ CREATE TABLE `wines` (
   `provenienza` char(50) NOT NULL,
   `anno` int(4) NOT NULL,
   `vitigno` char(50) NOT NULL,
-  `notetechinche` text NOT NULL,
-  `prezzo` float NOT NULL COMMENT 'prezzo a bottiglia',
+  `notetecniche` text NOT NULL,
+  `qualita` enum('Alta','Media','Bassa') NOT NULL,
+  `vendite` int(11) NOT NULL DEFAULT 0,
   `promo` tinyint(1) NOT NULL,
   `quantita` int(11) NOT NULL COMMENT 'in bottiglie'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -108,8 +110,10 @@ CREATE TABLE `wines` (
 -- Dump dei dati per la tabella `wines`
 --
 
-INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetechinche`, `prezzo`, `promo`, `quantita`) VALUES
-(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 35, 0, 5);
+INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
+(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 5),
+(3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 5, 0, 100),
+(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 0, 1, 100);
 
 --
 -- Indici per le tabelle scaricate
@@ -161,13 +165,13 @@ ALTER TABLE `thirdparty`
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT per la tabella `wines`
 --
 ALTER TABLE `wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
