@@ -180,16 +180,8 @@ public class UsermainpageController {
         ObservableList<Vini> tmp = FXCollections.observableArrayList();
 
 
-        //popolo ListView con offerte
-        r = DBHelper.query("SELECT * FROM `wines` WHERE `promo`=1");
-        while(r.next())
-        {
-            tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
-            tabella.setItems(tmp);
-        }
-
-        //popolo ListView con resto
-        r = DBHelper.query("SELECT * FROM `wines` WHERE `promo`=0");
+        //popolo ListView
+        r = DBHelper.query("SELECT * FROM `wines` ORDER BY `promo` DESC");
         while(r.next())
         {
             tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
