@@ -78,10 +78,7 @@ public class UsermainpageController {
                 lista.add(item);
         }
         System.out.println(lista);
-       /* String selected = wine_list.getSelectionModel().getSelectedItem();
-        selected = selected.replace(" IN OFFERTA! -25%", "");
-        System.out.println(selected);
-        //aprire pop-up per maggiori info sul vino e comprare*/
+
     }
 
     @FXML
@@ -181,7 +178,6 @@ public class UsermainpageController {
         t_prezzo.setCellValueFactory(new PropertyValueFactory<Vini, Double>("prezzo"));
 
         ObservableList<Vini> tmp = FXCollections.observableArrayList();
-        //FXCollections.observableArrayList().add();
 
 
         //popolo ListView con offerte
@@ -189,7 +185,6 @@ public class UsermainpageController {
         while(r.next())
         {
             tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
-            //Vini v = new Vini("test","test","test","test","test","test","Alta","0","1");
             tabella.setItems(tmp);
         }
 
@@ -198,7 +193,6 @@ public class UsermainpageController {
         while(r.next())
         {
             tmp.add(new Vini(r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
-            //Vini v = new Vini("test","test","test","test","test","test","Alta","0","1");
             tabella.setItems(tmp);
         }
 
