@@ -3,8 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -29,7 +30,6 @@
             <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="36.0" prefWidth="192.0" styleClass="danger" text="Log Out" />
          </children>
       </VBox>
-      <ListView fx:id="wine_list" fixedCellSize="30.0" layoutX="274.0" layoutY="137.0" prefHeight="475.0" prefWidth="875.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="137.0" />
       <Button fx:id="compra" layoutX="1067.0" layoutY="677.0" mnemonicParsing="false" onAction="#OnButtonClickBuy" prefHeight="25.0" prefWidth="82.0" styleClass="accent" text="Compra" AnchorPane.bottomAnchor="98.0" AnchorPane.rightAnchor="51.0" />
       <ImageView fitHeight="133.0" fitWidth="128.0" layoutX="50.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -41,10 +41,23 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <Label layoutX="340.0" layoutY="378.0" opacity="0.0" text="Nessun Vino trovato, prova con una diversa annata" textFill="#c92020">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <ScrollPane layoutX="178.0" layoutY="137.0" prefHeight="475.0" prefWidth="790.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="137.0">
+         <content>
+            <TableView fx:id="tabella" prefHeight="475.0" prefWidth="875.0">
+              <columns>
+                <TableColumn fx:id="t_selected" prefWidth="92.0" text="Selezionato" />
+                <TableColumn fx:id="t_qta" prefWidth="88.0" text="Q.ta" />
+                  <TableColumn fx:id="t_nome" prefWidth="96.0" text="Nome" />
+                  <TableColumn fx:id="t_produttore" prefWidth="91.0" text="Produttore" />
+                  <TableColumn fx:id="t_anno" prefWidth="68.0" text="Anno" />
+                  <TableColumn fx:id="t_vitigno" prefWidth="82.0" text="Vitigno" />
+                  <TableColumn fx:id="t_note" prefWidth="83.0" text="Note" />
+                  <TableColumn fx:id="t_prezzo" prefWidth="82.0" text="Prezzo" />
+                  <TableColumn fx:id="t_offerta" prefWidth="69.0" text="Offerta" />
+                  <TableColumn fx:id="t_provenienza" prefWidth="118.0" text="Provenienza" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
