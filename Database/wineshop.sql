@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
 -- Creato il: Dic 27, 2022 alle 14:43
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
@@ -99,6 +100,7 @@ CREATE TABLE `wines` (
   `provenienza` char(50) NOT NULL,
   `anno` int(4) NOT NULL,
   `vitigno` char(50) NOT NULL,
+
   `notetecniche` text NOT NULL,
   `qualita` enum('Alta','Media','Bassa') NOT NULL,
   `vendite` int(11) NOT NULL DEFAULT 0,
@@ -109,6 +111,7 @@ CREATE TABLE `wines` (
 --
 -- Dump dei dati per la tabella `wines`
 --
+
 
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
 (1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 5),
