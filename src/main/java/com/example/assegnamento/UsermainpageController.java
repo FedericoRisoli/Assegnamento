@@ -25,6 +25,8 @@ import javafx.scene.control.TextField;
 
 public class UsermainpageController {
 
+    Carrello carrello = Carrello.getIstance();
+
     Data data =Data.getInstance();
     //guardare https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
     @FXML
@@ -79,12 +81,26 @@ public class UsermainpageController {
         }
         //apro nuova pagina per confermare l'ordine e pago
         System.out.println(lista);
-        for (Vini item : lista)
-        {
-            System.out.println(item.getNome());
-            System.out.println(item.getSpin().getValue());
-        }
+        //passo lista al prossimo controller
+        carrello.setCarrello(lista);
+        System.out.println(carrello.getCarrello());
 
+        //se il carrello non è vuoto
+        if (!carrello.getCarrello().isEmpty()) {
+            //cambio scena
+            Stage stage;
+            Scene scene;
+            Parent root;
+            try {
+                root = FXMLLoader.load(getClass().getResource("riepilogo.fxml"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
