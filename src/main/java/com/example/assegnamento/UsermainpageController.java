@@ -77,7 +77,13 @@ public class UsermainpageController {
             if(item.getCheck().isSelected())
                 lista.add(item);
         }
+        //apro nuova pagina per confermare l'ordine e pago
         System.out.println(lista);
+        for (Vini item : lista)
+        {
+            System.out.println(item.getNome());
+            System.out.println(item.getSpin().getValue());
+        }
 
     }
 
