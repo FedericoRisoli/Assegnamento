@@ -59,14 +59,11 @@ public class HelloController {
 
     void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         //qui funzione_login()
-        int id=DBHelper.idgetter(username); //questo devo riuscirlo a passare in un altra scena idee?
-        data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
-        data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
 
         //in caso di errore
-        if (!r.next())
+        if (!r.next()||username.getText().isBlank()||password.getText().isBlank())
         {
             errorText.setOpacity(1);//QUESTO GENERA ERRORE FIXAMI
             return;
@@ -75,6 +72,9 @@ public class HelloController {
         //cambio scena
         if(c.next())
         {
+            int id=DBHelper.idgetter(username);
+            data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
+            data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
             String role = c.getString("ruolo");
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
