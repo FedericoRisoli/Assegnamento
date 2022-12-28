@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -46,6 +47,7 @@ public class HelloController {
             Stage stage = new Stage();
             stage.setTitle("Registrazione Cliente");
             stage.setScene(new Scene(root));
+
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
