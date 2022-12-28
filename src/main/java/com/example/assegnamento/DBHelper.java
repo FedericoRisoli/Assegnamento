@@ -19,7 +19,7 @@ public class DBHelper {
         }
     }
 
-    public static void update(String sql)    //executeUpdate per aggiungere record o modificarli(?)
+    public static void update(String sql)    //executeUpdate per aggiungere record o modificarli
     {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wineshop","root","");
@@ -27,6 +27,22 @@ public class DBHelper {
             Statement statement = con.createStatement();
 
             statement.executeUpdate(sql);
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public static void execute(String sql)    //execute per rimuovere dal db
+    {
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/wineshop","root","");
+
+            Statement statement = con.createStatement();
+
+            statement.execute(sql);
+
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

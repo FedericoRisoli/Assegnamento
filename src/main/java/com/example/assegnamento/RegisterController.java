@@ -76,13 +76,7 @@ public class RegisterController {
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+usr.getText()+"\""); //query per controllo d username nel db
         Alert alert = null;
         //ci sono campi bianchi? o la password è vuota?
-        if ((usr.getText().isBlank()) || (telefono.getText().isBlank()) || (pass.getText().isEmpty()) || (nome.getText().isBlank()) || (indirizzo.getText().isBlank()) || (cognome.getText().isBlank()) || (cfiscale.getText().isBlank()) || (mail.getText().isBlank())) {
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Registrazione non completa");
-            alert.setHeaderText("Compilare tutti i campi");
-            alert.showAndWait();
-            return;
-        }
+
         if (r.next())//controllo che l'username non sia gia' nel DB
         {
             alert = new Alert(Alert.AlertType.ERROR);
@@ -92,38 +86,68 @@ public class RegisterController {
             return;
 
         }
-        if(data.Getrole().equals("admin"))
+        if(data.Getrole()!=null)
         {
-            if(regradio.isSelected())
+            if (data.Getrole().equals("admin"))
+            {
+                if (regradio.isSelected())
                 {
-                    //Registro Impiegato
-                    DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Resitrazione Impiegato avvenuta ");
-                    alert.setHeaderText("Registrazione Impiegato avvenuta con Successo");
-                    alert.showAndWait();
-                    Stage stage = (Stage) Indietro.getScene().getWindow();
-                    stage.close();
-                }
-            else if (cancradio.isSelected())
+                    if ((usr.getText().isBlank()) || (telefono.getText().isBlank()) || (pass.getText().isEmpty()) || (nome.getText().isBlank()) || (indirizzo.getText().isBlank()) || (cognome.getText().isBlank()) || (cfiscale.getText().isBlank()) || (mail.getText().isBlank()) )
+                        {
+                            alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Registrazione non completa");
+                            alert.setHeaderText("Compilare tutti i campi");
+                            alert.showAndWait();
+                            return;
+                        }
+                    else
+                        {
+                            //Registro Impiegato
+                            DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
+                            alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Resitrazione Impiegato avvenuta ");
+                            alert.setHeaderText("Registrazione Impiegato avvenuta con Successo");
+                            alert.showAndWait();
+                            Stage stage = (Stage) Indietro.getScene().getWindow();
+                            stage.close();
+                        }
+                } else if (cancradio.isSelected())
+                    {
+                        DBHelper.execute("DELETE FROM `utenti` WHERE `username` LIKE \"" + userselector.getValue() + "\"");
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Cancellazione Impiegato avvenuta ");
+                        alert.setHeaderText("Cancellazione Impiegato avvenuta con Successo");
+                        alert.showAndWait();
+                        Stage stage = (Stage) Indietro.getScene().getWindow();
+                        stage.close();
+                    }
+                else if (resetradio.isSelected())
                 {
-                  //aggiungere combobox/username selector
+                    //capire cosa fa reset
                 }
-            else if (resetradio.isSelected())
-                {
-                    //aggiungere combobox/username selector
-                }
+            }
         }
-        else
+        else  //Registrazione normale
         {
-            //Registrazione normale
-            DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Resitrazione avvenuta ");
-            alert.setHeaderText("Registrazione avvenuta con Successo");
-            alert.showAndWait();
-            Stage stage = (Stage) Indietro.getScene().getWindow();
-            stage.close();
+            if ((usr.getText().isBlank()) || (telefono.getText().isBlank()) || (pass.getText().isEmpty()) || (nome.getText().isBlank()) || (indirizzo.getText().isBlank()) || (cognome.getText().isBlank()) || (cfiscale.getText().isBlank()) || (mail.getText().isBlank()))
+                {
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Registrazione non completa");
+                    alert.setHeaderText("Compilare tutti i campi");
+                    alert.showAndWait();
+                    return;
+                }
+            else
+                {
+
+                    DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Resitrazione avvenuta ");
+                alert.setHeaderText("Registrazione avvenuta con Successo");
+                alert.showAndWait();
+                Stage stage = (Stage) Indietro.getScene().getWindow();
+                stage.close();
+                }
         }
 
     }
@@ -167,6 +191,15 @@ public class RegisterController {
         mail.setVisible(false);
         indirizzo.setVisible(false);
         Registrati.setText("Cancella");
+
+        usr.setDisable(true);
+        telefono.setDisable(true);
+        nome.setDisable(true);
+        cognome.setDisable(true);
+        cfiscale.setDisable(true);
+        pass.setDisable(true);
+        mail.setDisable(true);
+        indirizzo.setDisable(true);
     }
 
     public void Reset(MouseEvent mouseEvent)
@@ -193,5 +226,13 @@ public class RegisterController {
         pass.setVisible(true);
         mail.setVisible(true);
         Registrati.setText("Registra");
+        usr.setDisable(false);
+        telefono.setDisable(false);
+        nome.setDisable(false);
+        cognome.setDisable(false);
+        cfiscale.setDisable(false);
+        pass.setDisable(false);
+        mail.setDisable(false);
+        indirizzo.setDisable(false);
     }
 }
