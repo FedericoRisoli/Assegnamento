@@ -2,10 +2,7 @@ package com.example.assegnamento;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.sql.*;
 
@@ -14,6 +11,20 @@ import java.sql.*;
 
 public class RegisterController {
     Data data=Data.getInstance();
+    @FXML
+    private ToggleGroup action;
+
+    @FXML
+    private RadioButton cancradio;
+    @FXML
+    private RadioButton regradio;
+
+    @FXML
+    private RadioButton resetradio;
+
+
+    @FXML
+    private ButtonBar ActionBar;
 
     @FXML
     private Button Indietro;
@@ -76,14 +87,25 @@ public class RegisterController {
         }
         if(data.Getrole().equals("admin"))
         {
-            //Registro Impiegato
-            DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Resitrazione Impiegato avvenuta ");
-            alert.setHeaderText("Registrazione Impiegato avvenuta con Successo");
-            alert.showAndWait();
-            Stage stage = (Stage) Indietro.getScene().getWindow();
-            stage.close();
+            if(regradio.isSelected())
+                {
+                    //Registro Impiegato
+                    DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Resitrazione Impiegato avvenuta ");
+                    alert.setHeaderText("Registrazione Impiegato avvenuta con Successo");
+                    alert.showAndWait();
+                    Stage stage = (Stage) Indietro.getScene().getWindow();
+                    stage.close();
+                }
+            else if (cancradio.isSelected())
+                {
+                  //aggiungere combobox/username selector
+                }
+            else if (resetradio.isSelected())
+                {
+                    //aggiungere combobox/username selector
+                }
         }
         else
         {
@@ -98,5 +120,19 @@ public class RegisterController {
         }
 
     }
+
+
+    public void initialize()
+    {
+        ActionBar.setVisible(false);
+        if (data.Getrole()=="admin")
+        {
+            ActionBar.setVisible(true);
+        }
+
+
+    }
+
+
 
 }

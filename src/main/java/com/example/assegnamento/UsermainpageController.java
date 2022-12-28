@@ -125,11 +125,13 @@ public class UsermainpageController {
     }
     @FXML
     void OnButtonClickLogOut(ActionEvent event) {
+
         Stage stage;
         Scene scene;
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+            data.reset(); //resetta le info passate utile per fixare bug
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

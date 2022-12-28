@@ -26,4 +26,5 @@ public class Data {
     public int GetId(){return id;}
     public String Getrole(){return role;}
     public String Getusername(){return username;}
+    public void reset(){this.id=-100;this.role="";this.username="";};
 }

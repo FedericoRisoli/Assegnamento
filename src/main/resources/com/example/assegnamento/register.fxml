@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -31,5 +34,16 @@
       <TextField fx:id="mail" alignment="CENTER" maxWidth="250.0" promptText="E-Mail" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
       <TextField fx:id="telefono" alignment="CENTER" maxWidth="250.0" promptText="Telefono" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
       <TextField fx:id="indirizzo" alignment="CENTER" maxWidth="250.0" promptText="Indirizzo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+      <ButtonBar fx:id="ActionBar" minWidth="-Infinity" prefHeight="40.0" prefWidth="660.0">
+         <buttons>
+            <RadioButton fx:id="regradio" mnemonicParsing="false" text="Registra">
+               <toggleGroup>
+                  <ToggleGroup fx:id="action" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="cancradio" mnemonicParsing="false" text="Cancella" toggleGroup="$action" />
+            <RadioButton fx:id="resetradio" mnemonicParsing="false" prefHeight="22.0" prefWidth="191.0" text="Resetta" toggleGroup="$action" />
+         </buttons>
+      </ButtonBar>
    </children>
 </GridPane>
