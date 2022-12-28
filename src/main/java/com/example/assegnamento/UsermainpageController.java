@@ -143,24 +143,14 @@ public class UsermainpageController {
     void OnModifyPSWButtonClick()
     {
         try {
+                Parent root = FXMLLoader.load(HelloApplication.class.getResource("modifypsw.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Registrazione Cliente");
+                stage.setScene(new Scene(root));
+                //blocca finestra prima
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
 
-            if(data.Getrole().equals("employee")) {
-                Parent root = FXMLLoader.load(HelloApplication.class.getResource("empmodifypsw.fxml"));
-                Stage stage = new Stage();
-                stage.setTitle("Registrazione Cliente");
-                stage.setScene(new Scene(root));
-                //blocca finestra prima
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
-            } else if (data.Getrole().equals("admin")) {
-                Parent root = FXMLLoader.load(HelloApplication.class.getResource("adminmodifypsw.fxml"));
-                Stage stage = new Stage();
-                stage.setTitle("Registrazione Cliente");
-                stage.setScene(new Scene(root));
-                //blocca finestra prima
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.show();
-            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
