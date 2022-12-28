@@ -3,10 +3,12 @@ package com.example.assegnamento;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.sql.*;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class RegisterController {
@@ -55,12 +57,17 @@ public class RegisterController {
 
     @FXML
     private TextField usr;
+    @FXML
+    private ComboBox<String> userselector;
+
 
     @FXML
     void OnClickClose(ActionEvent event) {
         Stage stage = (Stage) Indietro.getScene().getWindow();
         stage.close();
     }
+
+
 
     @FXML
     void OnClickRegister(ActionEvent event) throws SQLException
@@ -122,17 +129,69 @@ public class RegisterController {
     }
 
 
-    public void initialize()
-    {
+    public void initialize() throws SQLException {
         ActionBar.setVisible(false);
+        userselector.setVisible(false);
         if (data.Getrole()=="admin")
         {
             ActionBar.setVisible(true);
+        }
+        ResultSet r = DBHelper.query("SELECT `username` FROM `utenti` ORDER BY 'username' ASC");
+
+        //tolgo duplicati
+        List<String> usernames = new ArrayList<>();
+        String a;
+        while(r.next())
+        {
+            a = r.getString("username");
+            if(!usernames.contains(a))
+            {
+                usernames.add(a);
+                userselector.getItems().add(a);
+            }
         }
 
 
     }
 
 
+    public void Cancel(javafx.scene.input.MouseEvent mouseEvent)
+    {
+        userselector.setVisible(true);
+        usr.setVisible(false);
+        telefono.setVisible(false);
+        nome.setVisible(false);
+        cognome.setVisible(false);
+        cfiscale.setVisible(false);
+        pass.setVisible(false);
+        mail.setVisible(false);
+        indirizzo.setVisible(false);
+        Registrati.setText("Cancella");
+    }
 
+    public void Reset(MouseEvent mouseEvent)
+    {
+        userselector.setVisible(true);
+        indirizzo.setVisible(false);
+        usr.setVisible(false);
+        telefono.setVisible(false);
+        nome.setVisible(false);
+        cognome.setVisible(false);
+        cfiscale.setVisible(false);
+        pass.setVisible(false);
+        mail.setVisible(false);
+        Registrati.setText("Resetta");
+    }
+
+    public void registersel(MouseEvent mouseEvent) {
+        userselector.setVisible(false);
+        usr.setVisible(true);
+        telefono.setVisible(true);
+        nome.setVisible(true);
+        cognome.setVisible(true);
+        cfiscale.setVisible(true);
+        pass.setVisible(true);
+        mail.setVisible(true);
+        Registrati.setText("Registra");
+    }
 }

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
@@ -36,14 +37,15 @@
       <TextField fx:id="indirizzo" alignment="CENTER" maxWidth="250.0" promptText="Indirizzo" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
       <ButtonBar fx:id="ActionBar" minWidth="-Infinity" prefHeight="40.0" prefWidth="660.0">
          <buttons>
-            <RadioButton fx:id="regradio" mnemonicParsing="false" text="Registra">
+            <RadioButton fx:id="regradio" mnemonicParsing="false" onMouseClicked="#registersel" text="Registra">
                <toggleGroup>
                   <ToggleGroup fx:id="action" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="cancradio" mnemonicParsing="false" text="Cancella" toggleGroup="$action" />
-            <RadioButton fx:id="resetradio" mnemonicParsing="false" prefHeight="22.0" prefWidth="191.0" text="Resetta" toggleGroup="$action" />
+            <RadioButton fx:id="cancradio" mnemonicParsing="false" onMouseClicked="#Cancel" text="Cancella" toggleGroup="$action" />
+            <RadioButton fx:id="resetradio" mnemonicParsing="false" onMouseClicked="#Reset" prefHeight="22.0" prefWidth="191.0" text="Resetta" toggleGroup="$action" />
          </buttons>
       </ButtonBar>
+      <ComboBox fx:id="userselector" prefWidth="150.0" translateX="165.0" translateY="120.0" GridPane.halignment="CENTER" />
    </children>
 </GridPane>
