@@ -160,7 +160,7 @@ public class RegisterController {
         {
             ActionBar.setVisible(true);
         }
-        ResultSet r = DBHelper.query("SELECT `username` FROM `utenti` ORDER BY 'username' ASC");
+        ResultSet r = DBHelper.query("SELECT `username` FROM `utenti` WHERE ruolo LIKE 'employee' ORDER BY 'username' ASC");
 
         //tolgo duplicati
         List<String> usernames = new ArrayList<>();
