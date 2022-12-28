@@ -70,6 +70,9 @@ public class UsermainpageController {
     @FXML
     private Button compra;
 
+    @FXML
+    private Button GestioneDipButton;
+
     //non finito
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
@@ -102,7 +105,24 @@ public class UsermainpageController {
             stage.show();
         }
     }
+    @FXML
+    void OnGestisciDipendentiClick(ActionEvent event)
+    {
+        try {
+            data.SetRole("admin");
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Registrazione Cliente");
+            stage.setScene(new Scene(root));
+            //blocca finestra prima
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     @FXML
     void OnButtonClickLogOut(ActionEvent event) {
         Stage stage;
@@ -158,6 +178,7 @@ public class UsermainpageController {
 
     @FXML
     private void initialize() throws SQLException {
+        GestioneDipButton.setVisible(false);
         System.out.println("Richiedere Gli anni e aggiungerli a ComboBox annata");
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB
@@ -175,6 +196,10 @@ public class UsermainpageController {
         if(data.Getrole().equals("client"))
         {
             modifypswbutton.setVisible(false);
+        }
+        else if(data.Getrole().equals("admin"))
+        {
+          GestioneDipButton.setVisible(true);
         }
 
 

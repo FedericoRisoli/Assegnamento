@@ -13,6 +13,7 @@ import java.sql.*;
 
 
 public class RegisterController {
+    Data data=Data.getInstance();
 
     @FXML
     private Button Indietro;
@@ -51,7 +52,8 @@ public class RegisterController {
     }
 
     @FXML
-    void OnClickRegister(ActionEvent event) throws SQLException {
+    void OnClickRegister(ActionEvent event) throws SQLException
+    {
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+usr.getText()+"\""); //query per controllo d username nel db
         Alert alert = null;
@@ -72,14 +74,28 @@ public class RegisterController {
             return;
 
         }
-        //Registro
-        DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \""+usr.getText()+"\" , \""+pass.getText()+"\", \""+nome.getText()+"\", \""+cognome.getText()+"\" , \""+cfiscale.getText()+"\", \""+mail.getText()+"\", \""+telefono.getText()+"\", \""+indirizzo.getText()+"\") ");
-        alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Resitrazione avvenuta ");
-        alert.setHeaderText("Registrazione avvenuta con Successo");
-        alert.showAndWait();
-        Stage stage = (Stage) Indietro.getScene().getWindow();
-        stage.close();
+        if(data.Getrole().equals("admin"))
+        {
+            //Registro Impiegato
+            DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Resitrazione Impiegato avvenuta ");
+            alert.setHeaderText("Registrazione Impiegato avvenuta con Successo");
+            alert.showAndWait();
+            Stage stage = (Stage) Indietro.getScene().getWindow();
+            stage.close();
+        }
+        else
+        {
+            //Registrazione normale
+            DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\") ");
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Resitrazione avvenuta ");
+            alert.setHeaderText("Registrazione avvenuta con Successo");
+            alert.showAndWait();
+            Stage stage = (Stage) Indietro.getScene().getWindow();
+            stage.close();
+        }
 
     }
 
