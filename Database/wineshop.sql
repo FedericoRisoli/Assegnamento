@@ -3,8 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-
--- Creato il: Dic 27, 2022 alle 14:43
+-- Creato il: Dic 29, 2022 alle 22:12
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
 
@@ -21,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `wineshop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `ordinivendita`
+--
+
+CREATE TABLE `ordinivendita` (
+  `id` int(11) NOT NULL,
+  `nome` char(30) NOT NULL,
+  `cogmone` char(30) NOT NULL,
+  `ordine` text NOT NULL,
+  `indirizzo` char(40) NOT NULL,
+  `dataconsegna` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `ordinivendita`
+--
+
+INSERT INTO `ordinivendita` (`id`, `nome`, `cogmone`, `ordine`, `indirizzo`, `dataconsegna`) VALUES
+(1, '', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -100,7 +121,6 @@ CREATE TABLE `wines` (
   `provenienza` char(50) NOT NULL,
   `anno` int(4) NOT NULL,
   `vitigno` char(50) NOT NULL,
-
   `notetecniche` text NOT NULL,
   `qualita` enum('Alta','Media','Bassa') NOT NULL,
   `vendite` int(11) NOT NULL DEFAULT 0,
@@ -112,7 +132,6 @@ CREATE TABLE `wines` (
 -- Dump dei dati per la tabella `wines`
 --
 
-
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
 (1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 5),
 (3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 5, 0, 100),
@@ -121,6 +140,12 @@ INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno
 --
 -- Indici per le tabelle scaricate
 --
+
+--
+-- Indici per le tabelle `ordinivendita`
+--
+ALTER TABLE `ordinivendita`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indici per le tabelle `test`
@@ -151,6 +176,12 @@ ALTER TABLE `wines`
 --
 -- AUTO_INCREMENT per le tabelle scaricate
 --
+
+--
+-- AUTO_INCREMENT per la tabella `ordinivendita`
+--
+ALTER TABLE `ordinivendita`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT per la tabella `test`
