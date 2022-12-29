@@ -9,6 +9,7 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane prefHeight="628.0" prefWidth="943.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.RiepilogoController">
    <children>
@@ -24,14 +25,14 @@
             <String fx:value="accent" />
          </styleClass>
       </Button>
-      <ScrollPane layoutX="67.0" layoutY="56.0" prefHeight="327.0" prefWidth="843.0" AnchorPane.bottomAnchor="251.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-        </content>
+      <ScrollPane fx:id="recap" layoutX="67.0" layoutY="56.0" prefHeight="318.0" prefWidth="843.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+         <content>
+            <TextFlow fx:id="textflow" prefHeight="304.0" prefWidth="825.0" />
+         </content>
       </ScrollPane>
-      <Line endX="742.0" layoutX="151.0" layoutY="452.0" startX="-100.0" AnchorPane.bottomAnchor="175.5" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <Line endX="742.0" layoutX="151.0" layoutY="452.0" startX="-100.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Label layoutX="60.0" layoutY="460.0" styleClass="title-1" text="TOTALE:" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="50.0" />
-      <Label layoutX="187.0" layoutY="478.0" styleClass="title-1" text="10000.99 $" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="187.0" />
+      <Label fx:id="label_prezzo" layoutX="187.0" layoutY="478.0" styleClass="title-1" text="10000.99 $" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="187.0" />
       <Label layoutX="92.0" layoutY="416.0" styleClass="title-2" text="Metodo di Pagamento:" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" />
       <ButtonBar layoutX="344.0" layoutY="390.0" prefHeight="40.0" prefWidth="331.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="344.0">
          <buttons>
@@ -43,5 +44,6 @@
             <RadioButton mnemonicParsing="false" styleClass="toggle-button" text="Carta di Credito" toggleGroup="$metodo" />
          </buttons>
       </ButtonBar>
+      <Line endX="742.0" layoutX="137.0" layoutY="368.0" startX="-100.0" AnchorPane.bottomAnchor="259.5" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
    </children>
 </AnchorPane>
