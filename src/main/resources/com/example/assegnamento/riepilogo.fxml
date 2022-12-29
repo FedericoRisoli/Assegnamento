@@ -13,13 +13,13 @@
 
 <AnchorPane prefHeight="628.0" prefWidth="943.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.RiepilogoController">
    <children>
-      <Button layoutX="86.0" layoutY="487.0" mnemonicParsing="false" text="Annulla Ordine" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+      <Button fx:id="annulla" layoutX="86.0" layoutY="487.0" mnemonicParsing="false" onAction="#OnClickAnulla" text="Annulla Ordine" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
          <styleClass>
             <String fx:value="danger" />
             <String fx:value="button-outlined" />
          </styleClass>
       </Button>
-      <Button layoutX="763.0" layoutY="500.0" mnemonicParsing="false" text="Procedi al Pagamento" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+      <Button fx:id="procedi" layoutX="763.0" layoutY="500.0" mnemonicParsing="false" onAction="#OnClickProcedi" text="Procedi al Pagamento" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
          <styleClass>
             <String fx:value="success" />
             <String fx:value="accent" />
@@ -36,7 +36,7 @@
       <Label layoutX="92.0" layoutY="416.0" styleClass="title-2" text="Metodo di Pagamento:" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" />
       <ButtonBar layoutX="344.0" layoutY="390.0" prefHeight="40.0" prefWidth="331.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="344.0">
          <buttons>
-            <RadioButton mnemonicParsing="false" selected="true" styleClass="toggle-button" text="Bonifico">
+            <RadioButton fx:id="bonifico" mnemonicParsing="false" selected="true" styleClass="toggle-button" text="Bonifico">
                <toggleGroup>
                   <ToggleGroup fx:id="metodo" />
                </toggleGroup>

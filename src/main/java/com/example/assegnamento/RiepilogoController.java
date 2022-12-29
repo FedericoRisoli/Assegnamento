@@ -1,13 +1,19 @@
 package com.example.assegnamento;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ToggleGroup;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -23,6 +29,9 @@ public class RiepilogoController {
     }
 
 
+    Stage stage;
+    Scene scene;
+    Parent root;
 
     Carrello carrello = Carrello.getIstance();
 
@@ -37,6 +46,50 @@ public class RiepilogoController {
 
     @FXML
     private Label label_prezzo;
+
+    @FXML
+    private Button procedi;
+
+    @FXML
+    private Button annulla;
+
+    @FXML
+    private RadioButton bonifico;
+
+    @FXML
+    void OnClickAnulla(ActionEvent event) throws IOException {
+            root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+    }
+
+
+    @FXML
+    void OnClickProcedi(ActionEvent event) throws IOException  {
+        if(bonifico.isSelected()){
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Pagamento con Bonifico");
+            stage.setScene(new Scene(root));
+
+            //blocca finestra prima
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+        else {
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Pagamento con Carta di Credito");
+            stage.setScene(new Scene(root));
+
+            //blocca finestra prima
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        }
+
+    }
 
 
     @FXML
