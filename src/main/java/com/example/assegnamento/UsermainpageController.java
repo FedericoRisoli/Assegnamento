@@ -73,6 +73,9 @@ public class UsermainpageController {
     @FXML
     private Button GestioneDipButton;
 
+    @FXML
+    private Button RicercaclientiButton;
+
     //non finito
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
