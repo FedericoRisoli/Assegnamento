@@ -21,7 +21,7 @@ disponibili, il sistema notificherà la loro disponibilità all’utente.
 
 
 ## Amministratore:
-- [ ] l’amministratore ha una password iniziale predefinita che può comunque modificare. 
+- [x] l’amministratore ha una password iniziale predefinita che può comunque modificare. 
 
 - [ ] Inoltre l’amministratore deve registrare (con nome utente e password) gli altri dipendenti, e resettare e cancellare i loro dati di registrazione quando diventa necessario. 
 
@@ -46,7 +46,7 @@ disponibili, il sistema notificherà la loro disponibilità all’utente.
   - [ ]  Questo impiegato preparerà un ordine di acquisto e lo invia al fornitore. Ricevuto l’ordine, il fornito prepara il materiale ed effettua la consegna. Ricevuto il materiale dal fornitore, l’impiegato chiede al sistema di generare un ordine di vendita partendo dai dati della proposta di acquisto, dai prezzi dei vini e dalla data di consegna (definita con il corriere) e invia l’ordine di vendita.
   - [ ]  Ricevuto l’ordine di vendita, il cliente può decidere se acquistarlo o no. Se si, il cliente deve pagare tramite il sistema; se no, il cliente deve annullare l’acquisto. Il sistema e il dipendente che ha seguito la possibile vendita devono completare le attività necessarie in base alla scelta fatta dal cliente.
   
-- [ ]Multi:
+- [ ] Multi:
   - [ ]  Il sistema mantiene e gestisce gli ordini di vendita ricevuti dai clienti. In particolare, ogni volta che viene effettuato un acquisto, il sistema aggiorna il numero di vendita e disponibilità dei vini, e invia una copia dell’ordine di vendita ad uno degli impiegati.
   - [ ]  Questo impiegato deve esaminare l’ordine, preparare il materiale per la spedizione, concordare con il corriere la data di prelievo e consegna del materiale e informare il cliente sulla data di consegna. Dopo la consegna del materiale al corriere, il dipendete deve completare l’ordine di vendita firmandolo digitalmente.
   
