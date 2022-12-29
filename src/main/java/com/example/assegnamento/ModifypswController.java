@@ -3,9 +3,11 @@ package com.example.assegnamento;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import javax.xml.transform.Result;
 import java.sql.ResultSet;
@@ -32,10 +34,13 @@ public class ModifypswController {
 
     @FXML
     private Text oldpswtext;
+    @FXML
+    private Button Indietro;
 
     @FXML
     void OnButtonClickBack(ActionEvent event) {
-
+        Stage stage = (Stage) Indietro.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
