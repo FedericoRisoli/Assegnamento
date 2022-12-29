@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 
 public class PagoBonificoController {
 
+    Data data=Data.getInstance();
+
     @FXML
     private Button indietro;
 
@@ -41,6 +43,8 @@ public class PagoBonificoController {
             errore.setOpacity(1);
         } else {
             //TODO segnare ordini vendita
+            //DBHelper.query("SELECT * FROM `utenti` WHERE id = "+Integer.toString(data.GetId()));
+            //DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cogmone`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '', '', '', '', '')");
             System.out.println("TUTTO OK");
         }
     }
