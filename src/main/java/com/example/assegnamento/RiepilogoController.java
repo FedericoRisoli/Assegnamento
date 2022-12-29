@@ -69,7 +69,7 @@ public class RiepilogoController {
     @FXML
     void OnClickProcedi(ActionEvent event) throws IOException  {
         if(bonifico.isSelected()){
-            Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("pagobonifico.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Pagamento con Bonifico");
             stage.setScene(new Scene(root));
@@ -79,7 +79,7 @@ public class RiepilogoController {
             stage.show();
         }
         else {
-            Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("pagocarta.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Pagamento con Carta di Credito");
             stage.setScene(new Scene(root));
