@@ -7,7 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
@@ -105,11 +104,14 @@ public class RiepilogoController {
 
 
         textflow.getChildren().add(new Text("VINI NEL CARRELLO: \n\n"));
+        carrello.clearOrdine();//evito bug
         for (Vini item : carrello.getCarrello()) {
             textflow.getChildren().add(new Text(item.getNome()));
+            carrello.addOrdine(item.getNome());
             textflow.getChildren().add(new Text("\n"));
             //segno numero bottiglie
             bottiglie = (int) item.getSpin().getValue();
+            carrello.addOrdine(Integer.toString(bottiglie));
             //segno numero casse da 12 e le tolgo da bottiglie
             //automaticamente viene arrotondato per difetto
             casse12 = bottiglie/12;
@@ -141,6 +143,8 @@ public class RiepilogoController {
             }
             totale=totale+subtotale;
             textflow.getChildren().add(new Text("\n\n"));
+            carrello.addOrdine(Double.toString(subtotale));
+
 
         }
         label_prezzo.setText(Double.toString(round(totale,2))+" €");
