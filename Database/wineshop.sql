@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 29, 2022 alle 22:12
+-- Creato il: Dic 30, 2022 alle 15:05
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 7.4.33
+-- Versione PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ordinivendita` (
   `id` int(11) NOT NULL,
   `nome` char(30) NOT NULL,
-  `cogmone` char(30) NOT NULL,
+  `cognome` char(30) NOT NULL,
   `ordine` text NOT NULL,
   `indirizzo` char(40) NOT NULL,
   `dataconsegna` date NOT NULL
@@ -40,7 +40,7 @@ CREATE TABLE `ordinivendita` (
 -- Dump dei dati per la tabella `ordinivendita`
 --
 
-INSERT INTO `ordinivendita` (`id`, `nome`, `cogmone`, `ordine`, `indirizzo`, `dataconsegna`) VALUES
+INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES
 (1, '', '', '', '', '0000-00-00');
 
 -- --------------------------------------------------------
@@ -91,7 +91,7 @@ CREATE TABLE `utenti` (
   `username` char(20) NOT NULL,
   `password` char(20) NOT NULL,
   `nome` char(30) NOT NULL,
-  `cogmone` char(30) NOT NULL,
+  `cognome` char(30) NOT NULL,
   `c_fiscale` char(16) NOT NULL COMMENT 'c.f. unico',
   `mail` char(40) NOT NULL,
   `telefono` char(13) NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE `utenti` (
 -- Dump dei dati per la tabella `utenti`
 --
 
-INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cogmone`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
+INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cognome`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
 (1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1'),
 (18, 'client', 'user', 'user', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg'),
 (20, 'employee', 'emp', 'emp', 'des', 'des', 'des', 'des', 'des', 'dse'),

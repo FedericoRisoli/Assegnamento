@@ -44,7 +44,7 @@ public class PagoBonificoController {
         } else {
             //TODO segnare ordini vendita
             //DBHelper.query("SELECT * FROM `utenti` WHERE id = "+Integer.toString(data.GetId()));
-            //DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cogmone`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '', '', '', '', '')");
+            //DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '', '', '', '', '')"); //fixato cognome
             System.out.println("TUTTO OK");
         }
     }
