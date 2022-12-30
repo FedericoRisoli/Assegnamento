@@ -201,6 +201,17 @@ public class UsermainpageController {
         if(data.Getrole().equals("client"))
         {
             modifypswbutton.setVisible(false);
+            try {
+                Parent root = FXMLLoader.load(HelloApplication.class.getResource("promo.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Promo");
+                stage.setScene(new Scene(root));
+                stage.setAlwaysOnTop(true);
+                stage.show();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         else if(data.Getrole().equals("admin"))
         {
