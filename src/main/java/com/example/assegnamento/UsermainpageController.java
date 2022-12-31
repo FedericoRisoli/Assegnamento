@@ -184,7 +184,7 @@ public class UsermainpageController {
     @FXML
     private void initialize() throws SQLException {
         GestioneDipButton.setVisible(false);
-        System.out.println("Richiedere Gli anni e aggiungerli a ComboBox annata");
+
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB
         ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY 'anno' ASC");
