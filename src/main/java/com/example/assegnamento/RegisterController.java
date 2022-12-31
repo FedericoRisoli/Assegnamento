@@ -125,11 +125,12 @@ public class RegisterController {
                 {
                     //capire cosa fa reset
                     DBHelper.update("UPDATE `utenti` SET `password` = 'emp'  WHERE `utenti`.`username` = \"" + userselector.getValue() + "\"");
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Reset Credenziali");
                     alert.setHeaderText("Reset Credenziali avvenuto con Successo!");
                     alert.showAndWait();
-                    return;
+                    Stage stage = (Stage) Indietro.getScene().getWindow();
+                    stage.close();
                 }
             }
         }
@@ -141,7 +142,6 @@ public class RegisterController {
                     alert.setTitle("Registrazione non completa");
                     alert.setHeaderText("Compilare tutti i campi");
                     alert.showAndWait();
-                    return;
                 }
             else
                 {

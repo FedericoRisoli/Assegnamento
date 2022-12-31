@@ -58,7 +58,6 @@ public class ModifypswController {
                     alert.setTitle("Password Modify Error");
                     alert.setHeaderText("La nuova password e la password di conferma non coincidono");
                     alert.showAndWait();
-                    return;
                 }
             else if (newpsw.getText().isBlank() || mail.getText().isBlank() || confirmpsw.getText().isBlank())
                 {
@@ -66,16 +65,17 @@ public class ModifypswController {
                     alert.setTitle("Password Modify Error");
                     alert.setHeaderText("Compilare Tutti i campi");
                     alert.showAndWait();
-                    return;
                 }
             else if(r.next())
                 {
                     DBHelper.update("UPDATE `utenti` SET `password` = \"" + confirmpsw.getText() + "\" WHERE `utenti`.`mail` = \"" + mail.getText() + "\"");
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Password Modify Confirmation");
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Password Modify SUCCESS");
                     alert.setHeaderText("Password Modificata con Successo!");
                     alert.showAndWait();
-                    return;
+                    //chiudi popup
+                    Stage stage = (Stage) Indietro.getScene().getWindow();
+                    stage.close();
                 }
             else
                 {
@@ -83,7 +83,6 @@ public class ModifypswController {
                     alert.setTitle("Mail inserita inesistente");
                     alert.setHeaderText("CLútente a cui vuoi modificare la password non esiste");
                     alert.showAndWait();
-                    return;
                 }
 
 
@@ -97,7 +96,6 @@ public class ModifypswController {
                     alert.setTitle("Password Modify Error");
                     alert.setHeaderText("La nuova password e la password di conferma non coincidono");
                     alert.showAndWait();
-                    return;
                 }
             else if (newpsw.getText().isBlank() || oldpsw.getText().isBlank() || confirmpsw.getText().isBlank())
                 {
@@ -105,17 +103,17 @@ public class ModifypswController {
                     alert.setTitle("Password Modify Error");
                     alert.setHeaderText("Compilare Tutti i campi");
                     alert.showAndWait();
-                    return;
                 }
             else if(oldpassword.next())
                 {
-
                     DBHelper.update("UPDATE `utenti` SET `password` = \"" + confirmpsw.getText() + "\" WHERE `utenti`.`id` = \"" + data.GetId() + "\"");
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Password Modify Confirmation");
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Password Modify SUCCESS");
                     alert.setHeaderText("Password Modificata con Successo!");
                     alert.showAndWait();
-                    return;
+                    //chiudi popup
+                    Stage stage = (Stage) Indietro.getScene().getWindow();
+                    stage.close();
 
                 }
             else
@@ -124,7 +122,6 @@ public class ModifypswController {
                     alert.setTitle("Vecchia Password Errata");
                     alert.setHeaderText("La vecchia password (quella attuale) inserita non e' corrette \n Riprovare.");
                     alert.showAndWait();
-                    return;
                 }
         }
 
