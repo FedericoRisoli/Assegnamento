@@ -124,6 +124,12 @@ public class RegisterController {
                 else if (resetradio.isSelected())
                 {
                     //capire cosa fa reset
+                    DBHelper.update("UPDATE `utenti` SET `password` = 'emp'  WHERE `utenti`.`username` = \"" + userselector.getValue() + "\"");
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Reset Credenziali");
+                    alert.setHeaderText("Reset Credenziali avvenuto con Successo!");
+                    alert.showAndWait();
+                    return;
                 }
             }
         }
