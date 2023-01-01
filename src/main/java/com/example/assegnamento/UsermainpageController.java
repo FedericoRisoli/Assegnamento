@@ -47,8 +47,6 @@ public class UsermainpageController {
     @FXML
     private TableColumn<Vini, String> t_note;
     @FXML
-    private TableColumn<Vini, String> t_offerta;
-    @FXML
     private TableColumn<Vini, Double> t_prezzo;
     @FXML
     private TableColumn<Vini, String> t_produttore;
@@ -225,7 +223,6 @@ public class UsermainpageController {
         t_anno.setCellValueFactory(new PropertyValueFactory<Vini, String>("a"));
         t_vitigno.setCellValueFactory(new PropertyValueFactory<Vini, String>("v"));
         t_note.setCellValueFactory(new PropertyValueFactory<Vini, String>("not"));
-        t_offerta.setCellValueFactory(new PropertyValueFactory<Vini, String>("p"));
         t_selected.setCellValueFactory(new PropertyValueFactory<Vini, CheckBox>("check"));
         t_qta.setCellValueFactory(new PropertyValueFactory<Vini, Spinner<Integer>>("spin"));
         t_prezzo.setCellValueFactory(new PropertyValueFactory<Vini, Double>("prezzo"));

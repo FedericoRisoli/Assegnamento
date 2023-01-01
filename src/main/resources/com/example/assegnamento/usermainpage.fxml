@@ -43,18 +43,17 @@
       </Text>
       <ScrollPane layoutX="178.0" layoutY="137.0" prefHeight="475.0" prefWidth="790.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="137.0">
          <content>
-            <TableView fx:id="tabella" prefHeight="475.0" prefWidth="875.0">
+            <TableView fx:id="tabella" prefHeight="475.0" prefWidth="871.0" styleClass="striped">
               <columns>
                 <TableColumn fx:id="t_selected" prefWidth="92.0" text="Selezionato" />
                 <TableColumn fx:id="t_qta" prefWidth="88.0" text="Q.ta" />
-                  <TableColumn fx:id="t_nome" prefWidth="96.0" text="Nome" />
-                  <TableColumn fx:id="t_produttore" prefWidth="91.0" text="Produttore" />
-                  <TableColumn fx:id="t_anno" prefWidth="68.0" text="Anno" />
+                  <TableColumn fx:id="t_nome" prefWidth="114.0" text="Nome" />
+                  <TableColumn fx:id="t_produttore" prefWidth="93.0" text="Produttore" />
+                  <TableColumn fx:id="t_anno" prefWidth="71.0" text="Anno" />
                   <TableColumn fx:id="t_vitigno" prefWidth="82.0" text="Vitigno" />
-                  <TableColumn fx:id="t_note" prefWidth="83.0" text="Note" />
-                  <TableColumn fx:id="t_prezzo" prefWidth="82.0" text="Prezzo" />
-                  <TableColumn fx:id="t_offerta" prefWidth="69.0" text="Offerta" />
-                  <TableColumn fx:id="t_provenienza" prefWidth="118.0" text="Provenienza" />
+                  <TableColumn fx:id="t_note" prefWidth="79.0" text="Note" />
+                  <TableColumn fx:id="t_prezzo" prefWidth="111.0" text="Prezzo €" />
+                  <TableColumn fx:id="t_provenienza" prefWidth="123.0" text="Provenienza" />
               </columns>
             </TableView>
          </content>
