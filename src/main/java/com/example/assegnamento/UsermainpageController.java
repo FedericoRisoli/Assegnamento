@@ -187,7 +187,7 @@ public class UsermainpageController {
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB
-        ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY 'anno' ASC");
+        ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY `anno` DESC");
 
         //tolgo duplicati
         List<Integer> anni = new ArrayList<>();
