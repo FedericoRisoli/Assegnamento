@@ -79,6 +79,7 @@ public class HelloController {
             data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
             String role = c.getString("ruolo");
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
+                data.SetPromo(true);
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);

@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 
 public class UsermainpageController {
 
+
     Carrello carrello = Carrello.getIstance();
 
     Data data =Data.getInstance();
@@ -181,6 +182,7 @@ public class UsermainpageController {
 
     @FXML
     private void initialize() throws SQLException {
+
         GestioneDipButton.setVisible(false);
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
@@ -199,17 +201,23 @@ public class UsermainpageController {
         if(data.Getrole().equals("client"))
         {
             modifypswbutton.setVisible(false);
-            try {
-                Parent root = FXMLLoader.load(HelloApplication.class.getResource("promo.fxml"));
-                Stage stage = new Stage();
-                stage.setTitle("Promo");
-                stage.setScene(new Scene(root));
-                stage.setAlwaysOnTop(true);
-                stage.show();
+            if(data.GetPromo()==true)
+            {
+                try {
+                    Parent root = FXMLLoader.load(HelloApplication.class.getResource("promo.fxml"));
+                    Stage stage = new Stage();
+                    stage.setTitle("Promo");
+                    stage.setScene(new Scene(root));
+                    stage.setAlwaysOnTop(true);
+                    stage.show();
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+
+
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
+
         }
         else if(data.Getrole().equals("admin"))
         {

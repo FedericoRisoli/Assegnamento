@@ -5,6 +5,7 @@ public class Data {
     public int id;
     public String role;
     public String username;
+    public boolean promo;
 
     private Data(){}
     public  static Data getInstance()
@@ -15,6 +16,8 @@ public class Data {
     {
         this.id=i;
     }
+    public void SetPromo(boolean p) {this.promo=p;}
+    public boolean GetPromo(){return promo;}
     public void SetRole(String s )
     {
         this.role=s;

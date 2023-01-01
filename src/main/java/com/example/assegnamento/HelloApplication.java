@@ -18,6 +18,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false); //make scenes Unresizables
         stage.show();
+
     }
 
 
