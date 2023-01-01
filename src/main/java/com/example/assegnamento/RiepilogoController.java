@@ -75,6 +75,12 @@ public class RiepilogoController {
 
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            System.out.println("funge");
+            root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         }
         else {
@@ -85,6 +91,12 @@ public class RiepilogoController {
 
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            System.out.println("funge");
+            root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
         }
 

@@ -2,6 +2,7 @@ package com.example.assegnamento;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -33,6 +34,7 @@ public class PagoBonificoController {
     @FXML
     private Label errore;
 
+    Alert alert;
 
     @FXML
     void OnClickIndietro(ActionEvent event) {
@@ -84,7 +86,14 @@ public class PagoBonificoController {
             }
 
             DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"')");
-            System.out.println("TUTTO OK");
+
+            //show info e chiudi
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pagamento andato a buon fine");
+            alert.setHeaderText("Pagamento avvenuto e ordine processato!");
+            alert.showAndWait();
+            Stage stage = (Stage) indietro.getScene().getWindow();
+            stage.close();
         }
     }
 }

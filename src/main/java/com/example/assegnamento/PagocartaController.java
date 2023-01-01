@@ -4,13 +4,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -19,8 +15,6 @@ import java.sql.SQLException;
 
 
 import java.time.Year;
-import java.util.Calendar;
-
 
 public class PagocartaController {
 
@@ -53,6 +47,8 @@ public class PagocartaController {
     private Label errore;
 
     String text;
+
+    Alert alert;
 
 
     @FXML
@@ -107,7 +103,14 @@ public class PagocartaController {
             }
 
             DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"')");
-            System.out.println("TUTTO OK");
+
+            //show info e chiudi
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Pagamento andato a buon fine");
+            alert.setHeaderText("Pagamento avvenuto e ordine processato!");
+            alert.showAndWait();
+            Stage stage = (Stage) indietro.getScene().getWindow();
+            stage.close();
         }
     }
 
