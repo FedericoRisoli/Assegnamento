@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Dic 30, 2022 alle 15:05
+-- Creato il: Gen 01, 2023 alle 16:33
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.1.12
+-- Versione PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,26 +41,12 @@ CREATE TABLE `ordinivendita` (
 --
 
 INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES
-(1, '', '', '', '', '0000-00-00');
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `test`
---
-
-CREATE TABLE `test` (
-  `id` int(11) NOT NULL,
-  `nome` char(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='tabella di test';
-
---
--- Dump dei dati per la tabella `test`
---
-
-INSERT INTO `test` (`id`, `nome`) VALUES
-(1, 'test'),
-(2, 'test');
+(1, '', '', '', '', '0000-00-00'),
+(3, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2022-12-27'),
+(4, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02'),
+(5, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02'),
+(6, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03'),
+(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03');
 
 -- --------------------------------------------------------
 
@@ -105,8 +91,16 @@ CREATE TABLE `utenti` (
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cognome`, `c_fiscale`, `mail`, `telefono`, `indirizzo`) VALUES
 (1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1'),
 (18, 'client', 'user', 'user', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg'),
-(20, 'employee', 'emp', 'emp', 'des', 'des', 'des', 'des', 'des', 'dse'),
-(21, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a');
+(21, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'),
+(22, 'employee', 'emp', 'emp', 'e', 'e', 'e', 'e', 'e', 'e'),
+(23, 'employee', 'fromani', 'fromanivinobuono', 'Franco', 'Romani', 'CLNCZD60T17I473M', 'mciglia@gmail.com', '03161986517', 'Via Vicenza, 15 , 40013-Bologna BO'),
+(24, 'employee', 'Lucius.Pisani', 'delfino', 'Lucius', 'Pisani', 'BGFDQG74C04I260L', 'l.pis@gmail.com', '05210246834', 'Discesa Gaiola, 93, 85043-Cerri PZ'),
+(25, 'employee', 'genovesina', 'vinibuoni', 'Paola', 'Genovesi', 'SMKNRI88C04F187W', 'genovesina73@libero.it', '0520896544', 'Via Moiariello, 29, 12010-Vinadio CN'),
+(26, 'employee', 'Tito', 'tito', 'Tito', 'Fiorentino', 'MSNVMF86M68M045Q', 'fiorentino@gmail.com', '07201380537', 'Via Palermo, 12, 98040-Soccorso ME'),
+(27, 'employee', 'Giorgia01', '123456789', 'Giorgia', 'Cremonesi', 'FHBDBG86T51D045Q', ' GiorgiaCremonesi@gmail.com', '4567897474', 'Via Gaetano Donizetti, 92, 37040-Locara'),
+(28, 'client', '4L4K4Z4M', 'unamagia', 'Elia', 'Candida', 'HVHHTB55C23B195C', 'staiattento@gmail.com', '9876541230', 'via Campus 1, PARMA'),
+(29, 'client', 'WhiteHunter', '1111111111', 'Federico', 'Risoli', 'GLZLFZ77A26F773U', 'risolia@gmail.com', '4832185138', 'via Campus 2, PARMA'),
+(30, 'client', 'Unipsilo', 'cartello', 'Olivia', 'Spinu', 'QRHSSJ44S46G273S', 'ocimicidae.matematica@gmail.com', '9874563218', 'via Campus 3, PARMA');
 
 -- --------------------------------------------------------
 
@@ -135,7 +129,17 @@ CREATE TABLE `wines` (
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
 (1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 5),
 (3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 5, 0, 100),
-(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 0, 1, 100);
+(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 0, 1, 100),
+(5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 3, 1, 25),
+(6, 'Barbaresco Meruzzano', 'Abrigo Orlando', 'Italia', 1995, 'Barbera', 'Frizzante, fruttato, bianco', 'Alta', 10, 1, 31),
+(7, 'Barbaresco DOCG \"Montersino\"', 'Abrigo Orlando', 'Italia', 2021, 'Barbera', 'Rosso, fermo, intenso', 'Media', 0, 0, 46),
+(8, 'Francia Corta', '1701 Francia Corta', 'Francia', 1987, 'Albana', 'Frizzante, fruttato, bianco', 'Alta', 18, 0, 47),
+(9, 'Ghemme', 'Alamos', 'Italia', 1999, 'Barolo bianco', 'Frizzante, fruttato, bianco', 'Bassa', 0, 0, 1000),
+(10, 'Greco di Tufo', 'Conti Di Buscareto', 'Italia', 2000, 'Biancolella', 'Rosso, fermo, delicato', 'Media', 1, 1, 123),
+(11, 'Lison', 'Dosnon', 'Italia', 2019, 'Bonarda', 'Rosso, fermo, intenso', 'Bassa', 0, 0, 44),
+(12, 'Montecucco Sangiovese', 'Fongoli', 'Italia', 2008, 'Cortese', 'Rosso, fermo, intenso', 'Bassa', 0, 0, 55),
+(13, 'Montefalco Sagrantino', 'Francoli', 'Italia', 2019, 'Durella', 'Rosso, fermo, delicato', 'Media', 0, 0, 69),
+(14, 'Montello rosso', 'Illica', 'Italia', 2012, 'Falanghina', 'Rosè, frizzante, delicato', 'Bassa', 32, 0, 120);
 
 --
 -- Indici per le tabelle scaricate
@@ -145,12 +149,6 @@ INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno
 -- Indici per le tabelle `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `test`
---
-ALTER TABLE `test`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -181,13 +179,7 @@ ALTER TABLE `wines`
 -- AUTO_INCREMENT per la tabella `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT per la tabella `test`
---
-ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT per la tabella `thirdparty`
@@ -199,13 +191,13 @@ ALTER TABLE `thirdparty`
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT per la tabella `wines`
 --
 ALTER TABLE `wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
