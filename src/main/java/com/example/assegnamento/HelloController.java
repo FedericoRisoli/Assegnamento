@@ -74,17 +74,35 @@ public class HelloController {
         //cambio scena
         if(c.next())
         {
-            int id=DBHelper.idgetter(username);
-            data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
-            data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
-            String role = c.getString("ruolo");
+            if(c.toString()=="client")
+            {
+                int id = DBHelper.idgetter(username);
+                data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
+                data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
+                String role = c.getString("ruolo");
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
                 data.SetPromo(true);
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+            }
+            else
+            {
+                int id = DBHelper.idgetter(username);
+                data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
+                data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
+                String role = c.getString("ruolo");
+                data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
+                data.SetPromo(true);
+                root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
+            }
         }
     }
 }

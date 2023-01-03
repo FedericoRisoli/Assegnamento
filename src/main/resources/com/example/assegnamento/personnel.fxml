@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.UsermainpageController">
+<AnchorPane maxHeight="800.0" maxWidth="1200.0" minHeight="800.0" minWidth="1200.0" pickOnBounds="false" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.PersonnelpageController">
    <children>
       <ButtonBar layoutX="-3.0" layoutY="40.0" prefHeight="40.0" prefWidth="1638.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
         <buttons>
@@ -25,6 +25,9 @@
       </ButtonBar>
       <VBox alignment="CENTER" layoutX="33.0" layoutY="552.0" prefHeight="156.0" prefWidth="174.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
          <children>
+            <Button fx:id="GestioneDipButton" mnemonicParsing="false" onAction="#OnGestisciDipendentiClick" prefHeight="36.0" prefWidth="179.0" text="Gestisci Dipendenti" />
+            <Button fx:id="RicercaclientiButton" mnemonicParsing="false" onAction="#OnRicercaClientiClick" prefHeight="36.0" prefWidth="179.0" text="Ricerca Clienti" />
+            <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" prefHeight="36.0" prefWidth="194.0" text="ModifyPSW" />
             <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="36.0" prefWidth="192.0" styleClass="danger" text="Log Out" />
          </children>
       </VBox>
