@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 01, 2023 alle 16:33
+-- Creato il: Gen 05, 2023 alle 19:43
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
 
@@ -46,7 +46,8 @@ INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `da
 (4, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02'),
 (5, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02'),
 (6, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03'),
-(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03');
+(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03'),
+(8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-01-04');
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,10 @@ INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno
 (11, 'Lison', 'Dosnon', 'Italia', 2019, 'Bonarda', 'Rosso, fermo, intenso', 'Bassa', 0, 0, 44),
 (12, 'Montecucco Sangiovese', 'Fongoli', 'Italia', 2008, 'Cortese', 'Rosso, fermo, intenso', 'Bassa', 0, 0, 55),
 (13, 'Montefalco Sagrantino', 'Francoli', 'Italia', 2019, 'Durella', 'Rosso, fermo, delicato', 'Media', 0, 0, 69),
-(14, 'Montello rosso', 'Illica', 'Italia', 2012, 'Falanghina', 'Rosè, frizzante, delicato', 'Bassa', 32, 0, 120);
+(14, 'Montello rosso', 'Illica', 'Italia', 2012, 'Falanghina', 'Rosè, frizzante, delicato', 'Bassa', 32, 0, 120),
+(15, 'Purple Desire', 'Desirè Wines', 'Inghilterra', 2019, 'Purple Magic', 'Rosso, fruttato', 'Bassa', 31, 0, 44),
+(16, 'White Desire', 'Desirè Wines', 'Inghilterra', 2000, 'White Magic', 'Bianco, fruttato', 'Alta', 0, 0, 34),
+(17, 'Pink Desire', 'Desirè Wines', 'Inghilterra', 1999, 'Pink Magic', 'Rosè, fruttato', 'Media', 0, 1, 29);
 
 --
 -- Indici per le tabelle scaricate
@@ -179,7 +183,7 @@ ALTER TABLE `wines`
 -- AUTO_INCREMENT per la tabella `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT per la tabella `thirdparty`
@@ -197,7 +201,7 @@ ALTER TABLE `utenti`
 -- AUTO_INCREMENT per la tabella `wines`
 --
 ALTER TABLE `wines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
