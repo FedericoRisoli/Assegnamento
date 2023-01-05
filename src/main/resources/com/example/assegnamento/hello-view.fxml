@@ -5,16 +5,57 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 
-<VBox alignment="CENTER" prefHeight="450.0" prefWidth="382.0" spacing="20.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-   <TextField fx:id="username" maxWidth="200.0" prefWidth="200.0" promptText="Username" />
-   <PasswordField fx:id="password" maxWidth="200.0" prefHeight="25.0" prefWidth="190.0" promptText="Password" />
-
-    <Label fx:id="errorText" opacity="0.0" styleClass="danger" text="Username/Password non corretti" textFill="#c90000" />
-    <Button fx:id="login" onAction="#onLoginButtonClick" styleClass="accent" text="Login" />
-   <Button mnemonicParsing="false" onAction="#OnClickOpenRegister" text="Registra Cliente" />
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="400.0" prefWidth="800.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.HelloController">
+   <children>
+      <VBox alignment="CENTER" layoutX="29.0" prefHeight="400.0" prefWidth="339.0" spacing="10.0" AnchorPane.leftAnchor="50.0">
+         <children>
+            <TextField fx:id="username" maxWidth="200.0" prefWidth="200.0" promptText="Username" />
+            <PasswordField fx:id="password" maxWidth="200.0" prefHeight="25.0" prefWidth="190.0" promptText="Password" />
+            <Label fx:id="errorText" opacity="0.0" styleClass="danger" text="Username/Password non corretti" textFill="#c90000" />
+            <Button fx:id="login" onAction="#onLoginButtonClick" styleClass="accent" text="Login" />
+            <Button mnemonicParsing="false" onAction="#OnClickOpenRegister" text="Registra Cliente">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+      <Line endX="405.0" endY="385.0" startX="405.0" startY="20.0">
+         <stroke>
+            <LinearGradient endX="0.9289099526066351" endY="0.4360189573459716">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="0.20000000298023224" blue="0.5333333611488342" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <Circle fill="#9e1751" layoutX="405.0" layoutY="386.0" radius="5.0" stroke="TRANSPARENT" strokeType="INSIDE" translateY="-1.0" />
+      <ImageView cache="true" fitHeight="300.0" fitWidth="300.0" layoutX="447.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
+         <image>
+            <Image url="@../../../img/wine-bottle.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

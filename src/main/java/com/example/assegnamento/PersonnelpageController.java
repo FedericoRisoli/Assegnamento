@@ -219,4 +219,6 @@ public class PersonnelpageController {
     }
 
 
+    public void OnRicercaClientiClick(ActionEvent actionEvent) {
+    }
 }

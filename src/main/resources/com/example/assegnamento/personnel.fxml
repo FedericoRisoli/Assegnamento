@@ -7,8 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -16,27 +14,21 @@
 
 <AnchorPane maxHeight="1000.0" maxWidth="1200.0" minHeight="1000.0" minWidth="1200.0" pickOnBounds="false" prefHeight="1000.0" prefWidth="1200.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.PersonnelpageController">
    <children>
-      <ButtonBar layoutX="-3.0" layoutY="40.0" prefHeight="40.0" prefWidth="1638.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="40.0">
+      <ButtonBar layoutX="90.0" layoutY="41.0" prefHeight="40.0" prefWidth="801.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="309.0" AnchorPane.topAnchor="41.0">
          <buttons>
-            <Button fx:id="GestioneDipButton" mnemonicParsing="false" onAction="#OnGestisciDipendentiClick" prefHeight="36.0" prefWidth="179.0" text="Gestisci Dipendenti" />
+            <Button fx:id="GestioneDipButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#OnGestisciDipendentiClick" prefHeight="36.0" prefWidth="179.0" text="Gestisci Dipendenti" />
             <Button fx:id="RicercaclientiButton" mnemonicParsing="false" onAction="#OnRicercaClientiClick" prefHeight="36.0" prefWidth="179.0" text="Ricerca Clienti" />
             <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" prefHeight="36.0" prefWidth="194.0" text="ModifyPSW" />
             <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="36.0" prefWidth="192.0" styleClass="danger" text="Log Out" />
          </buttons>
       </ButtonBar>
       <VBox alignment="CENTER" layoutX="33.0" layoutY="552.0" prefHeight="156.0" prefWidth="174.0" spacing="20.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
-      <Button fx:id="compra" layoutX="1059.0" layoutY="125.0" mnemonicParsing="false" onAction="#OnButtonClickBuy" prefHeight="25.0" prefWidth="82.0" styleClass="accent" text="Compra" AnchorPane.bottomAnchor="839.0" AnchorPane.rightAnchor="59.0" />
-      <ImageView fitHeight="133.0" fitWidth="128.0" layoutX="50.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../img/wine-bottle.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="274.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca Vino">
+      <Text layoutX="100.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca Vino">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="274.0" layoutY="168.0" prefHeight="184.0" prefWidth="840.0" AnchorPane.bottomAnchor="648.0" AnchorPane.leftAnchor="274.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="168.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="100.0" layoutY="168.0" prefHeight="184.0" prefWidth="840.0" AnchorPane.bottomAnchor="648.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="260.0" AnchorPane.topAnchor="170.0">
          <content>
             <TableView fx:id="tabella" prefHeight="181.0" prefWidth="830.0" styleClass="striped">
               <columns>
@@ -53,17 +45,18 @@
             </TableView>
          </content>
       </ScrollPane>
-      <TextField fx:id="nome_vino" layoutX="412.0" layoutY="125.0" maxWidth="300.0" prefWidth="300.0" promptText="Nome Vino" />
-      <ComboBox fx:id="annata" layoutX="725.0" layoutY="125.0" maxWidth="137.0" prefHeight="36.0" prefWidth="150.0" promptText="Annata" />
-    <Button fx:id="search" alignment="CENTER" layoutX="884.0" layoutY="125.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
-      <Text layoutX="274.0" layoutY="810.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca Cliente">
+      <TextField fx:id="nome_vino" layoutX="238.0" layoutY="125.0" maxWidth="300.0" prefWidth="300.0" promptText="Nome Vino" />
+      <ComboBox fx:id="annata" layoutX="557.0" layoutY="123.0" maxWidth="137.0" prefHeight="36.0" prefWidth="150.0" promptText="Annata" />
+    <Button fx:id="search" alignment="CENTER" layoutX="710.0" layoutY="125.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
+      <Button fx:id="compra" layoutX="809.0" layoutY="125.0" mnemonicParsing="false" onAction="#OnButtonClickBuy" prefHeight="36.0" prefWidth="74.0" styleClass="accent" text="Compra" AnchorPane.bottomAnchor="839.0" AnchorPane.rightAnchor="309.0" />
+      <Text layoutX="100.0" layoutY="803.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca Cliente">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="nome_vino1" layoutX="456.0" layoutY="782.0" maxWidth="300.0" prefHeight="36.0" prefWidth="182.0" promptText="Inserisci Cognome cliente" />
-      <Button fx:id="search1" alignment="CENTER" layoutX="649.0" layoutY="782.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
-      <ScrollPane layoutX="274.0" layoutY="830.0" prefHeight="156.0" prefWidth="364.0">
+      <TextField fx:id="nome_vino1" layoutX="274.0" layoutY="776.0" maxWidth="300.0" prefHeight="36.0" prefWidth="182.0" promptText="Inserisci Cognome cliente" />
+      <Button fx:id="search1" alignment="CENTER" layoutX="472.0" layoutY="776.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="100.0" layoutY="822.0" prefHeight="156.0" prefWidth="355.0">
          <content>
             <TableView fx:id="tabella1" prefHeight="151.0" prefWidth="364.0" styleClass="striped">
                <columns>
@@ -75,26 +68,26 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Text layoutX="274.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca ordini">
+      <Text layoutX="100.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricerca ordini">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="nome_vino2" layoutX="600.0" layoutY="373.0" maxWidth="300.0" prefHeight="36.0" prefWidth="97.0" promptText="Nome Vino" text="Data iniziale" />
-      <TextField fx:id="nome_vino21" layoutX="745.0" layoutY="373.0" maxWidth="300.0" prefHeight="36.0" prefWidth="97.0" promptText="Nome Vino" text="Data finale" />
-      <Text layoutX="562.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Da">
+      <TextField fx:id="nome_vino2" layoutX="322.0" layoutY="373.0" maxWidth="300.0" prefHeight="36.0" prefWidth="106.0" promptText="Nome Vino" text="Data iniziale" />
+      <TextField fx:id="nome_vino21" layoutX="490.0" layoutY="371.0" maxWidth="300.0" prefHeight="36.0" prefWidth="97.0" promptText="Nome Vino" text="Data finale" />
+      <Text layoutX="274.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Da">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="710.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a">
+      <Text layoutX="450.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="274.0" layoutY="408.0" prefHeight="342.0" prefWidth="840.0">
+      <ScrollPane fitToWidth="true" layoutX="100.0" layoutY="423.0" prefHeight="315.0" prefWidth="833.0" AnchorPane.bottomAnchor="265.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="267.0" AnchorPane.topAnchor="420.0">
          <content>
-            <TableView fx:id="tabella2" prefHeight="361.0" prefWidth="831.0" styleClass="striped">
+            <TableView fx:id="tabella2" prefHeight="349.0" prefWidth="828.0" styleClass="striped">
                <columns>
                   <TableColumn fx:id="t_selected1" prefWidth="92.0" text="Selezionato" />
                   <TableColumn fx:id="t_qta1" prefWidth="88.0" text="Q.ta" />
@@ -109,6 +102,6 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="search11" alignment="CENTER" layoutX="862.0" layoutY="373.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
+      <Button fx:id="search11" alignment="CENTER" layoutX="710.0" layoutY="371.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
    </children>
 </AnchorPane>
