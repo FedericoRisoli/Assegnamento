@@ -12,9 +12,7 @@ public class Carrello {
     //lista che formerà l'ordine di vendita successivamente
     private ObservableList<String> ordine = FXCollections.observableArrayList();
 
-    Carrello(){
-        this.ordine.add("");//fixa pointer to null
-    }
+    Carrello(){}
 
     public static Carrello getIstance() {
         return istance;

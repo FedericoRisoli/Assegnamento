@@ -25,9 +25,9 @@
             <String fx:value="accent" />
          </styleClass>
       </Button>
-      <ScrollPane fx:id="recap" layoutX="67.0" layoutY="56.0" prefHeight="318.0" prefWidth="843.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <ScrollPane fx:id="recap" layoutX="67.0" layoutY="67.0" prefHeight="301.0" prefWidth="843.0" AnchorPane.bottomAnchor="260.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="67.0">
          <content>
-            <TextFlow fx:id="textflow" prefHeight="304.0" prefWidth="825.0" />
+            <TextFlow fx:id="textflow" prefHeight="287.0" prefWidth="825.0" />
          </content>
       </ScrollPane>
       <Line endX="742.0" layoutX="151.0" layoutY="452.0" startX="-100.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
@@ -45,5 +45,6 @@
          </buttons>
       </ButtonBar>
       <Line endX="742.0" layoutX="137.0" layoutY="368.0" startX="-100.0" AnchorPane.bottomAnchor="259.5" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <Label layoutX="50.0" layoutY="33.0" styleClass="title-1" text="Ordine di Vendita:" />
    </children>
 </AnchorPane>
