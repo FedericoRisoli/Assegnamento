@@ -9,6 +9,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -54,16 +58,16 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="nome_vino1" layoutX="274.0" layoutY="776.0" maxWidth="300.0" prefHeight="36.0" prefWidth="182.0" promptText="Inserisci Cognome cliente" />
-      <Button fx:id="search1" alignment="CENTER" layoutX="472.0" layoutY="776.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
+      <TextField fx:id="cognomefield" layoutX="274.0" layoutY="776.0" maxWidth="300.0" prefHeight="36.0" prefWidth="182.0" promptText="Inserisci Cognome cliente" />
+      <Button fx:id="searchclient" alignment="CENTER" layoutX="472.0" layoutY="776.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearchClient" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
       <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="100.0" layoutY="822.0" prefHeight="156.0" prefWidth="355.0">
          <content>
             <TableView fx:id="tabella1" prefHeight="151.0" prefWidth="364.0" styleClass="striped">
                <columns>
                   <TableColumn fx:id="t_nome1" prefWidth="61.0" text="Nome" />
-                  <TableColumn fx:id="t_produttore1" prefWidth="90.0" text="Cognome" />
-                  <TableColumn fx:id="t_anno1" prefWidth="121.0" text="Data di Nascita" />
-                  <TableColumn fx:id="t_vitigno1" prefWidth="88.0" text="Username" />
+                  <TableColumn fx:id="t_cognome" prefWidth="90.0" text="Cognome" />
+                  <TableColumn fx:id="t_datadinascita" prefWidth="121.0" text="Data di Nascita" />
+                  <TableColumn fx:id="t_username" prefWidth="88.0" text="Username" />
                </columns>
             </TableView>
          </content>
@@ -73,8 +77,8 @@
             <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="nome_vino2" layoutX="322.0" layoutY="373.0" maxWidth="300.0" prefHeight="36.0" prefWidth="106.0" promptText="Nome Vino" text="Data iniziale" />
-      <TextField fx:id="nome_vino21" layoutX="490.0" layoutY="371.0" maxWidth="300.0" prefHeight="36.0" prefWidth="97.0" promptText="Nome Vino" text="Data finale" />
+      <TextField fx:id="initialdate" layoutX="322.0" layoutY="373.0" maxWidth="300.0" prefHeight="36.0" prefWidth="106.0" promptText="Nome Vino" text="Data iniziale" />
+      <TextField fx:id="finaldate" layoutX="490.0" layoutY="371.0" maxWidth="300.0" prefHeight="36.0" prefWidth="97.0" promptText="Nome Vino" text="Data finale" />
       <Text layoutX="274.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Da">
          <font>
             <Font size="24.0" />
@@ -102,6 +106,42 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="search11" alignment="CENTER" layoutX="710.0" layoutY="371.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearch" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
+      <Button fx:id="searchorder" alignment="CENTER" layoutX="710.0" layoutY="371.0" maxWidth="100.0" minWidth="55.0" mnemonicParsing="false" onAction="#OnButtonClickSearchOrder" prefHeight="36.0" prefWidth="97.0" styleClass="accent" text="Search" />
+      <Line endX="-100.0" endY="934.0" layoutX="151.0" layoutY="41.0" startX="-100.0" startY="1.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.7535545023696683" startY="0.7109004739336493">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8666666746139526" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
+      <Line endX="-100.0" endY="934.0" layoutX="1259.0" layoutY="41.0" startX="-100.0" startY="1.0">
+         <stroke>
+            <LinearGradient endX="1.0" endY="1.0" startX="0.7535545023696683" startY="0.7109004739336493">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.8666666746139526" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </stroke>
+      </Line>
    </children>
 </AnchorPane>
