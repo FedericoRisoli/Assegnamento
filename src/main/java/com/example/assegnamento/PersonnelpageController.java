@@ -221,4 +221,10 @@ public class PersonnelpageController {
 
     public void OnRicercaClientiClick(ActionEvent actionEvent) {
     }
+
+    public void OnButtonClickSearchClient(ActionEvent actionEvent) {
+    }
+
+    public void OnButtonClickSearchOrder(ActionEvent actionEvent) {
+    }
 }
