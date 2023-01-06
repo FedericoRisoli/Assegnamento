@@ -162,7 +162,7 @@ public class PersonnelpageController {
         try {
                 Parent root = FXMLLoader.load(HelloApplication.class.getResource("modifypsw.fxml"));
                 Stage stage = new Stage();
-                stage.setTitle("Registrazione Cliente");
+                stage.setTitle("Modifica password");
                 stage.setScene(new Scene(root));
                 //blocca finestra prima
                 stage.initModality(Modality.APPLICATION_MODAL);
