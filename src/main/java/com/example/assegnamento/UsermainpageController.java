@@ -78,19 +78,29 @@ public class UsermainpageController {
     //non finito
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
+
+        //separo disponibili e non
         ObservableList<Vini> lista = FXCollections.observableArrayList();
-        for (Vini item : tabella.getItems()) {
-            if (item.getCheck().isSelected())
-                lista.add(item);
+        ObservableList<Vini> listaNonDisp = FXCollections.observableArrayList();
+        for (Vini item : tabella.getItems() )
+        {
+            if(item.getCheck().isSelected())
+                if(item.getDisponibilita())
+                    lista.add(item);
+                else
+                    listaNonDisp.add(item);
         }
+        //FINE separo disponibili e non
+
         //apro nuova pagina per confermare l'ordine e pago
-        System.out.println(lista);
-        //passo lista al prossimo controller
+        System.out.println(lista);//console vedo disponibili
+        //passo liste al prossimo controller
         carrello.setCarrello(lista);
+        carrello.setNondisp(listaNonDisp);
         System.out.println(carrello.getCarrello());
 
-        //se il carrello non è vuoto
-        if (!carrello.getCarrello().isEmpty()) {
+        //se hai selezionato vini
+        if ( !carrello.getCarrello().isEmpty() || !carrello.getNondisp().isEmpty() ) {
             //cambio scena
             Stage stage;
             Scene scene;
@@ -139,8 +149,9 @@ public class UsermainpageController {
         //popolo
         ObservableList<Vini> tmp = FXCollections.observableArrayList();
 
-        while (r.next()) {
-            tmp.add(new Vini(r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
+        while(r.next())
+        {
+            tmp.add(new Vini(r.getInt("id"), r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
         }
         tabella.setItems(tmp);
     }
@@ -198,11 +209,10 @@ public class UsermainpageController {
     //popolo ListView
     r =DBHelper.query("SELECT * FROM `wines` ORDER BY `promo` DESC");
         while(r.next())
-
-    {
-        tmp.add(new Vini(r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo")));
-        tabella.setItems(tmp);
-    }
+        {
+            tmp.add(new Vini(r.getInt("id"), r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
+            tabella.setItems(tmp);
+        }
 
     }
 

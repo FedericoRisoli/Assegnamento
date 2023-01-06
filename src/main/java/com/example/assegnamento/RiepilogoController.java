@@ -56,6 +56,9 @@ public class RiepilogoController {
     private RadioButton bonifico;
 
     @FXML
+    private Button ordinanondisponibili;
+
+    @FXML
     void OnClickAnulla(ActionEvent event) throws IOException {
             root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -102,6 +105,11 @@ public class RiepilogoController {
 
     }
 
+    @FXML
+    void OnClickOrdinaNonDisponibili(ActionEvent event) {
+
+    }
+
 
     @FXML
     private void initialize() {
@@ -115,8 +123,9 @@ public class RiepilogoController {
         double tmp;
 
 
-        textflow.getChildren().add(new Text("VINI NEL CARRELLO: \n\n"));
+        textflow.getChildren().add(new Text("\t\nVINI NEL CARRELLO: \n\n"));
         carrello.clearOrdine();//evito bug
+        carrello.clearOrdineNonDisp();//evito bug
         for (Vini item : carrello.getCarrello()) {
             textflow.getChildren().add(new Text(item.getNome()));
             carrello.addOrdine(item.getNome());
@@ -159,6 +168,30 @@ public class RiepilogoController {
 
 
         }
+        if(!carrello.getNondisp().isEmpty())
+            textflow.getChildren().add(new Text("\tVINI NON DISPONIBILI:\n\n"));
+        for (Vini item : carrello.getNondisp()) {
+            textflow.getChildren().add(new Text(item.getNome()+"\n"));
+            //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
+            carrello.addOrdineNonDisp(item.getNome());
+            carrello.addOrdineNonDisp(Integer.toString((int)item.getSpin().getValue() ) );
+
+        }
         label_prezzo.setText(Double.toString(round(totale,2))+" €");
+
+
+        if(carrello.getOrdine().isEmpty())
+            procedi.setVisible(false);
+
+        if(carrello.getNondisp().isEmpty())
+            ordinanondisponibili.setVisible(false);
+        else
+            //TODO POPUP
+            //in alternativa si può usare la lista di vini carrello.getNondisp().getnome() e .getquantita()
+            System.out.println("FARE POPUP QUI PER ORDINARE VINI NON DISPONIBILI. " +
+                    "LE INFORMAZIONI NECESSARIE SUI VINI SI TROVANO IN CARRELLO.GETNONDISP" +
+                    "LE INFO SONO REGISTRATE COME NOME VINO AGLI INDICI PARI E Q.TA AI DISPARI così\n" +
+                    carrello.getOrdineNonDisp());
+
     }
 }

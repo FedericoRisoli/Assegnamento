@@ -104,6 +104,16 @@ public class PagocartaController {
 
             DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"')");
 
+            //aggiorno valori vini
+            int q;
+            int v;
+            for(Vini item : carrello.getCarrello())
+            {
+                q = Integer.valueOf(item.getQuantita()) - (int) item.getSpin().getValue();
+                v = Integer.valueOf(item.getVendite())  + (int) item.getSpin().getValue();
+                DBHelper.update("UPDATE `wines` SET `quantita`="+q+", `vendite`="+v+" WHERE `id`="+item.getId());
+            }
+
             //show info e chiudi
             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Pagamento andato a buon fine");
