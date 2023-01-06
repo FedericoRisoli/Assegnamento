@@ -14,9 +14,7 @@ public class Carrello {
     private ObservableList<String> ordine = FXCollections.observableArrayList();
     private ObservableList<String> ordinenondisp = FXCollections.observableArrayList();
 
-    Carrello(){
-        this.ordine.add("");//fixa pointer to null
-    }
+    Carrello(){}
 
     public static Carrello getIstance() {
         return istance;
