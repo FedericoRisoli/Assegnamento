@@ -45,5 +45,6 @@
          </buttons>
       </ButtonBar>
       <Line endX="742.0" layoutX="137.0" layoutY="368.0" startX="-100.0" AnchorPane.bottomAnchor="259.5" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <Button fx:id="ordinanondisponibili" layoutX="510.0" layoutY="542.0" mnemonicParsing="false" onAction="#OnClickOrdinaNonDisponibili" text="Ordina Vini Non Disponibili" />
    </children>
 </AnchorPane>

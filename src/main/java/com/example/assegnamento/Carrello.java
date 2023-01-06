@@ -8,9 +8,11 @@ public class Carrello {
     private static final Carrello istance = new Carrello();
 
     private ObservableList<Vini> lista = FXCollections.observableArrayList();
+    private ObservableList<Vini> nondisp = FXCollections.observableArrayList();
 
     //lista che formerà l'ordine di vendita successivamente
     private ObservableList<String> ordine = FXCollections.observableArrayList();
+    private ObservableList<String> ordinenondisp = FXCollections.observableArrayList();
 
     Carrello(){
         this.ordine.add("");//fixa pointer to null
@@ -38,5 +40,25 @@ public class Carrello {
         ordine.clear();
     }
 
+    public ObservableList<Vini> getNondisp() {
+        return nondisp;
+    }
 
+    public void setNondisp(ObservableList<Vini> nondisp) {
+        this.nondisp = nondisp;
+    }
+
+    public ObservableList<String> getOrdineNonDisp() {
+        return ordinenondisp;
+    }
+
+    public void setOrdineNonDisp(ObservableList<String> ordinenondisp) {
+        this.ordinenondisp = ordinenondisp;
+    }
+    public void clearOrdineNonDisp() {
+        this.ordinenondisp.clear();
+    }
+    public void addOrdineNonDisp(String stringa){
+        ordinenondisp.add(stringa);
+    }
 }
