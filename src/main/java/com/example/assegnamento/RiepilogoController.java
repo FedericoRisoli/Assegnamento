@@ -123,7 +123,7 @@ public class RiepilogoController {
         double tmp;
 
 
-        textflow.getChildren().add(new Text("\tVINI NEL CARRELLO: \n\n"));
+        textflow.getChildren().add(new Text("\t\nVINI NEL CARRELLO: \n\n"));
         carrello.clearOrdine();//evito bug
         carrello.clearOrdineNonDisp();//evito bug
         for (Vini item : carrello.getCarrello()) {
@@ -168,7 +168,8 @@ public class RiepilogoController {
 
 
         }
-        textflow.getChildren().add(new Text("\tVINI NON DISPONIBILI:\n\n"));
+        if(!carrello.getNondisp().isEmpty())
+            textflow.getChildren().add(new Text("\tVINI NON DISPONIBILI:\n\n"));
         for (Vini item : carrello.getNondisp()) {
             textflow.getChildren().add(new Text(item.getNome()+"\n"));
             //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
