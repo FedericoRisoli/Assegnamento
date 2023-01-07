@@ -8,14 +8,13 @@
 
 <AnchorPane maxHeight="500.0" maxWidth="800.0" minHeight="500.0" minWidth="800.0" pickOnBounds="false" prefHeight="500.0" prefWidth="800.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.PromoController">
    <children>
-      <Text layoutX="357.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROMO" textAlignment="CENTER">
+      <Text layoutX="355.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PROMO" textAlignment="CENTER" AnchorPane.topAnchor="20.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <TableView fx:id="tabella" layoutX="52.0" layoutY="86.0" prefHeight="383.0" prefWidth="696.0">
+      <TableView fx:id="tabella" layoutX="88.0" layoutY="86.0" prefHeight="383.0" prefWidth="625.0" AnchorPane.topAnchor="100.0">
         <columns>
-          <TableColumn fx:id="t_qta" prefWidth="88.0" text="Q.ta" />
             <TableColumn fx:id="t_nome" prefWidth="96.0" text="Nome" />
             <TableColumn fx:id="t_produttore" prefWidth="91.0" text="Produttore" />
             <TableColumn fx:id="t_anno" prefWidth="68.0" text="Anno" />
@@ -25,5 +24,10 @@
             <TableColumn fx:id="t_provenienza" prefWidth="118.0" text="Provenienza" />
         </columns>
       </TableView>
+      <Text layoutX="277.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COMPRALI SUBITO !!!" textAlignment="CENTER" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

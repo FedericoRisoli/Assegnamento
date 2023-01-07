@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PromoController {
-
+    Carrello carrello =Carrello.getIstance();
 
     @FXML
     private TableView<Vini> tabella;
@@ -26,8 +26,7 @@ public class PromoController {
     private TableColumn<Vini, Double> t_prezzo;
     @FXML
     private TableColumn<Vini, String> t_produttore;
-    @FXML
-    private TableColumn<Vini, Spinner<Integer>> t_qta;
+
 
     @FXML
     private TableColumn<Vini, String> t_vitigno;
@@ -45,7 +44,7 @@ public class PromoController {
         t_vitigno.setCellValueFactory(new PropertyValueFactory<Vini, String>("v"));
         t_note.setCellValueFactory(new PropertyValueFactory<Vini, String>("not"));
 
-        t_qta.setCellValueFactory(new PropertyValueFactory<Vini, Spinner<Integer>>("spin"));
+
         t_prezzo.setCellValueFactory(new PropertyValueFactory<Vini, Double>("prezzo"));
 
         ObservableList<Vini> tmp = FXCollections.observableArrayList();

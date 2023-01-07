@@ -26,15 +26,43 @@ public class PersonnelpageController {
 
     Data data =Data.getInstance();
     //guardare https://docs.oracle.com/javafx/2/ui_controls/combo-box.htm
-    @FXML
-    private ComboBox<String> annata;
-    @FXML
-    private TextField nome_vino;
-    @FXML
-    private Button search;
+    //utilty
     @FXML
     private Button modifypswbutton;
+    @FXML
+    private Button log_out;
+    @FXML
+    private Label error_text;
+    @FXML
+    private Button GestioneDipButton;
 
+
+
+    //tabella per ricerca cliente
+    @FXML
+    private TableView<Clienti> clientableview;
+    @FXML
+    private Button searchclient;
+
+    @FXML
+    private TextField surnamefield;
+
+    @FXML
+    private TableColumn<Clienti, String> t_nameclient;
+    @FXML
+    private TableColumn<Clienti, String> t_surnameclient;
+    @FXML
+    private TableColumn<Clienti, String> t_username;
+  /*  @FXML
+    private TableColumn<Clienti, String> t_addclient;
+    @FXML
+    private TableColumn<Clienti, String> t_mailclient;
+    @FXML
+    private TableColumn<Clienti, String> t_telclient;
+    @FXML
+    private TableColumn<Clienti, String> t_cfclient;
+*/
+    //tabella ricerca vini
     @FXML
     private TableView<Vini> tabella;
     @FXML
@@ -55,18 +83,15 @@ public class PersonnelpageController {
     private TableColumn<Vini, String> t_vitigno;
     @FXML
     private TableColumn<Vini, String> t_provenienza;
-
     @FXML
-    private Button log_out;
-
+    private ComboBox<String> annata;
     @FXML
-    private Label error_text;
-
+    private TextField nome_vino;
+    @FXML
+    private Button search;
     @FXML
     private Button compra;
 
-    @FXML
-    private Button GestioneDipButton;
 
     //non finito
     @FXML
@@ -156,6 +181,17 @@ public class PersonnelpageController {
         }
         tabella.setItems(tmp);
     }
+    public void OnButtonClickSearchClient(ActionEvent actionEvent) throws SQLException {
+        String surname= surnamefield.getText();
+        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE cognome LIKE \"%"+surname+"%\"");
+        clientableview.getItems().clear();
+        ObservableList<Clienti> tmp=FXCollections.observableArrayList();
+        while(r.next())
+        {
+            tmp.add(new Clienti(r.getInt("id"), r.getString("nome"), r.getString("cognome"), r.getString("username"), r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")));
+            clientableview.setItems(tmp);
+        }
+    }
     @FXML
     void OnModifyPSWButtonClick()
     {
@@ -216,14 +252,27 @@ public class PersonnelpageController {
             tabella.setItems(tmp);
         }
 
+        ResultSet c= DBHelper.query("SELECT * FROM `utenti` ORDER BY `cognome` DESC");
+        t_nameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("nome"));
+        t_surnameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("cognome"));
+        t_username.setCellValueFactory(new PropertyValueFactory<Clienti,String>("username"));
+       /* t_cfclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("codicefiscale"));
+        t_mailclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("mail"));
+        t_addclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("indirizzo"));
+        t_telclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("telefono"));*/
+        ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
+        while(c.next())
+        {
+            tmp2.add(new Clienti(c.getInt("id"), c.getString("nome"), c.getString("cognome"), c.getString("username"), c.getString("c_fiscale"), c.getString("mail"), c.getString("telefono"), c.getString("indirizzo")));
+            clientableview.setItems(tmp2);
+        }
+
     }
 
 
-    public void OnRicercaClientiClick(ActionEvent actionEvent) {
-    }
 
-    public void OnButtonClickSearchClient(ActionEvent actionEvent) {
-    }
+
+
 
     public void OnButtonClickSearchOrder(ActionEvent actionEvent) {
     }
