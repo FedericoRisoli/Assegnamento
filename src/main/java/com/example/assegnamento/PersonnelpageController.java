@@ -182,15 +182,15 @@ public class PersonnelpageController {
         tabella.setItems(tmp);
     }
     public void OnButtonClickSearchClient(ActionEvent actionEvent) throws SQLException {
-        String surname= surnamefield.getText();
+    /*    String surname= surnamefield.getText();
         ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE cognome LIKE \"%"+surname+"%\"");
         clientableview.getItems().clear();
         ObservableList<Clienti> tmp=FXCollections.observableArrayList();
         while(r.next())
         {
-            tmp.add(new Clienti(r.getInt("id"), r.getString("nome"), r.getString("cognome"), r.getString("username"), r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")));
+            tmp.add(new Clienti(r.getString("nome"), r.getString("cognome"), r.getString("username"), r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")));
             clientableview.setItems(tmp);
-        }
+        }*/
     }
     @FXML
     void OnModifyPSWButtonClick()
@@ -251,21 +251,25 @@ public class PersonnelpageController {
             tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
             tabella.setItems(tmp);
         }
-
-        ResultSet c= DBHelper.query("SELECT * FROM `utenti` ORDER BY `cognome` DESC");
-        t_nameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("nome"));
-        t_surnameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("cognome"));
-        t_username.setCellValueFactory(new PropertyValueFactory<Clienti,String>("username"));
-       /* t_cfclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("codicefiscale"));
+ /*     t_cfclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("codicefiscale"));
         t_mailclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("mail"));
         t_addclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("indirizzo"));
         t_telclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("telefono"));*/
+
+
+
+
+        t_nameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Nome"));
+        t_surnameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Cognome"));
+        t_username.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Username"));
+
         ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
-        while(c.next())
-        {
-            tmp2.add(new Clienti(c.getInt("id"), c.getString("nome"), c.getString("cognome"), c.getString("username"), c.getString("c_fiscale"), c.getString("mail"), c.getString("telefono"), c.getString("indirizzo")));
-            clientableview.setItems(tmp2);
-        }
+        r= DBHelper.query("SELECT `nome`,`cognome`,`username` FROM `utenti` ORDER BY `cognome` DESC");
+            while(r.next())
+            {
+                tmp2.add(new Clienti( r.getString("nome"), r.getString("cognome"), r.getString("username")/*, r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")*/));
+                clientableview.setItems(tmp2);
+            }
 
     }
 
