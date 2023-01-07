@@ -10,6 +10,7 @@ public class Clienti
     private final SimpleStringProperty Cognome;
     private final SimpleStringProperty Username;
 
+
     public Clienti(String nom,String cog, String user) {
         this.Nome = new SimpleStringProperty(nom);
         this.Cognome=new SimpleStringProperty(cog);
