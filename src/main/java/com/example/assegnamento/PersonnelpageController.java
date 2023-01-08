@@ -37,31 +37,15 @@ public class PersonnelpageController {
     private Button GestioneDipButton;
 
 
-
     //tabella per ricerca cliente
-    @FXML
-    private TableView<Clienti> clientableview;
+
     @FXML
     private Button searchclient;
 
     @FXML
     private TextField surnamefield;
 
-    @FXML
-    private TableColumn<Clienti, String> t_nameclient;
-    @FXML
-    private TableColumn<Clienti, String> t_surnameclient;
-    @FXML
-    private TableColumn<Clienti, String> t_username;
-  /*  @FXML
-    private TableColumn<Clienti, String> t_addclient;
-    @FXML
-    private TableColumn<Clienti, String> t_mailclient;
-    @FXML
-    private TableColumn<Clienti, String> t_telclient;
-    @FXML
-    private TableColumn<Clienti, String> t_cfclient;
-*/
+
     //tabella ricerca vini
     @FXML
     private TableView<Vini> tabella;
@@ -251,25 +235,11 @@ public class PersonnelpageController {
             tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
             tabella.setItems(tmp);
         }
- /*     t_cfclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("codicefiscale"));
-        t_mailclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("mail"));
-        t_addclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("indirizzo"));
-        t_telclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("telefono"));*/
 
 
 
 
-        t_nameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Nome"));
-        t_surnameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Cognome"));
-        t_username.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Username"));
 
-        ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
-        r= DBHelper.query("SELECT `nome`,`cognome`,`username` FROM `utenti` ORDER BY `cognome` DESC");
-            while(r.next())
-            {
-                tmp2.add(new Clienti( r.getString("nome"), r.getString("cognome"), r.getString("username")/*, r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")*/));
-                clientableview.setItems(tmp2);
-            }
 
     }
 
