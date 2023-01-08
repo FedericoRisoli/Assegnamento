@@ -40,7 +40,7 @@ public class PersonnelpageController {
 
     //tabella per ricerca cliente
     @FXML
-    private TableView<Clienti> clientableview;
+    private TableView<?> clientableview;
     @FXML
     private Button searchclient;
 
@@ -48,20 +48,20 @@ public class PersonnelpageController {
     private TextField surnamefield;
 
     @FXML
-    private TableColumn<Clienti, String> t_nameclient;
+    private TableColumn<?, String> t_nameclient;
     @FXML
-    private TableColumn<Clienti, String> t_surnameclient;
+    private TableColumn<?, String> t_surnameclient;
     @FXML
-    private TableColumn<Clienti, String> t_username;
-  /*  @FXML
-    private TableColumn<Clienti, String> t_addclient;
+    private TableColumn<?, String> t_username;
+   @FXML
+    private TableColumn<?, String> t_addclient;
     @FXML
-    private TableColumn<Clienti, String> t_mailclient;
+    private TableColumn<?, String> t_mailclient;
     @FXML
-    private TableColumn<Clienti, String> t_telclient;
+    private TableColumn<?, String> t_telclient;
     @FXML
-    private TableColumn<Clienti, String> t_cfclient;
-*/
+    private TableColumn<?, String> t_cfclient;
+
     //tabella ricerca vini
     @FXML
     private TableView<Vini> tabella;
@@ -182,15 +182,7 @@ public class PersonnelpageController {
         tabella.setItems(tmp);
     }
     public void OnButtonClickSearchClient(ActionEvent actionEvent) throws SQLException {
-    /*    String surname= surnamefield.getText();
-        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE cognome LIKE \"%"+surname+"%\"");
-        clientableview.getItems().clear();
-        ObservableList<Clienti> tmp=FXCollections.observableArrayList();
-        while(r.next())
-        {
-            tmp.add(new Clienti(r.getString("nome"), r.getString("cognome"), r.getString("username"), r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")));
-            clientableview.setItems(tmp);
-        }*/
+
     }
     @FXML
     void OnModifyPSWButtonClick()
@@ -221,15 +213,15 @@ public class PersonnelpageController {
         //tolgo duplicati
         List<Integer> anni = new ArrayList<>();
         int a;
-        while(r.next())
-        {
+        while (r.next()) {
             a = r.getInt("anno");
-            if(!anni.contains(a))
-                {anni.add(a);annata.getItems().add(Integer.toString(a));}
+            if (!anni.contains(a)) {
+                anni.add(a);
+                annata.getItems().add(Integer.toString(a));
+            }
         }
-        if(data.Getrole().equals("admin"))
-        {
-          GestioneDipButton.setVisible(true);
+        if (data.Getrole().equals("admin")) {
+            GestioneDipButton.setVisible(true);
         }
 
         t_nome.setCellValueFactory(new PropertyValueFactory<Vini, String>("Nome"));
@@ -246,31 +238,10 @@ public class PersonnelpageController {
 
         //popolo ListView
         r = DBHelper.query("SELECT * FROM `wines` ORDER BY `promo` DESC");
-        while(r.next())
-        {
-            tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
+        while (r.next()) {
+            tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"), r.getString("quantita")));
             tabella.setItems(tmp);
         }
- /*     t_cfclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("codicefiscale"));
-        t_mailclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("mail"));
-        t_addclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("indirizzo"));
-        t_telclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("telefono"));*/
-
-
-
-
-        t_nameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Nome"));
-        t_surnameclient.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Cognome"));
-        t_username.setCellValueFactory(new PropertyValueFactory<Clienti,String>("Username"));
-
-        ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
-        r= DBHelper.query("SELECT `nome`,`cognome`,`username` FROM `utenti` ORDER BY `cognome` DESC");
-            while(r.next())
-            {
-                tmp2.add(new Clienti( r.getString("nome"), r.getString("cognome"), r.getString("username")/*, r.getString("c_fiscale"), r.getString("mail"), r.getString("telefono"), r.getString("indirizzo")*/));
-                clientableview.setItems(tmp2);
-            }
-
     }
 
 
