@@ -9,12 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.xml.transform.Result;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class ModifypswController {
+public class ModifypswController extends MyController {
     Data data= Data.getInstance();
 
     @FXML

@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PagoBonificoController {
+public class PagoBonificoController extends MyController {
 
     Data data=Data.getInstance();
     Carrello carrello = Carrello.getIstance();
