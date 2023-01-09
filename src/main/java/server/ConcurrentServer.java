@@ -22,6 +22,7 @@ public class ConcurrentServer {
             // Crea un nuovo thread per gestire la connessione del client
             Thread thread = new Thread(new ClientHandler(clientSocket));
             thread.start();
+            System.out.println("Inizio Lavori");
         }
     }
 }
@@ -39,18 +40,26 @@ class ClientHandler implements Runnable {
             // Ottieni gli stream di input e output dal socket
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            while(true) {
 
-            // Legge il messaggio del client
-            String message = in.readLine();
+                // Legge il messaggio del client
+                String message = in.readLine();
 
-            // Invia una risposta al client
-            out.println("Server: ho ricevuto il tuo messaggio: '" + message + "'");
+                // Invia una risposta al client
+                out.println("Server: ho ricevuto il tuo messaggio: '" + message + "'");
 
-            // Chiude gli stream e il socket
-            in.close();
-            out.close();
-            socket.close();
+                if (message.equals("STOP")) {
+                    System.out.println("Chiusura Connessione con client");
+                    // Chiude gli stream e il socket
+                    in.close();
+                    out.close();
+                    socket.close();
+                    break;
+                }
+            }
+
         } catch (IOException e) {
+            System.out.println("Connessione col server Fallita");
             e.printStackTrace();
         }
     }
