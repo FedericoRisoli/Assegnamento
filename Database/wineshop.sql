@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 05, 2023 alle 19:43
+-- Creato il: Gen 10, 2023 alle 17:54
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
 
@@ -33,21 +33,21 @@ CREATE TABLE `ordinivendita` (
   `cognome` char(30) NOT NULL,
   `ordine` text NOT NULL,
   `indirizzo` char(40) NOT NULL,
-  `dataconsegna` date NOT NULL
+  `dataconsegna` date NOT NULL,
+  `pagato` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `ordinivendita`
 --
 
-INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES
-(1, '', '', '', '', '0000-00-00'),
-(3, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2022-12-27'),
-(4, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02'),
-(5, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02'),
-(6, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03'),
-(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03'),
-(8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-01-04');
+INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `pagato`) VALUES
+(3, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2022-12-27', 0),
+(4, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02', 0),
+(5, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02', 0),
+(6, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03', 0),
+(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03', 0),
+(8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-01-04', 0);
 
 -- --------------------------------------------------------
 
