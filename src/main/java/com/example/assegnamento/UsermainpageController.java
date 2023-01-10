@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -153,7 +154,12 @@ public class UsermainpageController extends MyController{
 
 
     @FXML
-    private void initialize() throws SQLException {
+    private void initialize() throws SQLException, IOException {
+        //fa partire il thread di ascolto message reciver task
+        int port = 8080;
+        Socket socket = new Socket("localhost", port);
+        MessageReceiverTask task = new MessageReceiverTask(socket, this);
+        new Thread(task).start();
 
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
@@ -209,6 +215,11 @@ public class UsermainpageController extends MyController{
             tabella.setItems(tmp);
         }
 
+    }
+
+    @Override
+    public void handleMessage(String message) {
+        System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
     }
 
     public void OnRicercaClientiClick(ActionEvent actionEvent) {
