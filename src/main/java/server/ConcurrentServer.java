@@ -41,6 +41,7 @@ class ClientHandler implements Runnable {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             while(true) {
+                out.println("Connessione Riuscita");
 
                 // Legge il messaggio del client
                 String message = in.readLine();
