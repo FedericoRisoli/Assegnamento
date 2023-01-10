@@ -75,8 +75,6 @@ public class PersonnelpageController {
 
 
 
-
-
     //tabella ricerca vini
     @FXML
     private TableView<Vini> tabella;
@@ -339,15 +337,15 @@ public class PersonnelpageController {
         //tolgo duplicati
         List<Integer> anni = new ArrayList<>();
         int a;
-        while(r.next())
-        {
+        while (r.next()) {
             a = r.getInt("anno");
-            if(!anni.contains(a))
-                {anni.add(a);annata.getItems().add(Integer.toString(a));}
+            if (!anni.contains(a)) {
+                anni.add(a);
+                annata.getItems().add(Integer.toString(a));
+            }
         }
-        if(data.Getrole().equals("admin"))
-        {
-          GestioneDipButton.setVisible(true);
+        if (data.Getrole().equals("admin")) {
+            GestioneDipButton.setVisible(true);
         }
 
         t_nome.setCellValueFactory(new PropertyValueFactory<Vini, String>("Nome"));
@@ -364,9 +362,8 @@ public class PersonnelpageController {
 
         //popolo ListView
         r = DBHelper.query("SELECT * FROM `wines` ORDER BY `promo` DESC");
-        while(r.next())
-        {
-            tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
+        while (r.next()) {
+            tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"), r.getString("quantita")));
             tabella.setItems(tmp);
         }
 
