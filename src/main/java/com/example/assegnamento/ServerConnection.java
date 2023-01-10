@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+//TODO VEDERE SE ELIMINARLO O NO, al momento non serve, lo si potrebbe usare per mandare i messaggi
+
 public class ServerConnection {
     private static ServerConnection instance;
     private Socket socket;
