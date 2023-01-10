@@ -21,6 +21,17 @@ import java.util.List;
 
 public class UsermainpageController extends MyController{
 
+    int port = 8080;
+    Socket socket;
+    {
+        try {
+            socket = new Socket("localhost", port);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    MessageReceiverTask task = new MessageReceiverTask(socket, this);
+
 
     Carrello carrello = Carrello.getIstance();
 
@@ -156,9 +167,6 @@ public class UsermainpageController extends MyController{
     @FXML
     private void initialize() throws SQLException, IOException {
         //fa partire il thread di ascolto message reciver task
-        int port = 8080;
-        Socket socket = new Socket("localhost", port);
-        MessageReceiverTask task = new MessageReceiverTask(socket, this);
         new Thread(task).start();
 
 
