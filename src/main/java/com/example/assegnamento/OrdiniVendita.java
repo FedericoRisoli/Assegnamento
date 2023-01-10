@@ -2,7 +2,7 @@ package com.example.assegnamento;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class OrdiniVendita {
+public class OrdiniVendita extends MyController {
     private final SimpleStringProperty Dataconsegna;
     private final SimpleStringProperty Nome;
     private final SimpleStringProperty Cognome;
