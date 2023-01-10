@@ -19,7 +19,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonnelpageController {
+public class PersonnelpageController extends MyController {
 
 
     Carrello carrello = Carrello.getIstance();

@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 import java.time.Year;
 
-public class PagocartaController {
+public class PagocartaController extends MyController {
 
     Carrello carrello = Carrello.getIstance();
 

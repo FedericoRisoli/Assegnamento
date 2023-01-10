@@ -7,6 +7,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Vini {
 
     private final SimpleIntegerProperty id;
@@ -55,12 +58,21 @@ public class Vini {
         if (promo.equals("1"))
             tmp=tmp*0.75;
 
+        tmp=round(tmp,2);
+
         this.prezzo = new SimpleDoubleProperty(tmp);
 
         //spinner setup
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10000,1);
         this.spin.setValueFactory(valueFactory);
 
+    }
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = BigDecimal.valueOf(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public String getA() {

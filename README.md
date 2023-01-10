@@ -1,3 +1,34 @@
+## HOW TO USE SERVER
+1. Run ConcurrentServer.java
+2. Inserire nel controller che vuole Ricevere messaggi dal server le seguenti righe all'inizio:
+````
+int port = 8080;
+    Socket socket;
+    {
+        try {
+            socket = new Socket("localhost", port);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    MessageReceiverTask task = new MessageReceiverTask(socket, this);
+````
+3. Inserire questo in initialize()
+````
+new Thread(task).start();
+````
+4. Ora i messaggi vengono stampati in console, per utilizzarli diversamente aggiungere la funzione:
+````
+@Override
+    public void handleMessage(String message) {
+        System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
+    }
+````
+NB: senza override non funzionerà
+5. modificare handleMessage per leggere il messaggio e fare le azioni necessarie
+
+
+
 # WineShop Assegnametno cose da fare:
 https://www.notion.so/WineShop-59d2574effbe4c10973fc829cbd06632
 

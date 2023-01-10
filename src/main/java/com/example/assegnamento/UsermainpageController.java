@@ -4,26 +4,33 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 
-public class UsermainpageController {
+public class UsermainpageController extends MyController{
+
+    int port = 8080;
+    Socket socket;
+    {
+        try {
+            socket = new Socket("localhost", port);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    MessageReceiverTask task = new MessageReceiverTask(socket, this);
 
 
     Carrello carrello = Carrello.getIstance();
@@ -158,7 +165,9 @@ public class UsermainpageController {
 
 
     @FXML
-    private void initialize() throws SQLException {
+    private void initialize() throws SQLException, IOException {
+        //fa partire il thread di ascolto message reciver task
+        new Thread(task).start();
 
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
@@ -214,6 +223,11 @@ public class UsermainpageController {
             tabella.setItems(tmp);
         }
 
+    }
+
+    @Override
+    public void handleMessage(String message) {
+        System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
     }
 
     public void OnRicercaClientiClick(ActionEvent actionEvent) {

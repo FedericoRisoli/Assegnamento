@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class RegisterController {
+public class RegisterController extends MyController {
     Data data=Data.getInstance();
     @FXML
     private ToggleGroup action;
