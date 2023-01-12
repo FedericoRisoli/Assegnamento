@@ -1,31 +1,40 @@
 ## HOW TO USE SERVER
 1. Run ConcurrentServer.java
-2. Inserire nel controller che vuole Ricevere messaggi dal server le seguenti righe all'inizio:
+2. Per mandare un messaggio da un controllore qualunque basta usare sendMessage(String message).
+Esempio
 ````
-int port = 8080;
-    Socket socket;
-    {
-        try {
-            socket = new Socket("localhost", port);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    MessageReceiverTask task = new MessageReceiverTask(socket, this);
+sendMessage("sono un messaggio da inviare");
 ````
-3. Inserire questo in initialize()
+3. Inserire nel controller che vuole Ricevere messaggi dal server le seguenti righe in initialize():
 ````
-new Thread(task).start();
+createTask(server.getSocket(),this);
 ````
 4. Ora i messaggi vengono stampati in console, per utilizzarli diversamente aggiungere la funzione:
 ````
 @Override
     public void handleMessage(String message) {
+        //cancellare la linea qui sotto e metter il metodo vero
         System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
     }
 ````
-NB: senza override non funzionerà
-5. modificare handleMessage per leggere il messaggio e fare le azioni necessarie
+5. Per cambiare scena completamente dal controllore (non per usare per i popup quindi) usare il metodo
+MyController.changeScene(String NomeScenaFXML, String NuovoTitolo, ActionEvent event)
+
+Esempio:
+
+````
+changeScene(pagocarta.fxml, String NuovoTitolo, ActionEvent event)
+````
+
+**NB: senza override non funzionerà. Le maiuscole e minuscole devono essere come qui**
+
+modificare handleMessage per leggere il messaggio e fare le azioni necessarie
+Per mandare un messaggio scrivere:
+````
+server.sendmessage("SONO UN MESSAGGIO!");
+````
+
+
 
 
 
