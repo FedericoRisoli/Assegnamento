@@ -102,7 +102,7 @@ public class PagocartaController extends MyController {
                 throw new RuntimeException(e);
             }
 
-            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"')");
+            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"', 1)");
 
             //aggiorno valori vini
             int q;

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-//TODO VEDERE SE ELIMINARLO O NO, al momento non serve, lo si potrebbe usare per mandare i messaggi
 
 public class ServerConnection {
     private static ServerConnection instance;
@@ -29,15 +28,11 @@ public class ServerConnection {
         return instance;
     }
 
-    //per riceverlo devo modificare il server
-    /*
-    public void handleMessage(String message) {
-        // Gestisci il messaggio inviato dal server
-        // ...
-    }
-    */
-
     public void sendMessage(String message) {
         out.println(message);
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 }

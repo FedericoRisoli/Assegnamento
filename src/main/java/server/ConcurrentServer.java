@@ -6,13 +6,46 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConcurrentServer {
+
+    private static final ConcurrentServer instance = new ConcurrentServer();
+    public static ConcurrentServer getInstance() { return instance; }
+
+    private final CopyOnWriteArrayList<Integer> impiegatiOnline = new CopyOnWriteArrayList<>();
+    private final CopyOnWriteArrayList<Integer> ordVendita = new CopyOnWriteArrayList<>();
+
+
+    public void addOrdVendita(int value) {
+        impiegatiOnline.add(value);
+    }
+
+    public void removeOrdVendita(int value) {
+        impiegatiOnline.remove(value);
+    }
+
+    public void addImpiegato(int value) {
+        impiegatiOnline.add(value);
+    }
+
+    public void removeImpiegato(int value) {
+        impiegatiOnline.remove(value);
+    }
+
     public static void main(String[] args) throws IOException {
         // Crea un nuovo ServerSocket sulla porta specificata
         int port = 8080;
         ServerSocket serverSocket = new ServerSocket(port);
         Socket socket = new Socket("localhost", 8080);
+
+
+        /**
+         * qui ci va una query per prendere tutti gli id degli ordini di vendita NON ANCORA PAGATI E NON RIFIUTATI (si potrebbe fare un solo campo nel DB "completato")
+         * vanno aggiunte con
+         * this.addOrdVendita(id);
+         * */
 
 
         while (true) {
@@ -36,18 +69,47 @@ class ClientHandler implements Runnable {
 
     @Override
     public void run() {
+        ConcurrentServer server = ConcurrentServer.getInstance();
         try {
+
+            String message = "";
+
             // Ottieni gli stream di input e output dal socket
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+            //leggo id utente e tipo
+            message = in.readLine();
+            if (message.startsWith("employee")){
+                //System.out.println("SIUUUUUUUUUUUUUUUUUUUUUM"+message);
+                message = message.replace("employee","");
+                int id = Integer.valueOf(message);
+                server.addImpiegato(id);
+            } else if (message.startsWith("admin")) {
+                message = message.replace("admin","");
+                int id = Integer.valueOf(message);
+                server.addImpiegato(id);
+            }
+
+            //timeout in millisecondi
+            socket.setSoTimeout(15_000);
+
+
+            System.out.println("Connessione Riuscita");
+
             while(true) {
-                out.println("Connessione Riuscita");
 
                 // Legge il messaggio del client
-                String message = in.readLine();
+                try {
+                    message = in.readLine();
+                    // utilizza il messaggio
+                    System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
+                } catch (SocketTimeoutException e) {
+                    // nessun messaggio disponibile entro il timeout
+                    System.out.println("Nessun messaggio ricevuto");
 
-                // Invia una risposta al client
-                out.println("Server: ho ricevuto il tuo messaggio: '" + message + "'");
+                }
+
 
                 if (message.equals("STOP")) {
                     System.out.println("Chiusura Connessione con client");
