@@ -26,7 +26,7 @@ Esempio:
 changeScene(pagocarta.fxml, String NuovoTitolo, ActionEvent event)
 ````
 
-**NB: senza override non funzionerà. Le maiuscole e minuscole devono essere come qui**
+**NB: senza override non funzionerà. Le maiuscole e minuscole devono essere come qui. event è la variabile che c'è nelle **
 
 modificare handleMessage per leggere il messaggio e fare le azioni necessarie
 Per mandare un messaggio scrivere:
