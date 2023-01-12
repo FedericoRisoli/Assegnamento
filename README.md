@@ -17,8 +17,12 @@ createTask(server.getSocket(),this);
         System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
     }
 ````
+**NB Modificare handleMessage per leggere il messaggio e fare le azioni necessarie**
+
+**NB: senza override non funzionerà.**
+
 5. Per cambiare scena completamente dal controllore (non per usare per i popup quindi) usare il metodo
-MyController.changeScene(String NomeScenaFXML, String NuovoTitolo, ActionEvent event)
+   MyController.changeScene(String NomeScenaFXML, ActionEvent event)
 
 Esempio:
 
@@ -26,16 +30,21 @@ Esempio:
 changeScene(pagocarta.fxml, event);
 ````
 
-**NB: senza override non funzionerà. Le maiuscole e minuscole devono essere come qui. event è la variabile che c'è nelle funzioni che vengono chiamate quando premi un pulsante ad esempio**
 
-modificare handleMessage per leggere il messaggio e fare le azioni necessarie
 Per mandare un messaggio scrivere:
 ````
 server.sendmessage("SONO UN MESSAGGIO!");
 ````
 
+**ATTENZIONE: Le maiuscole e minuscole devono essere come scritte qui. event è la variabile che c'è nelle funzioni che vengono chiamate quando premi un pulsante ad esempio**
 
 
+### Altro:
+Per passare da una scena all'altra usare se si è usato il server nel controllore:
+MyController.changeScene(String NomeScenaFXML, ActionEvent event)
+````
+changeScene(personnelpage.fxml, event);
+````
 
 
 # WineShop Assegnametno cose da fare:
