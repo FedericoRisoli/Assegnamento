@@ -21,9 +21,6 @@ import java.util.List;
 
 public class PersonnelpageController extends MyController {
 
-    //ottengo istance
-    ServerConnection connection = ServerConnection.getInstance();
-
 
     Carrello carrello = Carrello.getIstance();
 
@@ -330,9 +327,6 @@ public class PersonnelpageController extends MyController {
     }
     @FXML
     private void initialize() throws SQLException {
-
-        //mando messagggio di prova
-        connection.sendMessage("Nuovo lavoro: " + "TEST");
 
         GestioneDipButton.setVisible(false);
 
