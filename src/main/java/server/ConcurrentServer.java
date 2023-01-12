@@ -71,24 +71,31 @@ class ClientHandler implements Runnable {
     public void run() {
         ConcurrentServer server = ConcurrentServer.getInstance();
         try {
-            /**
-             * qui ci va qualcosa per segnarsi SOLO l'ID di chi ha fatto il login
-             * se è employee o admin allora
-             * aggiungo il suo id alla lista nel server con
-             * server.addImpiegato(id);
-             **/
-
-
-
-            //timeout in millisecondi
-            socket.setSoTimeout(2000);
 
             String message = "";
 
             // Ottieni gli stream di input e output dal socket
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            out.println("Connessione Riuscita");
+
+            //leggo id utente e tipo
+            message = in.readLine();
+            if (message.startsWith("employee")){
+                //System.out.println("SIUUUUUUUUUUUUUUUUUUUUUM"+message);
+                message = message.replace("employee","");
+                int id = Integer.valueOf(message);
+                server.addImpiegato(id);
+            } else if (message.startsWith("admin")) {
+                message = message.replace("admin","");
+                int id = Integer.valueOf(message);
+                server.addImpiegato(id);
+            }
+
+            //timeout in millisecondi
+            socket.setSoTimeout(15_000);
+
+
+            System.out.println("Connessione Riuscita");
 
             while(true) {
 
@@ -96,13 +103,12 @@ class ClientHandler implements Runnable {
                 try {
                     message = in.readLine();
                     // utilizza il messaggio
-                    out.println("Server: ho ricevuto il tuo messaggio: '" + message + "'");
+                    System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
-                    out.println("Nessun messaggio ricevuto");
+                    System.out.println("Nessun messaggio ricevuto");
 
                 }
-
 
 
                 if (message.equals("STOP")) {
