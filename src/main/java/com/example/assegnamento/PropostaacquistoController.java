@@ -1,15 +1,18 @@
 package com.example.assegnamento;
 
 
-import javafx.fxml.FXML;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class PropostaacquistoController
 {
 
+        Carrello carrello = Carrello.getIstance();
         @FXML
         private Button OnButtonAnnullaClick;
 
@@ -17,16 +20,27 @@ public class PropostaacquistoController
         private Button OnButtonInviaClick;
 
         @FXML
-        private TableColumn<?, ?> t_propname;
+        private TableColumn<String, String> t_propname;
 
         @FXML
-        private TableColumn<?, ?> t_propqta;
+        private TableColumn<String, String> t_propqta;
 
         @FXML
-        private TableColumn<?, ?> t_propsel;
+        private TableView<String> tabellapropac;
 
+        //TODO FIX ME PLZ
         @FXML
-        private TableView<?> tabellapropac;
+        public void initializa(){
+                t_propname.setCellValueFactory(new PropertyValueFactory<String,String>("nome"));
+                t_propqta.setCellValueFactory(new PropertyValueFactory<String,String>("valore"));
+                ObservableList<Vini> nomi = FXCollections.observableArrayList();
+                ObservableList<String> qta = FXCollections.observableArrayList();
+
+                for  (String item : carrello.getOrdineNonDisp())
+                {
+
+                }
+        }
 
     }
 

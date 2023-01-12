@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConcurrentServer {
@@ -19,11 +21,24 @@ public class ConcurrentServer {
 
 
     public void addOrdVendita(int value) {
-        impiegatiOnline.add(value);
+        ordVendita.add(value);
     }
 
+    public int getFirstOrdVendita() {
+        int tmp = ordVendita.get(0);
+        removeOrdVendita(tmp);
+        return tmp;
+    }
     public void removeOrdVendita(int value) {
-        impiegatiOnline.remove(value);
+        ordVendita.remove(value);
+    }
+
+    public static void setOrdVendita() throws SQLException {
+        ResultSet r = DBHelper.query("SELECT id FROM `ordinivendita` WHERE `completato` = 1");
+        while (r.next())
+        {
+            instance.ordVendita.add(r.getInt("id"));
+        }
     }
 
     public void addImpiegato(int value) {
@@ -34,19 +49,14 @@ public class ConcurrentServer {
         impiegatiOnline.remove(value);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         // Crea un nuovo ServerSocket sulla porta specificata
         int port = 8080;
         ServerSocket serverSocket = new ServerSocket(port);
         Socket socket = new Socket("localhost", 8080);
 
-
-        /**
-         * qui ci va una query per prendere tutti gli id degli ordini di vendita NON ANCORA PAGATI E NON RIFIUTATI (si potrebbe fare un solo campo nel DB "completato")
-         * vanno aggiunte con
-         * this.addOrdVendita(id);
-         * */
-
+        //ottengo ord vendita su cui lavorare
+        setOrdVendita();
 
         while (true) {
             // In attesa di una nuova connessione
@@ -91,6 +101,8 @@ class ClientHandler implements Runnable {
                 server.addImpiegato(id);
             }
 
+            int lavoro_attuale=server.getFirstOrdVendita();
+
             //timeout in millisecondi
             socket.setSoTimeout(15_000);
 
@@ -101,6 +113,7 @@ class ClientHandler implements Runnable {
 
                 // Legge il messaggio del client
                 try {
+                    //ottengo nuovo lavoro dal server, altrimenti tempo scaduto
                     message = in.readLine();
                     // utilizza il messaggio
                     System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
@@ -108,8 +121,18 @@ class ClientHandler implements Runnable {
                     // nessun messaggio disponibile entro il timeout
                     System.out.println("Nessun messaggio ricevuto");
 
-                }
+                    /**
+                     * segno che non ha completato il lavoro sul DB*/
+                     // restituisco il lavoro alla coda
+                     server.addOrdVendita(lavoro_attuale);
+                     //prendo il prossimo
+                     lavoro_attuale= server.getFirstOrdVendita();
+                     /** dico al controller della pagina di ricaricare i lavori da fare?
+                    **/
 
+
+
+                }
 
                 if (message.equals("STOP")) {
                     System.out.println("Chiusura Connessione con client");
