@@ -18,7 +18,7 @@ createTask(server.getSocket(),this);
     }
 ````
 5. Per cambiare scena completamente dal controllore (non per usare per i popup quindi) usare il metodo
-MyController.changeScene(String NomeScenaFXML, String NuovoTitolo, ActionEvent event)
+MyController.changeScene(String NomeScenaFXML, ActionEvent event)
 
 Esempio:
 
@@ -34,6 +34,12 @@ Per mandare un messaggio scrivere:
 server.sendmessage("SONO UN MESSAGGIO!");
 ````
 
+### Altro:
+Per passare da una scena all'altra usare se si è usato il server nel controllore:
+MyController.changeScene(String NomeScenaFXML, ActionEvent event)
+````
+changeScene(personnelpage.fxml, event);
+````
 
 
 
