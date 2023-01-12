@@ -31,4 +31,8 @@ public class ServerConnection {
     public void sendMessage(String message) {
         out.println(message);
     }
+
+    public Socket getSocket() {
+        return socket;
+    }
 }
