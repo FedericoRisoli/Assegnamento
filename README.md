@@ -23,10 +23,10 @@ MyController.changeScene(String NomeScenaFXML, String NuovoTitolo, ActionEvent e
 Esempio:
 
 ````
-changeScene(pagocarta.fxml, String NuovoTitolo, ActionEvent event)
+changeScene(pagocarta.fxml, event);
 ````
 
-**NB: senza override non funzionerà. Le maiuscole e minuscole devono essere come qui. event è la variabile che c'è nelle **
+**NB: senza override non funzionerà. Le maiuscole e minuscole devono essere come qui. event è la variabile che c'è nelle funzioni che vengono chiamate quando premi un pulsante ad esempio**
 
 modificare handleMessage per leggere il messaggio e fare le azioni necessarie
 Per mandare un messaggio scrivere:
