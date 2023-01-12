@@ -43,7 +43,7 @@ public class MyController {
         server.sendMessage("Chiusura Thread Figlio, arrivederci");
     }
 
-    public void changeScene(String NomeScenaFXML, String NuovoTitolo, ActionEvent event){
+    public void changeScene(String NomeScenaFXML, ActionEvent event){
         killChildThread();
         try {
 
