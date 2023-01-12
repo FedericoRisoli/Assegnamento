@@ -13,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,16 +20,7 @@ import java.util.List;
 
 public class UsermainpageController extends MyController{
 
-    int port = 8080;
-    Socket socket;
-    {
-        try {
-            socket = new Socket("localhost", port);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    MessageReceiverTask task = new MessageReceiverTask(socket, this);
+
 
 
     Carrello carrello = Carrello.getIstance();
