@@ -112,9 +112,9 @@ public class RiepilogoController extends MyController {
 
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
 
-        double prezzo=0;
+        double prezzo = 0;
         int bottiglie = 0;
         int casse6 = 0;
         int casse12 = 0;
@@ -135,63 +135,70 @@ public class RiepilogoController extends MyController {
             carrello.addOrdine(Integer.toString(bottiglie));
             //segno numero casse da 12 e le tolgo da bottiglie
             //automaticamente viene arrotondato per difetto
-            casse12 = bottiglie/12;
-            bottiglie=bottiglie-12*casse12;
+            casse12 = bottiglie / 12;
+            bottiglie = bottiglie - 12 * casse12;
             //segno numero casse da 6 e le tolgo da bottiglie
             //automaticamente viene arrotondato per difetto
-            casse6 = bottiglie/6;
-            bottiglie=bottiglie-6*casse6;
+            casse6 = bottiglie / 6;
+            bottiglie = bottiglie - 6 * casse6;
             System.out.println(casse6);
 
-            prezzo=item.getPrezzo();
-            subtotale = prezzo*bottiglie;
-            textflow.getChildren().add(new Text("Confezione da "+bottiglie+" bottiglie, prezzo "+round(subtotale,2)+" €\n"));
+            prezzo = item.getPrezzo();
+            subtotale = prezzo * bottiglie;
+            textflow.getChildren().add(new Text("Confezione da " + bottiglie + " bottiglie, prezzo " + round(subtotale, 2) + " €\n"));
             //casse 6
-            tmp=prezzo*6*0.95*casse6;
-            textflow.getChildren().add(new Text(casse6+" casse da 6 bottiglie, prezzo "+round(tmp,2)+" €\n"));
-            subtotale=subtotale+tmp;
+            tmp = prezzo * 6 * 0.95 * casse6;
+            textflow.getChildren().add(new Text(casse6 + " casse da 6 bottiglie, prezzo " + round(tmp, 2) + " €\n"));
+            subtotale = subtotale + tmp;
             //casse12
-            tmp=prezzo*12*0.9*casse12;
-            textflow.getChildren().add(new Text(casse12+" casse da 12 bottiglie, prezzo "+tmp+" €\n"));
-            subtotale=subtotale+tmp;
-            if(casse6+casse12>=3)
-            {
-                textflow.getChildren().add(new Text("Sconto casse multiple -3%, prezzo "+round(subtotale*0.97-subtotale,2)+" €\n"));
-                subtotale=round(subtotale*0.97,2);
-            } else if (casse6+casse12==2) {
-                textflow.getChildren().add(new Text("Sconto casse multiple -2%, prezzo "+round(subtotale*0.98-subtotale, 2)+" €\n"));
-                subtotale=round(subtotale*0.98,2);
+            tmp = prezzo * 12 * 0.9 * casse12;
+            textflow.getChildren().add(new Text(casse12 + " casse da 12 bottiglie, prezzo " + tmp + " €\n"));
+            subtotale = subtotale + tmp;
+            if (casse6 + casse12 >= 3) {
+                textflow.getChildren().add(new Text("Sconto casse multiple -3%, prezzo " + round(subtotale * 0.97 - subtotale, 2) + " €\n"));
+                subtotale = round(subtotale * 0.97, 2);
+            } else if (casse6 + casse12 == 2) {
+                textflow.getChildren().add(new Text("Sconto casse multiple -2%, prezzo " + round(subtotale * 0.98 - subtotale, 2) + " €\n"));
+                subtotale = round(subtotale * 0.98, 2);
             }
-            totale=totale+subtotale;
+            totale = totale + subtotale;
             textflow.getChildren().add(new Text("\n\n"));
             carrello.addOrdine(Double.toString(subtotale));
 
 
         }
-        if(!carrello.getNondisp().isEmpty())
+        if (!carrello.getNondisp().isEmpty())
             textflow.getChildren().add(new Text("\tVINI NON DISPONIBILI:\n\n"));
         for (Vini item : carrello.getNondisp()) {
-            textflow.getChildren().add(new Text(item.getNome()+"\n"));
+            textflow.getChildren().add(new Text(item.getNome() + "\n"));
             //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
             carrello.addOrdineNonDisp(item.getNome());
-            carrello.addOrdineNonDisp(Integer.toString((int)item.getSpin().getValue() ) );
+            carrello.addOrdineNonDisp(Integer.toString((int) item.getSpin().getValue()));
 
         }
-        label_prezzo.setText(Double.toString(round(totale,2))+" €");
+        label_prezzo.setText(Double.toString(round(totale, 2)) + " €");
 
 
-        if(carrello.getOrdine().isEmpty())
+        if (carrello.getOrdine().isEmpty())
             procedi.setVisible(false);
 
-        if(carrello.getNondisp().isEmpty())
+        if (carrello.getNondisp().isEmpty())
             ordinanondisponibili.setVisible(false);
         else
-            //TODO POPUP
+        {
             //in alternativa si può usare la lista di vini carrello.getNondisp().getnome() e .getquantita()
+
             System.out.println("FARE POPUP QUI PER ORDINARE VINI NON DISPONIBILI. " +
                     "LE INFORMAZIONI NECESSARIE SUI VINI SI TROVANO IN CARRELLO.GETNONDISP" +
                     "LE INFO SONO REGISTRATE COME NOME VINO AGLI INDICI PARI E Q.TA AI DISPARI così\n" +
                     carrello.getOrdineNonDisp());
 
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("propostaacquisto.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Proposta di acquisto");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        }
     }
 }

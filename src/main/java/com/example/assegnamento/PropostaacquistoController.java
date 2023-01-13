@@ -20,25 +20,30 @@ public class PropostaacquistoController
         private Button OnButtonInviaClick;
 
         @FXML
-        private TableColumn<String, String> t_propname;
+        private TableColumn<Vini, String> t_propname;
 
         @FXML
-        private TableColumn<String, String> t_propqta;
+        private TableColumn<Vini, String> t_propqta;
 
         @FXML
-        private TableView<String> tabellapropac;
+        private TableView<Vini> tabellapropac;
 
         //TODO FIX ME PLZ
         @FXML
         public void initializa(){
-                t_propname.setCellValueFactory(new PropertyValueFactory<String,String>("nome"));
-                t_propqta.setCellValueFactory(new PropertyValueFactory<String,String>("valore"));
-                ObservableList<Vini> nomi = FXCollections.observableArrayList();
-                ObservableList<String> qta = FXCollections.observableArrayList();
+                t_propname.setCellValueFactory(new PropertyValueFactory<Vini,String>("nome"));
+                t_propqta.setCellValueFactory(new PropertyValueFactory<Vini,String>("valore"));
+                ObservableList<Vini> data = FXCollections.observableArrayList();
 
+                int i=0;
                 for  (String item : carrello.getOrdineNonDisp())
                 {
-
+                data.add(carrello.getNondisp().get(i));
+                tabellapropac.setItems(data);
+                i++;
+                data.add(carrello.getNondisp().get(i));
+                i++;
+                tabellapropac.setItems(data);
                 }
         }
 
