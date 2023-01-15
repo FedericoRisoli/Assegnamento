@@ -30,12 +30,6 @@ Esempio:
 changeScene(pagocarta.fxml, event);
 ````
 
-
-Per mandare un messaggio scrivere:
-````
-server.sendmessage("SONO UN MESSAGGIO!");
-````
-
 **ATTENZIONE: Le maiuscole e minuscole devono essere come scritte qui. event è la variabile che c'è nelle funzioni che vengono chiamate quando premi un pulsante ad esempio**
 
 
