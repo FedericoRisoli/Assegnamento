@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
@@ -33,8 +34,8 @@
       <Line endX="742.0" layoutX="151.0" layoutY="452.0" startX="-100.0" AnchorPane.bottomAnchor="175.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Label layoutX="60.0" layoutY="460.0" styleClass="title-1" text="TOTALE:" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="50.0" />
       <Label fx:id="label_prezzo" layoutX="187.0" layoutY="478.0" styleClass="title-1" text="10000.99 $" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="187.0" />
-      <Label layoutX="92.0" layoutY="416.0" styleClass="title-2" text="Metodo di Pagamento:" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" />
-      <ButtonBar layoutX="344.0" layoutY="390.0" prefHeight="40.0" prefWidth="331.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="344.0">
+      <Label fx:id="pagtext" layoutX="92.0" layoutY="416.0" styleClass="title-2" text="Metodo di Pagamento:" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="50.0" />
+      <ButtonBar fx:id="pagbuttonsbar" layoutX="344.0" layoutY="390.0" prefHeight="40.0" prefWidth="331.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="344.0">
          <buttons>
             <RadioButton fx:id="bonifico" mnemonicParsing="false" selected="true" styleClass="toggle-button" text="Bonifico">
                <toggleGroup>
@@ -44,9 +45,10 @@
             <RadioButton mnemonicParsing="false" styleClass="toggle-button" text="Carta di Credito" toggleGroup="$metodo" />
          </buttons>
       </ButtonBar>
-      <Line endX="742.0" layoutX="137.0" layoutY="368.0" startX="-100.0" AnchorPane.bottomAnchor="259.5" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+      <Line fx:id="div1" endX="742.0" layoutX="137.0" layoutY="368.0" startX="-100.0" AnchorPane.bottomAnchor="259.5" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Button fx:id="ordinanondisponibili" layoutX="510.0" layoutY="542.0" mnemonicParsing="false" onAction="#OnClickOrdinaNonDisponibili" text="Ordina Vini Non Disponibili" />
 
-      <Label layoutX="50.0" layoutY="33.0" styleClass="title-1" text="Ordine di Vendita:" />
+      <Label fx:id="titletext" layoutX="50.0" layoutY="33.0" styleClass="title-1" text="Ordine di Vendita:" />
+      <TextField fx:id="adrrfield" layoutX="50.0" layoutY="396.0" prefHeight="36.0" prefWidth="266.0" promptText="Inserisci indirzzo di Consegna" />
    </children>
 </AnchorPane>
