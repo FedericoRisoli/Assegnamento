@@ -6,18 +6,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestData {
     @Test
-    public void testGetInstance() {
+    public void TestGetInstance() {
         Data data = Data.getInstance();
         assertNotNull(data);
     }
     @Test
-    public void testSetId() {
+    public void TestSetId() {
         Data data = Data.getInstance();
         data.Setid(1);
         assertEquals(data.GetId(), 1);
     }
     @Test
-    public void testSetRole() {
+    public void TestSetRole() {
         Data data = Data.getInstance();
         data.SetRole("admin");
         assertEquals(data.Getrole(), "admin");
@@ -35,7 +35,7 @@ class TestData {
         assertTrue(data.GetPromo());
     }
     @Test
-    public void testReset() {
+    public void TestReset() {
         Data data = Data.getInstance();
         data.Setid(1);
         data.SetRole("admin");
