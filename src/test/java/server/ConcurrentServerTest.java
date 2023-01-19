@@ -1,5 +1,6 @@
 package server;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,6 +8,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class ConcurrentServerTest {
+
+    @BeforeEach
+    void setUp() {
+        ConcurrentServer server = ConcurrentServer.getInstance();
+        server.impiegatiOnline.clear();
+        server.impiegatiOnline.clear();
+    }
     @Test
     public void testAddOrdVendita() {
         ConcurrentServer server = ConcurrentServer.getInstance();
