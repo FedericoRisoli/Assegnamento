@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TestData {
+class DataTest {
     @Test
     public void TestGetInstance() {
         Data data = Data.getInstance();
