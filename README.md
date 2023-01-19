@@ -1,3 +1,10 @@
+## HOW TO USE TESTS
+### Aggiungere test:
+Per il test della classe Esempio creiamo un file TestEsempio.java nella cartella src/test/java/[package], successivamente implementiamo i test mettendo sopra ogni metodo @Test, esattamente come in TestData.java (i nomi son stati mixati per sperimentare i limiti del sistema quindi trovi test a volte prima a volte dopo)
+### Eseguire test:
+Quando si pusha su master o si fa una merge request su master Github lo farà in automatico. Se vicino al commit trovi una spunta verde allora tutti i test sono passati, un pallino giallo indica test in corso, mentre una X rossa indica Fallimento del test (o build, bisogna guardare il codice specifico nella tab Actions).
+In caso di X su un commit su master fixare immediatamente. Se è su un ramo diverso si può aspettare per il fix
+
 ## HOW TO USE SERVER
 1. Run ConcurrentServer.java
 2. Per mandare un messaggio da un controllore qualunque basta usare sendMessage(String message).
