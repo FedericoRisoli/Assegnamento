@@ -16,8 +16,8 @@ public class ConcurrentServer {
     private static final ConcurrentServer instance = new ConcurrentServer();
     public static ConcurrentServer getInstance() { return instance; }
 
-    private final CopyOnWriteArrayList<Integer> impiegatiOnline = new CopyOnWriteArrayList<>();
-    private final CopyOnWriteArrayList<Integer> ordVendita = new CopyOnWriteArrayList<>();
+    final CopyOnWriteArrayList<Integer> impiegatiOnline = new CopyOnWriteArrayList<>();
+    protected final CopyOnWriteArrayList<Integer> ordVendita = new CopyOnWriteArrayList<>();
 
 
     public void addOrdVendita(int value) {
@@ -29,8 +29,9 @@ public class ConcurrentServer {
         removeOrdVendita(tmp);
         return tmp;
     }
+    //questo rimuove per ID dell'impiegato, per rimuovere per posizione della lista serve un metodo differente o una modifica
     public void removeOrdVendita(int value) {
-        ordVendita.remove(value);
+        ordVendita.remove(Integer.valueOf(value));
     }
 
     public static void setOrdVendita() throws SQLException {
@@ -45,8 +46,9 @@ public class ConcurrentServer {
         impiegatiOnline.add(value);
     }
 
+    //questo rimuove per ID dell'impiegato, per rimuovere per posizione della lista serve un metodo differente o una modifica
     public void removeImpiegato(int value) {
-        impiegatiOnline.remove(value);
+        impiegatiOnline.remove(Integer.valueOf(value));
     }
 
     public static void main(String[] args) throws IOException, SQLException {
