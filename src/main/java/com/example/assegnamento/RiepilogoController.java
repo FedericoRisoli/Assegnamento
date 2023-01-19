@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
@@ -35,6 +36,9 @@ public class RiepilogoController extends MyController {
     Carrello carrello = Carrello.getIstance();
 
     @FXML
+    private TextField adrrfield;
+
+    @FXML
     private ToggleGroup metodo;
 
     @FXML
@@ -57,6 +61,15 @@ public class RiepilogoController extends MyController {
 
     @FXML
     private Button ordinanondisponibili;
+    @FXML
+    private ButtonBar pagbuttonsbar;
+
+    @FXML
+    private Label pagtext;
+    @FXML
+    private Line div1;
+    @FXML
+    private Label titletext;
 
     @FXML
     void OnClickAnulla(ActionEvent event) throws IOException {
@@ -170,35 +183,39 @@ public class RiepilogoController extends MyController {
         if (!carrello.getNondisp().isEmpty())
             textflow.getChildren().add(new Text("\tVINI NON DISPONIBILI:\n\n"));
         for (Vini item : carrello.getNondisp()) {
-            textflow.getChildren().add(new Text(item.getNome() + "\n"));
+            textflow.getChildren().add(new Text("Nome: "+item.getNome() + " Q.ta: "));
+            textflow.getChildren().add(new Text("x "+item.getQuantita()+"\n"));
             //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
             carrello.addOrdineNonDisp(item.getNome());
+            carrello.addOrdineNonDisp(item.getQuantita());
             carrello.addOrdineNonDisp(Integer.toString((int) item.getSpin().getValue()));
 
         }
         label_prezzo.setText(Double.toString(round(totale, 2)) + " €");
 
 
-        if (carrello.getOrdine().isEmpty())
+        if (carrello.getOrdine().isEmpty()) {
             procedi.setVisible(false);
-
-        if (carrello.getNondisp().isEmpty())
+            adrrfield.setVisible(false);
+        }
+        if (carrello.getNondisp().isEmpty()) {
             ordinanondisponibili.setVisible(false);
+            adrrfield.setVisible(false);
+        }
         else
         {
             //in alternativa si può usare la lista di vini carrello.getNondisp().getnome() e .getquantita()
 
-            System.out.println("FARE POPUP QUI PER ORDINARE VINI NON DISPONIBILI. " +
-                    "LE INFORMAZIONI NECESSARIE SUI VINI SI TROVANO IN CARRELLO.GETNONDISP" +
+            System.out.println("LE INFORMAZIONI NECESSARIE SUI VINI SI TROVANO IN CARRELLO.GETNONDISP" +
                     "LE INFO SONO REGISTRATE COME NOME VINO AGLI INDICI PARI E Q.TA AI DISPARI così\n" +
                     carrello.getOrdineNonDisp());
 
-            Parent root = FXMLLoader.load(HelloApplication.class.getResource("propostaacquisto.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Proposta di acquisto");
-            stage.setScene(new Scene(root));
-            stage.show();
 
+            pagbuttonsbar.setVisible(false);
+            pagtext.setVisible(false);
+            div1.setVisible(false);
+            titletext.setText("Proposta di Acquisto:");
+            adrrfield.setVisible(true);
         }
     }
 }
