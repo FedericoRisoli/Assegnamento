@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.ResultSet;
 
 
 public class RiepilogoController extends MyController {
@@ -34,6 +35,7 @@ public class RiepilogoController extends MyController {
     Parent root;
 
     Carrello carrello = Carrello.getIstance();
+    Data data=Data.getInstance();
 
     @FXML
     private TextField adrrfield;
@@ -120,7 +122,9 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickOrdinaNonDisponibili(ActionEvent event) {
-
+        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, \""+data.Getname()+"\",\""+data.Getsurname()+"\",\""+carrello.getOrdineNonDisp()+"\",\""+adrrfield.getText()+"\",' ',0" );
+       // DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText()
+       // INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, 'brppe', 'augusto ', 'reeeeeeeeeehhhhhhhh', 'adfgsdfg', '2023-01-17', '0')
     }
 
 

@@ -62,7 +62,12 @@ public class HelloController extends MyController {
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
         ResultSet c = DBHelper.query("SELECT `ruolo` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
-
+        ResultSet n = DBHelper.query("SELECT `nome` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
+        ResultSet s = DBHelper.query("SELECT `cognome` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
+        n.next();
+        s.next();
+        String tempn=n.getString("nome");
+        String temps =s.getString("cognome");
         //in caso di errore
         if (!r.next()||username.getText().isBlank()||password.getText().isBlank())
         {
@@ -74,6 +79,8 @@ public class HelloController extends MyController {
         //cambio scena
         if(c.next())
         {
+            data.Setname(tempn);
+            data.Setsurname(temps);
             String role = c.getString("ruolo");
 
             if(role.equals("client"))
