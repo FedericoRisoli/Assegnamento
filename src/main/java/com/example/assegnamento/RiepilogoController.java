@@ -122,9 +122,16 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickOrdinaNonDisponibili(ActionEvent event) {
-        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, \""+data.Getname()+"\",\""+data.Getsurname()+"\",\""+carrello.getOrdineNonDisp()+"\",\""+adrrfield.getText()+"\",' ',0" );
-       // DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText()
-       // INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, 'brppe', 'augusto ', 'reeeeeeeeeehhhhhhhh', 'adfgsdfg', '2023-01-17', '0')
+        Alert alert ;
+        if(adrrfield.getText().isEmpty())
+        {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Address Error");
+            alert.setHeaderText("Inserire indirizzo di consegna");
+            alert.showAndWait();
+        }
+        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\','2023-01-01','0')" );
+
     }
 
 
@@ -192,7 +199,7 @@ public class RiepilogoController extends MyController {
             //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
             carrello.addOrdineNonDisp(item.getNome());
             carrello.addOrdineNonDisp(item.getQuantita());
-            carrello.addOrdineNonDisp(Integer.toString((int) item.getSpin().getValue()));
+            //carrello.addOrdineNonDisp(Integer.toString((int) item.getSpin().getValue())); l'ho commentata perche' aggiungeva anche la quantita selezionata cosi nell ordine insrisce slo  la quantita mancante dimmi tu se va bene o no
 
         }
         label_prezzo.setText(Double.toString(round(totale, 2)) + " €");
