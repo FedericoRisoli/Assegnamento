@@ -71,6 +71,9 @@ public class UsermainpageController extends MyController{
 
     @FXML
     private Button RicercaclientiButton;
+    @FXML
+    private Button ImieiordiniButton;
+
 
     //non finito
     @FXML
@@ -220,6 +223,19 @@ public class UsermainpageController extends MyController{
         System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
     }
 
-    public void OnRicercaClientiClick(ActionEvent actionEvent) {
+
+    public void OnButtonClickImieiOrdini(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("ordinidivenditautente.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("I Miei Ordini");
+            stage.setScene(new Scene(root));
+            stage.setAlwaysOnTop(true);
+            stage.show();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

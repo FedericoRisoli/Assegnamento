@@ -125,8 +125,9 @@ public class ModifypswController extends MyController {
         }
 
     }
-public void initialize()
-{
+    @FXML
+    private void initialize()
+    {
     if (data.Getrole().equals("employee"))
         {
             mail.setVisible(false);
