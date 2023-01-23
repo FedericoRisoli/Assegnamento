@@ -51,4 +51,16 @@ class DataTest {
         assertEquals(data.Getsurname(),"");
         //assertFalse(data.GetPromo());
     }
+    @Test
+    public void testSetName() {
+        Data data = Data.getInstance();
+        data.Setname("Giacomino");
+        assertEquals(data.Getname(), "Giacomino");
+    }
+    @Test
+    public void testSetSurname() {
+        Data data = Data.getInstance();
+        data.Setsurname("Gilberto");
+        assertEquals(data.Getsurname(), "Gilberto");
+    }
 }
