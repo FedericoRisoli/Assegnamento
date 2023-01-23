@@ -43,5 +43,5 @@ public class Data {
     public String Getname(){return nome;}
     public String Getsurname(){return cognome;}
     public String Getusername(){return username;}
-    public void reset(){this.id=-100;this.role="";this.username="";};
+    public void reset(){this.id=-100;this.role="";this.username="";this.nome="";this.cognome="";};
 }
