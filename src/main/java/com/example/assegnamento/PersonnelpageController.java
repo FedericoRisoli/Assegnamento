@@ -205,10 +205,22 @@ public class PersonnelpageController extends MyController {
     @FXML
     void OnButtonClickSearch(ActionEvent event) throws SQLException
     {
+        ResultSet r = null;
         String anno = annata.getValue();
         String nome = nome_vino.getText();
 
-        ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\" OR anno = "+anno); //dipendenti e admin possono ricercare e/o
+        if(annata.getValue().isEmpty())
+        {
+             r= DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o
+        }
+        else if (nome_vino.getText().isEmpty())
+        {
+             r = DBHelper.query("SELECT * FROM `wines` WHERE anno LIKE \"%"+anno+"%\""); //dipendenti e admin possono ricercare e/o
+        }
+        else
+        {
+            r=DBHelper.query("SELECT * FROM `wines` WHERE anno LIKE \"%"+anno+"%\" AND nome LIKE \""+nome); //dipendenti e admin possono ricercare e/o
+        }
 
         //clear
         tabella.getItems().clear();
@@ -220,6 +232,8 @@ public class PersonnelpageController extends MyController {
             tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
         }
         tabella.setItems(tmp);
+
+
     }
     public void OnButtonClearWineClick(ActionEvent actionEvent) throws SQLException {
         t_nome.setCellValueFactory(new PropertyValueFactory<Vini, String>("Nome"));
