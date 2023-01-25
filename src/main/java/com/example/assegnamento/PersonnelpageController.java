@@ -130,7 +130,23 @@ public class PersonnelpageController extends MyController {
     @FXML
     private Button searchorder;
 
+    //tabella per il lavoro
+    @FXML
+    private TableView<OrdiniVendita> lavoro;
+    @FXML
+    private TableColumn<OrdiniVendita, String> t_dc;
 
+    @FXML
+    private TableColumn<OrdiniVendita, String> t_i;
+    @FXML
+    private TableColumn<OrdiniVendita, String>t_c;
+    @FXML
+    private TableColumn<OrdiniVendita, String> t_n;
+    @FXML
+    private TableColumn<OrdiniVendita, String> t_o;
+
+    @FXML
+    private TableColumn<OrdiniVendita, CheckBox> t_sel;
 
 
     //non finito
@@ -411,10 +427,24 @@ public class PersonnelpageController extends MyController {
             OrderTableView.setItems(tmp3);
         }
 
+        t_dc.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
+        t_n.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
+        t_c.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
+        t_o.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
+        t_i.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
+        t_sel.setCellValueFactory(new PropertyValueFactory<OrdiniVendita, CheckBox>("check"));
+        r = DBHelper.query("SELECT `nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0;");
+        ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
+
+        while (r.next())
+        {
+            tmp4.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            lavoro.setItems(tmp4);
+        }
+
     }
 
 
-
-
-
+    public void OnButtonClickOrderComplete(ActionEvent actionEvent) {
+    }
 }

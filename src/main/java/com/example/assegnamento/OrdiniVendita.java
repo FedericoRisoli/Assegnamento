@@ -1,6 +1,7 @@
 package com.example.assegnamento;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.CheckBox;
 
 public class OrdiniVendita extends MyController {
     private final SimpleStringProperty Dataconsegna;
@@ -8,6 +9,7 @@ public class OrdiniVendita extends MyController {
     private final SimpleStringProperty Cognome;
     private final SimpleStringProperty Ordine;
     private final SimpleStringProperty Indirizzo;
+    private CheckBox check;
 
     OrdiniVendita(String datac,String nom,String cog,String ord,String ind){
         this.Dataconsegna=new SimpleStringProperty(datac);
@@ -15,10 +17,13 @@ public class OrdiniVendita extends MyController {
         this.Cognome=new SimpleStringProperty(cog);
         this.Ordine=new SimpleStringProperty(ord);
         this.Indirizzo=new SimpleStringProperty(ind);
+        this.check = new CheckBox("");
 
 
     }
-
+    public CheckBox getCheck() {
+        return check;
+    }
     public String getDataconsegna() {
         return Dataconsegna.get();
     }
