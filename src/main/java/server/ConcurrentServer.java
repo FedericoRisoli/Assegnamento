@@ -106,7 +106,7 @@ class ClientHandler implements Runnable {
             int lavoro_attuale=server.getFirstOrdVendita();
 
             //timeout in millisecondi
-            socket.setSoTimeout(01_000);
+            socket.setSoTimeout(10_000);
 
 
             System.out.println("Connessione Riuscita");
@@ -129,8 +129,10 @@ class ClientHandler implements Runnable {
                         try {
                             r.next();
                             int valore = r.getInt("job_falliti");
+                            valore++;
+
                             //TODO
-                            DBHelper.update("UPDATE `utenti` SET `job_falliti` = "+Integer.valueOf(valore+1)+"WHERE id="+Integer.valueOf(emp)+"");
+                            DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\"WHERE id=\""+emp+"\"");
                         } catch (SQLException ex) {
                             throw new RuntimeException(ex);
                         }
