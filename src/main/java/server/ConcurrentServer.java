@@ -106,7 +106,7 @@ class ClientHandler implements Runnable {
             int lavoro_attuale=server.getFirstOrdVendita();
 
             //timeout in millisecondi
-            socket.setSoTimeout(15_000);
+            socket.setSoTimeout(10_000);
 
 
             System.out.println("Connessione Riuscita");
@@ -122,9 +122,23 @@ class ClientHandler implements Runnable {
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
                     System.out.println("Nessun messaggio ricevuto");
+                    /** segno che non ha completato il lavoro sul DB**/
+                    for(Integer emp : server.impiegatiOnline)
+                    {
+                        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE id="+emp);
+                        try {
+                            r.next();
+                            int valore = r.getInt("job_falliti");
+                            valore++;
 
-                    /**
-                     * segno che non ha completato il lavoro sul DB*/
+                            //TODO
+                            DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\"WHERE id=\""+emp+"\"");
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+                    }
+
                      // restituisco il lavoro alla coda
                      server.addOrdVendita(lavoro_attuale);
                      //prendo il prossimo
