@@ -148,7 +148,8 @@ public class PersonnelpageController extends MyController {
     @FXML
     private TableColumn<OrdiniVendita, CheckBox> t_sel;
 
-
+    @FXML
+    private DatePicker datepick;
     //non finito
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
@@ -358,6 +359,12 @@ public class PersonnelpageController extends MyController {
         }
     }
     @FXML
+    public void OnButtonClickOrderComplete(ActionEvent actionEvent) {
+
+        DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \""+datepick.getValue()+"\", `completato` = '1' WHERE `ordinivendita`.`id` = \""+ ""+ "\""); //bisogna aggiungere l' oid dell ordine checkato nella tabella
+
+    }
+    @FXML
     private void initialize() throws SQLException {
 
         GestioneDipButton.setVisible(false);
@@ -447,6 +454,5 @@ public class PersonnelpageController extends MyController {
     }
 
 
-    public void OnButtonClickOrderComplete(ActionEvent actionEvent) {
-    }
+
 }
