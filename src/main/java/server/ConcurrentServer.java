@@ -98,7 +98,6 @@ class ClientHandler implements Runnable {
             //leggo id utente e tipo
             message = in.readLine();
             if (message.startsWith("employee")){
-                //System.out.println("SIUUUUUUUUUUUUUUUUUUUUUM"+message);
                 message = message.replace("employee","");
                 int id = Integer.valueOf(message);
                 server.addImpiegato(id);
