@@ -94,7 +94,7 @@ class ClientHandler implements Runnable {
             // Ottieni gli stream di input e output dal socket
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
+            //TODO ELIMINARE QUESTA PARTE DUPLICATA
             //leggo id utente e tipo
             message = in.readLine();
             if (message.startsWith("employee")){
@@ -102,6 +102,11 @@ class ClientHandler implements Runnable {
                 message = message.replace("employee","");
                 int id = Integer.valueOf(message);
                 server.addImpiegato(id);
+                if (!server.OrdVenditaIsEmpty())
+                {
+                    out.println(id+" "+ server.getFirstOrdVendita());
+                }
+
             } else if (message.startsWith("admin")) {
                 message = message.replace("admin","");
                 int id = Integer.valueOf(message);
@@ -111,8 +116,7 @@ class ClientHandler implements Runnable {
             int lavoro_attuale=server.getFirstOrdVendita();
 
             //timeout in millisecondi
-            socket.setSoTimeout(10_000);
-
+            /**socket.setSoTimeout(10_000);**/
 
             System.out.println("Connessione Riuscita");
 
@@ -120,10 +124,23 @@ class ClientHandler implements Runnable {
 
                 // Legge il messaggio del client
                 try {
-                    //ottengo nuovo lavoro dal server, altrimenti tempo scaduto
                     message = in.readLine();
                     // utilizza il messaggio
                     System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
+                    //ottengo nuovo lavoro dal server, altrimenti tempo scaduto
+
+                    //nuova connessione al server
+                    if (message.startsWith("employee")){
+                        message = message.replace("employee","");
+                        int id = Integer.valueOf(message);
+                        server.addImpiegato(id);
+                    } else if (message.startsWith("admin")) {
+                        message = message.replace("admin","");
+                        int id = Integer.valueOf(message);
+                        server.addImpiegato(id);
+                    }
+
+
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
                     System.out.println("Nessun messaggio ricevuto");

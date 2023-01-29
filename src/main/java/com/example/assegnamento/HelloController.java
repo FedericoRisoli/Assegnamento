@@ -85,7 +85,6 @@ public class HelloController extends MyController {
 
             if(role.equals("client"))
             {
-                sendMessage(role+id);
                 data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
                 data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
@@ -98,7 +97,6 @@ public class HelloController extends MyController {
             }
             else
             {
-                sendMessage(role+id);
                 data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw
                 data.Setusername(username.getText()); //setto lúsername da usare in una altra scena
                 data.SetRole(role); //setto il ruolo da poter recuperare in un altra scena
@@ -113,9 +111,8 @@ public class HelloController extends MyController {
         }
     }
 
-    @FXML
+    /*@FXML
     public void initialize(){
-        createTask(server.getSocket(),this);
-    }
+    }*/
 
 }

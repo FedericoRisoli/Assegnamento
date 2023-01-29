@@ -364,8 +364,30 @@ public class PersonnelpageController extends MyController {
         DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \""+datepick.getValue()+"\", `completato` = '1' WHERE `ordinivendita`.`id` = \""+ ""+ "\""); //bisogna aggiungere l' oid dell ordine checkato nella tabella
 
     }
+
+    @Override
+    public void handleMessage(String message) {
+        System.out.println("IL MESSAGGIO ERA "+message);
+        if (message.startsWith(String.valueOf(data.id)))
+        {
+            message = message.replace(data.id +" ","");
+            System.out.println("IL MESSAGGIO è "+message);
+            /**CANCELLO IL CONTENUTO DELLA TABELLA DEI LAVORI
+             * RIPOPOLO LA TABELLA CON SOLTANTO LE INFORMAZIONI DEL LAVORO CON ID=[NUMERO NEL MESSAGGIO]*/
+        }
+    }
+
+
+
+    /**
+     * Funzione che al logout/chiusura ridà al server il lavoro non completato
+     * */
+
+
     @FXML
     private void initialize() throws SQLException {
+
+        createTask(server.getSocket(),this);
 
         GestioneDipButton.setVisible(false);
 
@@ -435,6 +457,10 @@ public class PersonnelpageController extends MyController {
             tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
             OrderTableView.setItems(tmp3);
         }
+
+        //mando messaggio
+        sendMessage(data.role+data.GetId());
+
 
         t_dc.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
         t_n.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
