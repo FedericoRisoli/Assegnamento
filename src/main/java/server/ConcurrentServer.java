@@ -23,8 +23,13 @@ public class ConcurrentServer {
     public void addOrdVendita(int value) {
         ordVendita.add(value);
     }
+    public boolean OrdVenditaIsEmpty(){
+        return ordVendita.isEmpty();
+    }
 
     public int getFirstOrdVendita() {
+        if(ordVendita.isEmpty())
+            return -1;
         int tmp = ordVendita.get(0);
         removeOrdVendita(tmp);
         return tmp;
