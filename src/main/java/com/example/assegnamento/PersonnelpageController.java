@@ -377,6 +377,12 @@ public class PersonnelpageController extends MyController {
         }
     }
 
+    /*@Override
+    public void logout(Stage stage){
+        System.out.println("Stage is closing");
+        // Save file
+    }*/
+
 
 
     /**

@@ -30,9 +30,14 @@ public class MyController {
 
     //da cancellare
     public void createTask(Socket socket, MyController controller){
+
+        //stage.setOnCloseRequest(windowEvent -> logout(stage));
         this.task=new MessageReceiverTask(socket, controller);
         new Thread(task).start();
     }
+    /*public void logout(Stage stage) {
+        System.out.println("LOGOUT AVVENUTO SENZA AZIONI");
+    }*/
 
     public void sendMessage(String message){
         server.sendMessage(message);
