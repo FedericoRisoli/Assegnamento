@@ -97,6 +97,7 @@ class ClientHandler implements Runnable {
             //TODO ELIMINARE QUESTA PARTE DUPLICATA
             //leggo id utente e tipo
             message = in.readLine();
+            System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
             if (message.startsWith("employee")){
                 message = message.replace("employee","");
                 int id = Integer.valueOf(message);

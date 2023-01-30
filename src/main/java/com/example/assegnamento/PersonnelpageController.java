@@ -388,11 +388,11 @@ public class PersonnelpageController extends MyController {
         }
     }
 
-    /*@Override
-    public void logout(Stage stage){
+
+    public void logout(){
         System.out.println("Stage is closing");
         // Save file
-    }*/
+    }
 
 
 
@@ -403,8 +403,9 @@ public class PersonnelpageController extends MyController {
 
     @FXML
     private void initialize() throws SQLException {
-
         createTask(server.getSocket(),this);
+        Stage stage = (Stage) Stage.getWindows().get(0);
+        stage.setOnCloseRequest(windowEvent -> logout());
 
         GestioneDipButton.setVisible(false);
 
