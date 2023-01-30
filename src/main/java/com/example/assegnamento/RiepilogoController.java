@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.ResultSet;
 
 
 public class RiepilogoController extends MyController {
@@ -137,7 +136,7 @@ public class RiepilogoController extends MyController {
             alert.setHeaderText("Il tuo rodine e'stato inoltrato al personale");
             alert.showAndWait();
         }
-        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\','2023-01-01','0')" );
+        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',NULL,'0')" );
 
     }
 
