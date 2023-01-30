@@ -372,8 +372,20 @@ public class PersonnelpageController extends MyController {
         {
             message = message.replace(data.id +" ","");
             System.out.println("IL MESSAGGIO è "+message);
-            /**CANCELLO IL CONTENUTO DELLA TABELLA DEI LAVORI
-             * RIPOPOLO LA TABELLA CON SOLTANTO LE INFORMAZIONI DEL LAVORO CON ID=[NUMERO NEL MESSAGGIO]*/
+            lavoro.getItems().clear();
+
+            ResultSet r = DBHelper.query("SELECT `nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0 AND `id` LIKE \""+message+"\" ;");
+            ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
+            try {
+                if(r.next())
+                {
+                    tmp4.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                    lavoro.setItems(tmp4);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+             /** RIPOPOLO LA TABELLA CON SOLTANTO LE INFORMAZIONI DEL LAVORO CON ID=[NUMERO NEL MESSAGGIO]*/
         }
     }
 
@@ -474,14 +486,6 @@ public class PersonnelpageController extends MyController {
         t_o.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_i.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
         t_sel.setCellValueFactory(new PropertyValueFactory<OrdiniVendita, CheckBox>("check"));
-        r = DBHelper.query("SELECT `nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0;");
-        ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
-
-        while (r.next())
-        {
-            tmp4.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
-            lavoro.setItems(tmp4);
-        }
 
     }
 

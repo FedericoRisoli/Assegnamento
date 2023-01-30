@@ -40,7 +40,7 @@ public class ConcurrentServer {
     }
 
     public static void setOrdVendita() throws SQLException {
-        ResultSet r = DBHelper.query("SELECT id FROM `ordinivendita` WHERE `completato` = 1");
+        ResultSet r = DBHelper.query("SELECT id FROM `ordinivendita` WHERE `completato` = 0");
         while (r.next())
         {
             instance.ordVendita.add(r.getInt("id"));
