@@ -87,6 +87,7 @@ class ClientHandler implements Runnable {
     @Override
     public void run() {
         ConcurrentServer server = ConcurrentServer.getInstance();
+        String variabileMessaggio;
         try {
 
             String message = "";
@@ -111,6 +112,10 @@ class ClientHandler implements Runnable {
                 message = message.replace("admin","");
                 int id = Integer.valueOf(message);
                 server.addImpiegato(id);
+                if (!server.OrdVenditaIsEmpty())
+                {
+                    out.println(id+" "+ server.getFirstOrdVendita());
+                }
             }
 
             int lavoro_attuale=server.getFirstOrdVendita();
@@ -134,10 +139,26 @@ class ClientHandler implements Runnable {
                         message = message.replace("employee","");
                         int id = Integer.valueOf(message);
                         server.addImpiegato(id);
+                        if (!server.OrdVenditaIsEmpty())
+                        {
+                            out.println(id+" "+ server.getFirstOrdVendita());
+                        }
+
                     } else if (message.startsWith("admin")) {
                         message = message.replace("admin","");
                         int id = Integer.valueOf(message);
                         server.addImpiegato(id);
+                        if (!server.OrdVenditaIsEmpty())
+                        {
+                            out.println(id+" "+ server.getFirstOrdVendita());
+                        }
+
+                    } else if (message.startsWith("LOGOUT_EMP")) {
+                        message = message.replace("LOGOUT_EMP","");
+                        variabileMessaggio=in.readLine();
+                        server.removeImpiegato(Integer.valueOf(message));
+                        if (!variabileMessaggio.equals("-1"))
+                            server.addOrdVendita(Integer.valueOf(variabileMessaggio));
                     }
 
 
