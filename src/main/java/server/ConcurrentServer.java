@@ -40,7 +40,7 @@ public class ConcurrentServer {
     }
 
     public static void setOrdVendita() throws SQLException {
-        ResultSet r = DBHelper.query("SELECT id FROM `ordinivendita` WHERE `completato` = 1");
+        ResultSet r = DBHelper.query("SELECT id FROM `ordinivendita` WHERE `completato` = 0");
         while (r.next())
         {
             instance.ordVendita.add(r.getInt("id"));
@@ -87,6 +87,7 @@ class ClientHandler implements Runnable {
     @Override
     public void run() {
         ConcurrentServer server = ConcurrentServer.getInstance();
+        String variabileMessaggio;
         try {
 
             String message = "";
@@ -97,6 +98,7 @@ class ClientHandler implements Runnable {
             //TODO ELIMINARE QUESTA PARTE DUPLICATA
             //leggo id utente e tipo
             message = in.readLine();
+            System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
             if (message.startsWith("employee")){
                 message = message.replace("employee","");
                 int id = Integer.valueOf(message);
@@ -110,6 +112,10 @@ class ClientHandler implements Runnable {
                 message = message.replace("admin","");
                 int id = Integer.valueOf(message);
                 server.addImpiegato(id);
+                if (!server.OrdVenditaIsEmpty())
+                {
+                    out.println(id+" "+ server.getFirstOrdVendita());
+                }
             }
 
             int lavoro_attuale=server.getFirstOrdVendita();
@@ -133,10 +139,26 @@ class ClientHandler implements Runnable {
                         message = message.replace("employee","");
                         int id = Integer.valueOf(message);
                         server.addImpiegato(id);
+                        if (!server.OrdVenditaIsEmpty())
+                        {
+                            out.println(id+" "+ server.getFirstOrdVendita());
+                        }
+
                     } else if (message.startsWith("admin")) {
                         message = message.replace("admin","");
                         int id = Integer.valueOf(message);
                         server.addImpiegato(id);
+                        if (!server.OrdVenditaIsEmpty())
+                        {
+                            out.println(id+" "+ server.getFirstOrdVendita());
+                        }
+
+                    } else if (message.startsWith("LOGOUT_EMP")) {
+                        message = message.replace("LOGOUT_EMP","");
+                        variabileMessaggio=in.readLine();
+                        server.removeImpiegato(Integer.valueOf(message));
+                        if (!variabileMessaggio.equals("-1"))
+                            server.addOrdVendita(Integer.valueOf(variabileMessaggio));
                     }
 
 

@@ -34,6 +34,7 @@ public class MyController {
         new Thread(task).start();
     }
 
+
     public void sendMessage(String message){
         server.sendMessage(message);
     }

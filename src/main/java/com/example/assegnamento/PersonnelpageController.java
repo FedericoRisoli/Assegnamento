@@ -324,13 +324,13 @@ public class PersonnelpageController extends MyController {
         {
             String firstdate=initialdate.getValue().toString();
             String seconddate=finaldate.getValue().toString();
-            ResultSet r=DBHelper.query("SELECT `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
+            ResultSet r=DBHelper.query("SELECT `id`, `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
             OrderTableView.getItems().clear();
             ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
             while (r.next())
             {
-                tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
                 OrderTableView.setItems(tmp3);
             }
 
@@ -350,11 +350,11 @@ public class PersonnelpageController extends MyController {
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_orderadd.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        ResultSet r = DBHelper.query("SELECT `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
+        ResultSet r = DBHelper.query("SELECT `id` ,`dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
             OrderTableView.setItems(tmp3);
         }
     }
@@ -372,22 +372,52 @@ public class PersonnelpageController extends MyController {
         {
             message = message.replace(data.id +" ","");
             System.out.println("IL MESSAGGIO è "+message);
-            /**CANCELLO IL CONTENUTO DELLA TABELLA DEI LAVORI
-             * RIPOPOLO LA TABELLA CON SOLTANTO LE INFORMAZIONI DEL LAVORO CON ID=[NUMERO NEL MESSAGGIO]*/
+            lavoro.getItems().clear();
+
+            ResultSet r = DBHelper.query("SELECT `id`,`nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0 AND `id` LIKE \""+message+"\" ;");
+            ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
+            try {
+                if(r.next())
+                {
+                    tmp4.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                    lavoro.setItems(tmp4);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
 
+    public void logout(){
+        System.out.println("Stage is closing");
 
-    /**
-     * Funzione che al logout/chiusura ridà al server il lavoro non completato
-     * */
+        //chiamo funzione sul server e dico chi sono
+        sendMessage("LOGOUT_EMP"+data.GetId());
+        //invio al server il lavoro da rimettere in coda
+        if (lavoro.getItems().isEmpty())
+            sendMessage("-1");  //nessun lavoro
+        else
+            sendMessage(lavoro.getItems().get(0).getId());
+
+        //chiudo socket
+        try {
+            server.getSocket().close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //chiudo thread
+        killChildThread();
+    }
+
 
 
     @FXML
     private void initialize() throws SQLException {
-
         createTask(server.getSocket(),this);
+        Stage stage = (Stage) Stage.getWindows().get(0);
+        stage.setOnCloseRequest(windowEvent -> logout());
 
         GestioneDipButton.setVisible(false);
 
@@ -449,12 +479,12 @@ public class PersonnelpageController extends MyController {
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_orderadd.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        r = DBHelper.query("SELECT `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
+        r = DBHelper.query("SELECT `id`,`dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
             OrderTableView.setItems(tmp3);
         }
 
@@ -468,14 +498,6 @@ public class PersonnelpageController extends MyController {
         t_o.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_i.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
         t_sel.setCellValueFactory(new PropertyValueFactory<OrdiniVendita, CheckBox>("check"));
-        r = DBHelper.query("SELECT `nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0;");
-        ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
-
-        while (r.next())
-        {
-            tmp4.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
-            lavoro.setItems(tmp4);
-        }
 
     }
 
