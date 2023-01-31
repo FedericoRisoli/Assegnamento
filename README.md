@@ -15,8 +15,29 @@ sendMessage("sono un messaggio da inviare");
 3. Inserire nel controller che vuole Ricevere messaggi dal server le seguenti righe in initialize():
 ````
 createTask(server.getSocket(),this);
+Stage stage = (Stage) Stage.getWindows().get(0);
+stage.setOnCloseRequest(windowEvent -> logout());
 ````
-4. Ora i messaggi vengono stampati in console, per utilizzarli diversamente aggiungere la funzione:
+4. Aggiungere Logout Sicuro
+````
+public void logout(){
+        System.out.println("Stage is closing");
+
+        //ALTRE FUNZIONI UTILI PER LOGOUT QUI
+
+        //chiudo socket
+        try {
+            server.getSocket().close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        //chiudo thread
+        killChildThread();
+    }
+````
+
+5. Ora i messaggi vengono stampati in console, per utilizzarli diversamente aggiungere la funzione:
 ````
 @Override
     public void handleMessage(String message) {
