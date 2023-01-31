@@ -396,11 +396,6 @@ public class PersonnelpageController extends MyController {
 
 
 
-    /**
-     * Funzione che al logout/chiusura ridà al server il lavoro non completato
-     * */
-
-
     @FXML
     private void initialize() throws SQLException {
         createTask(server.getSocket(),this);
