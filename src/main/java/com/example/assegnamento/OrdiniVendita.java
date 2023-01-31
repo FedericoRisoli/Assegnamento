@@ -9,15 +9,17 @@ public class OrdiniVendita extends MyController {
     private final SimpleStringProperty Cognome;
     private final SimpleStringProperty Ordine;
     private final SimpleStringProperty Indirizzo;
+    private final  SimpleStringProperty Id;
     private CheckBox check;
 
-    OrdiniVendita(String datac,String nom,String cog,String ord,String ind){
+    OrdiniVendita(String Id, String datac,String nom,String cog,String ord,String ind){
         this.Dataconsegna=new SimpleStringProperty(datac);
         this.Nome=new SimpleStringProperty(nom);
         this.Cognome=new SimpleStringProperty(cog);
         this.Ordine=new SimpleStringProperty(ord);
         this.Indirizzo=new SimpleStringProperty(ind);
         this.check = new CheckBox("");
+        this.Id= new SimpleStringProperty(Id);
 
 
     }
@@ -42,5 +44,9 @@ public class OrdiniVendita extends MyController {
 
     public String getIndirizzo() {
         return Indirizzo.get();
+    }
+
+    public String getId() {
+        return Id.get();
     }
 }

@@ -324,13 +324,13 @@ public class PersonnelpageController extends MyController {
         {
             String firstdate=initialdate.getValue().toString();
             String seconddate=finaldate.getValue().toString();
-            ResultSet r=DBHelper.query("SELECT `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
+            ResultSet r=DBHelper.query("SELECT `id`, `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
             OrderTableView.getItems().clear();
             ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
             while (r.next())
             {
-                tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
                 OrderTableView.setItems(tmp3);
             }
 
@@ -350,11 +350,11 @@ public class PersonnelpageController extends MyController {
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_orderadd.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        ResultSet r = DBHelper.query("SELECT `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
+        ResultSet r = DBHelper.query("SELECT `id` ,`dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
             OrderTableView.setItems(tmp3);
         }
     }
@@ -374,12 +374,12 @@ public class PersonnelpageController extends MyController {
             System.out.println("IL MESSAGGIO è "+message);
             lavoro.getItems().clear();
 
-            ResultSet r = DBHelper.query("SELECT `nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0 AND `id` LIKE \""+message+"\" ;");
+            ResultSet r = DBHelper.query("SELECT `id`,`nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0 AND `id` LIKE \""+message+"\" ;");
             ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
             try {
                 if(r.next())
                 {
-                    tmp4.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                    tmp4.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
                     lavoro.setItems(tmp4);
                 }
             } catch (SQLException e) {
@@ -462,12 +462,12 @@ public class PersonnelpageController extends MyController {
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_orderadd.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        r = DBHelper.query("SELECT `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
+        r = DBHelper.query("SELECT `id`,`dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
             OrderTableView.setItems(tmp3);
         }
 
