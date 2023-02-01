@@ -156,9 +156,9 @@ class ClientHandler implements Runnable {
                     } else if (message.startsWith("LOGOUT_EMP")) {
                         message = message.replace("LOGOUT_EMP","");
                         variabiliMessaggio= message.split(" ");
-                        server.removeImpiegato(Integer.valueOf(message));
+                        server.removeImpiegato(Integer.valueOf(variabiliMessaggio[0]));
                         if (!variabiliMessaggio[1].equals("-1"))
-                            server.addOrdVendita(Integer.valueOf(variabiliMessaggio[0]));
+                            server.addOrdVendita(Integer.valueOf(variabiliMessaggio[1]));
                     }
 
 

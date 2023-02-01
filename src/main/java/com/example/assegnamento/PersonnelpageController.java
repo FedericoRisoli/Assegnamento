@@ -203,6 +203,8 @@ public class PersonnelpageController extends MyController {
     @FXML
     void OnButtonClickLogOut(ActionEvent event) {
 
+        logout();
+
         Stage stage;
         Scene scene;
         Parent root;
