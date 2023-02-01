@@ -391,14 +391,19 @@ public class PersonnelpageController extends MyController {
 
     public void logout(){
         System.out.println("Stage is closing");
-
+        String message="LOGOUT_EMP"+data.GetId()+" ";
         //chiamo funzione sul server e dico chi sono
-        sendMessage("LOGOUT_EMP"+data.GetId());
         //invio al server il lavoro da rimettere in coda
         if (lavoro.getItems().isEmpty())
-            sendMessage("-1");  //nessun lavoro
+            //nessun lavoro
+            message = message+"-1";
+
         else
-            sendMessage(lavoro.getItems().get(0).getId());
+            //segno lavoro
+            message = message+lavoro.getItems().get(0).getId();
+
+        //mando messaggio
+        sendMessage(message);
 
         //chiudo socket
         try {

@@ -87,7 +87,6 @@ class ClientHandler implements Runnable {
     @Override
     public void run() {
         ConcurrentServer server = ConcurrentServer.getInstance();
-        String variabileMessaggio;
         try {
 
             String message = "";
@@ -125,6 +124,7 @@ class ClientHandler implements Runnable {
 
             System.out.println("Connessione Riuscita");
 
+            String[] variabiliMessaggio;
             while(true) {
 
                 // Legge il messaggio del client
@@ -155,10 +155,10 @@ class ClientHandler implements Runnable {
 
                     } else if (message.startsWith("LOGOUT_EMP")) {
                         message = message.replace("LOGOUT_EMP","");
-                        variabileMessaggio=in.readLine();
+                        variabiliMessaggio= message.split(" ");
                         server.removeImpiegato(Integer.valueOf(message));
-                        if (!variabileMessaggio.equals("-1"))
-                            server.addOrdVendita(Integer.valueOf(variabileMessaggio));
+                        if (!variabiliMessaggio[1].equals("-1"))
+                            server.addOrdVendita(Integer.valueOf(variabiliMessaggio[0]));
                     }
 
 
