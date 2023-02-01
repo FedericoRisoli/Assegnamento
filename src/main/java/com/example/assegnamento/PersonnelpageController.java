@@ -205,6 +205,7 @@ public class PersonnelpageController extends MyController {
 
         logout();
 
+
         Stage stage;
         Scene scene;
         Parent root;
@@ -394,6 +395,7 @@ public class PersonnelpageController extends MyController {
     public void logout(){
         System.out.println("Stage is closing");
         String message="LOGOUT_EMP"+data.GetId()+" ";
+        System.out.println(message);
         //chiamo funzione sul server e dico chi sono
         //invio al server il lavoro da rimettere in coda
         if (lavoro.getItems().isEmpty())
@@ -403,9 +405,10 @@ public class PersonnelpageController extends MyController {
         else
             //segno lavoro
             message = message+lavoro.getItems().get(0).getId();
-
+        System.out.println(message);
         //mando messaggio
         sendMessage(message);
+        System.out.println(message);
 
         //chiudo socket
         try {
