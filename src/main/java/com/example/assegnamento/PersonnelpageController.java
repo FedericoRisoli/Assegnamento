@@ -410,13 +410,7 @@ public class PersonnelpageController extends MyController {
         sendMessage(message);
         System.out.println(message);
 
-        //chiudo socket
-        try {
-            server.getSocket().close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
+        //NON CHIUDERE MAI IL SOCKET
         //chiudo thread
         killChildThread();
     }
