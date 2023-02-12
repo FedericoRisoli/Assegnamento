@@ -389,6 +389,16 @@ public class PersonnelpageController extends MyController {
                 throw new RuntimeException(e);
             }
         }
+        else if (message.equals("TIMEOUT"))
+        {
+            String idlavoro;
+            if (lavoro.getItems().isEmpty())
+                idlavoro="-1";
+            else
+                idlavoro=lavoro.getItems().get(0).getId();
+            lavoro.getItems().clear();
+            sendMessage("TIMEDOUT"+data.GetId()+" "+idlavoro);
+        }
     }
 
 

@@ -123,7 +123,7 @@ class ClientHandler implements Runnable {
 
 
             //timeout in millisecondi
-            /**socket.setSoTimeout(10_000);**/
+            socket.setSoTimeout(10_000);
 
             System.out.println("Connessione Riuscita");
 
@@ -165,6 +165,36 @@ class ClientHandler implements Runnable {
                         if (!variabiliMessaggio[1].equals("-1"))
                             server.addOrdVendita(Integer.valueOf(variabiliMessaggio[1]));
                     }
+                    else if (message.startsWith("TIMEDOUT")) {
+                        message = message.replace("TIMEDOUT","");
+                        variabiliMessaggio= message.split(" ");
+                        if(variabiliMessaggio[1].equals("-1"))
+                        {
+                            if(!server.OrdVenditaIsEmpty())
+                                out.println(variabiliMessaggio[0]+" "+server.getFirstOrdVendita());
+                        }
+                        else
+                        {
+                            server.addOrdVendita(Integer.valueOf(variabiliMessaggio[1]));
+                            //assegno nuovo lavoro
+                            if(!server.OrdVenditaIsEmpty())
+                                out.println(variabiliMessaggio[0]+" "+server.getFirstOrdVendita());
+
+                            //segno che non ha finito il lavoro
+                            ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE id="+variabiliMessaggio[0]);
+                            try {
+                                r.next();
+                                int valore = r.getInt("job_falliti");
+                                valore++;
+
+                                //TODO?
+                                DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\"WHERE id=\""+variabiliMessaggio[0]+"\"");
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+
+                        }
+                    }
 
                     if (message.equals("STOP")) {
                         System.out.println("Chiusura Connessione con client");
@@ -180,29 +210,10 @@ class ClientHandler implements Runnable {
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
                     System.out.println("Nessun messaggio ricevuto");
-                    /** segno che non ha completato il lavoro sul DB**/
-                    for(Integer emp : server.impiegatiOnline)
-                    {
-                        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE id="+emp);
-                        try {
-                            r.next();
-                            int valore = r.getInt("job_falliti");
-                            valore++;
 
-                            //TODO
-                            DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\"WHERE id=\""+emp+"\"");
-                        } catch (SQLException ex) {
-                            throw new RuntimeException(ex);
-                        }
-
-                    }
-
-
-                     /** dico al controller della pagina di ricaricare i lavori da fare?
-                    **/
-
-
-
+                    //mando messaggio a tutti
+                     if(!server.OrdVenditaIsEmpty())
+                        out.println("TIMEOUT");
                 }
 
             }
