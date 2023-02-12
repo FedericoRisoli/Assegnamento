@@ -135,6 +135,8 @@ class ClientHandler implements Runnable {
                     //ottengo nuovo lavoro dal server, altrimenti tempo scaduto
 
                     //nuova connessione al server
+
+                    /** CONTROLLARE SOLO DENTRO QUESTO ELSE I MESSAGGI*/
                     if (message.startsWith("employee")){
                         message = message.replace("employee","");
                         int id = Integer.valueOf(message);
@@ -160,6 +162,16 @@ class ClientHandler implements Runnable {
                         if (!variabiliMessaggio[1].equals("-1"))
                             server.addOrdVendita(Integer.valueOf(variabiliMessaggio[1]));
                     }
+
+                    if (message.equals("STOP")) {
+                        System.out.println("Chiusura Connessione con client");
+                        // Chiude gli stream e il socket
+                        in.close();
+                        out.close();
+                        socket.close();
+                        break;
+                    }
+
 
 
                 } catch (SocketTimeoutException e) {
@@ -193,14 +205,6 @@ class ClientHandler implements Runnable {
 
                 }
 
-                if (message.equals("STOP")) {
-                    System.out.println("Chiusura Connessione con client");
-                    // Chiude gli stream e il socket
-                    in.close();
-                    out.close();
-                    socket.close();
-                    break;
-                }
             }
 
         } catch (IOException e) {
