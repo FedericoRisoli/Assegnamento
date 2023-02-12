@@ -405,6 +405,7 @@ public class PersonnelpageController extends MyController {
         else
             //segno lavoro
             message = message+lavoro.getItems().get(0).getId();
+        lavoro.getItems().clear();
         System.out.println(message);
         //mando messaggio
         sendMessage(message);

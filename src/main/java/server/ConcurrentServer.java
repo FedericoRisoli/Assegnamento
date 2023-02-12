@@ -22,8 +22,10 @@ public class ConcurrentServer {
 
     public void addOrdVendita(int value) {
         ordVendita.add(value);
+        //System.out.println(instance.ordVendita);
     }
     public boolean OrdVenditaIsEmpty(){
+        //System.out.println(instance.ordVendita);
         return ordVendita.isEmpty();
     }
 
@@ -32,6 +34,7 @@ public class ConcurrentServer {
             return -1;
         int tmp = ordVendita.get(0);
         removeOrdVendita(tmp);
+        //System.out.println(instance.ordVendita);
         return tmp;
     }
     //questo rimuove per ID dell'impiegato, per rimuovere per posizione della lista serve un metodo differente o una modifica
@@ -45,6 +48,7 @@ public class ConcurrentServer {
         {
             instance.ordVendita.add(r.getInt("id"));
         }
+        //System.out.println(instance.ordVendita);
     }
 
     public void addImpiegato(int value) {
@@ -117,7 +121,6 @@ class ClientHandler implements Runnable {
                 }
             }
 
-            int lavoro_attuale=server.getFirstOrdVendita();
 
             //timeout in millisecondi
             /**socket.setSoTimeout(10_000);**/
@@ -194,10 +197,7 @@ class ClientHandler implements Runnable {
 
                     }
 
-                     // restituisco il lavoro alla coda
-                     server.addOrdVendita(lavoro_attuale);
-                     //prendo il prossimo
-                     lavoro_attuale= server.getFirstOrdVendita();
+
                      /** dico al controller della pagina di ricaricare i lavori da fare?
                     **/
 
