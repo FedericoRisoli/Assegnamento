@@ -133,8 +133,6 @@ public class PersonnelpageController extends MyController {
     //tabella per il lavoro
     @FXML
     private TableView<OrdiniVendita> lavoro;
-    @FXML
-    private TableColumn<OrdiniVendita, String> t_dc;
 
     @FXML
     private TableColumn<OrdiniVendita, String> t_i;
@@ -507,7 +505,6 @@ public class PersonnelpageController extends MyController {
         sendMessage(data.role+data.GetId());
 
 
-        t_dc.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
         t_n.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
         t_c.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_o.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
