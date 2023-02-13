@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -76,7 +77,6 @@
                            <content>
                               <TableView fx:id="lavoro" prefHeight="597.0" prefWidth="714.0" styleClass="striped">
                                  <columns>
-                                    <TableColumn fx:id="t_sel" prefWidth="97.0" text="Selezionato" />
                                     <TableColumn fx:id="t_n" prefWidth="139.0" text="Nome" />
                                     <TableColumn fx:id="t_c" prefWidth="93.0" text="Cognome" />
                                     <TableColumn fx:id="t_o" prefWidth="82.0" text="Ordine" />
@@ -88,8 +88,18 @@
                               </TableView>
                            </content>
                         </ScrollPane>
-                        <Button fx:id="Completa" layoutX="831.0" layoutY="219.0" mnemonicParsing="false" onAction="#OnButtonClickOrderComplete" prefHeight="36.0" prefWidth="145.0" styleClass="accent" text="Completa Ordine" AnchorPane.bottomAnchor="479.0" AnchorPane.rightAnchor="102.0" />
-                        <DatePicker fx:id="datepick" layoutX="795.0" layoutY="97.0" />
+                        <Button fx:id="Completa" layoutX="831.0" layoutY="273.0" mnemonicParsing="false" onAction="#OnButtonClickOrderComplete" prefHeight="36.0" prefWidth="145.0" styleClass="accent" text="Completa Ordine" AnchorPane.bottomAnchor="425.0" AnchorPane.rightAnchor="102.0" />
+                        <DatePicker fx:id="datepick" layoutX="795.0" layoutY="133.0" />
+                        <Label layoutX="847.0" layoutY="97.0" text="Data di Consegna:" />
+                        <TextField fx:id="lavoro_text_prezzo" layoutX="795.0" layoutY="215.0" prefHeight="36.0" prefWidth="213.0" />
+                        <Label layoutX="882.0" layoutY="186.0" text="Prezzo:" />
+                        <Label layoutX="1012.0" layoutY="223.0" text="€" />
+                        <Label fx:id="text_lavoro_error" layoutX="842.0" layoutY="394.0" styleClass="danger" text="Errore Generico" visible="false">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="skipButton" layoutX="832.0" layoutY="331.0" mnemonicParsing="false" onAction="#OnButtonSkipClick" prefHeight="36.0" prefWidth="145.0" text="Completa Dopo" />
                      </children>
                   </AnchorPane>
                </content>

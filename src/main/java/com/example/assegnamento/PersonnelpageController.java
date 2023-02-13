@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -143,12 +144,28 @@ public class PersonnelpageController extends MyController {
     @FXML
     private TableColumn<OrdiniVendita, String> t_o;
 
-    @FXML
-    private TableColumn<OrdiniVendita, CheckBox> t_sel;
 
     @FXML
     private DatePicker datepick;
+    @FXML
+    private TextField lavoro_text_prezzo;
+
+    @FXML
+    private Label text_lavoro_error;
+    @FXML
+    private Button skipButton;
     //non finito
+
+    @FXML
+    void OnButtonSkipClick(ActionEvent event){
+        if(!lavoro.getItems().isEmpty())
+        {
+            String message="SKIP"+data.GetId()+" "+lavoro.getItems().get(0).getId();
+            lavoro.getItems().clear();
+            sendMessage(message);
+        }
+    }
+
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
         ObservableList<Vini> lista = FXCollections.observableArrayList();
@@ -362,7 +379,54 @@ public class PersonnelpageController extends MyController {
     @FXML
     public void OnButtonClickOrderComplete(ActionEvent actionEvent) {
 
-        DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \""+datepick.getValue()+"\", `completato` = '1' WHERE `ordinivendita`.`id` = \""+ ""+ "\""); //bisogna aggiungere l' oid dell ordine checkato nella tabella
+        LocalDate data_consegna=datepick.getValue();
+        LocalDate current_date = LocalDate.now();
+        int comparason = current_date.compareTo(data_consegna);
+
+
+        //check
+        if((data_consegna==null)||(comparason>0))
+            {text_lavoro_error.setText("Data scelta non valida"); text_lavoro_error.setVisible(true);}
+        else if(lavoro_text_prezzo.getText().isEmpty())
+            {text_lavoro_error.setText("Prezzo non valido"); text_lavoro_error.setVisible(true);}
+        else
+        {
+            /**
+             * aggiornare bottiglie
+             */
+            //TODO PREZZO TOTALE SERVE PER IL RESOCONTO
+            double prezzoTotale=0.00;
+            String ordine = lavoro.getItems().get(0).getOrdine();
+            String[] righeMessaggio= ordine.split("\n");
+            for(String riga: righeMessaggio)
+            {
+                String[] variabiliRiga=riga.split(" ");
+                int lunghezza=variabiliRiga.length;
+                prezzoTotale+=Double.valueOf(variabiliRiga[lunghezza-1]);
+                String vino = "";
+                for(int n=0; n<lunghezza-2; n++)
+                    vino=vino+" "+variabiliRiga[n];
+                vino = vino.substring(1);
+                System.out.println(vino);
+                ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE `nome` LIKE \""+vino+"\"");
+                try {
+                    r.next();
+                    int qta = r.getInt("quantita");
+                    int id = r.getInt("id");
+                    qta+=Integer.valueOf(variabiliRiga[lunghezza-2]);
+                    DBHelper.update("UPDATE `wines` SET `quantita` =\""+qta+"\" WHERE id =\""+id+"\"");
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+
+
+            text_lavoro_error.setVisible(false);
+            DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \""+datepick.getValue()+"\", `completato` = '1' , `prezzo` = "+lavoro_text_prezzo.getText()+" WHERE `id` = "+lavoro.getItems().get(0).getId());
+            lavoro.getItems().clear();
+            sendMessage("COMPLETATO"+ data.GetId());
+        }
 
     }
 
@@ -509,10 +573,17 @@ public class PersonnelpageController extends MyController {
         t_c.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_o.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_i.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        t_sel.setCellValueFactory(new PropertyValueFactory<OrdiniVendita, CheckBox>("check"));
+
+
+        //add listener
+        lavoro_text_prezzo.textProperty().addListener((observable, oldValue, newValue) -> {
+            // Verifica se il testo immesso dall'utente contiene solo caratteri numerici
+            // Verifica se il testo immesso dall'utente contiene solo numeri e un solo punto decimale
+            if (!newValue.matches("\\d*(\\.\\d{0,2})?") || (newValue.contains(".") && newValue.endsWith("."))) {
+                lavoro_text_prezzo.setText(oldValue);
+            }
+        });
 
     }
-
-
 
 }

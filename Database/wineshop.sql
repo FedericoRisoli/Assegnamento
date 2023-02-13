@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 30, 2023 alle 14:37
+-- Creato il: Feb 13, 2023 alle 15:06
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
 
@@ -34,22 +34,21 @@ CREATE TABLE `ordinivendita` (
   `ordine` text NOT NULL,
   `indirizzo` char(40) NOT NULL,
   `dataconsegna` date DEFAULT NULL,
-  `completato` tinyint(1) NOT NULL
+  `completato` tinyint(1) NOT NULL,
+  `clienteCompletato` tinyint(1) NOT NULL,
+  `prezzo` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `ordinivendita`
 --
 
-INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES
-(3, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2022-12-27', 0),
-(4, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02', 0),
-(5, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-01-02', 0),
-(6, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03', 0),
-(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-01-03', 0),
-(8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-01-04', 0),
-(9, 'a', 'a', 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '2023-01-15', 1),
-(10, 'a', 'a', 'Francia Corta 17 238.738 \n', 'a', '2023-01-15', 1);
+INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES
+(3, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-02-23', 1, 0, '453.00'),
+(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-02-23', 1, 0, '453.00'),
+(8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-02-23', 0, 0, '2.00'),
+(9, 'a', 'a', 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '2023-02-23', 1, 0, '2.00'),
+(10, 'a', 'a', 'Francia Corta 17 238.738 \n', 'a', '2023-02-23', 1, 0, '2.00');
 
 -- --------------------------------------------------------
 
@@ -94,10 +93,10 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cognome`, `c_fiscale`, `mail`, `telefono`, `indirizzo`, `job_completati`, `job_falliti`) VALUES
-(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1', 0, 0),
+(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1', 0, 42),
 (18, 'client', 'user', 'user', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg', 0, 0),
 (21, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 0, 0),
-(22, 'employee', 'emp', 'emp', 'e', 'e', 'e', 'e', 'e', 'e', 0, 10),
+(22, 'employee', 'emp', 'emp', 'e', 'e', 'e', 'e', 'e', 'e', 0, 1),
 (23, 'employee', 'fromani', 'fromanivinobuono', 'Franco', 'Romani', 'CLNCZD60T17I473M', 'mciglia@gmail.com', '03161986517', 'Via Vicenza, 15 , 40013-Bologna BO', 0, 0),
 (24, 'employee', 'Lucius.Pisani', 'delfino', 'Lucius', 'Pisani', 'BGFDQG74C04I260L', 'l.pis@gmail.com', '05210246834', 'Discesa Gaiola, 93, 85043-Cerri PZ', 0, 0),
 (25, 'employee', 'genovesina', 'vinibuoni', 'Paola', 'Genovesi', 'SMKNRI88C04F187W', 'genovesina73@libero.it', '0520896544', 'Via Moiariello, 29, 12010-Vinadio CN', 0, 0),
@@ -134,9 +133,9 @@ CREATE TABLE `wines` (
 --
 
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
-(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 5),
+(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 27),
 (3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 5, 0, 100),
-(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 1, 1, 99),
+(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 1, 1, 100),
 (5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 20, 1, 8),
 (6, 'Barbaresco Meruzzano', 'Abrigo Orlando', 'Italia', 1995, 'Barbera', 'Frizzante, fruttato, bianco', 'Alta', 10, 1, 31),
 (7, 'Barbaresco DOCG \"Montersino\"', 'Abrigo Orlando', 'Italia', 2021, 'Barbera', 'Rosso, fermo, intenso', 'Media', 1, 0, 45),
