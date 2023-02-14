@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 13, 2023 alle 15:06
+-- Creato il: Feb 14, 2023 alle 17:51
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
 
@@ -36,7 +36,7 @@ CREATE TABLE `ordinivendita` (
   `dataconsegna` date DEFAULT NULL,
   `completato` tinyint(1) NOT NULL,
   `clienteCompletato` tinyint(1) NOT NULL,
-  `prezzo` decimal(10,2) NOT NULL
+  `prezzo` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -48,7 +48,17 @@ INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `da
 (7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-02-23', 1, 0, '453.00'),
 (8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-02-23', 0, 0, '2.00'),
 (9, 'a', 'a', 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '2023-02-23', 1, 0, '2.00'),
-(10, 'a', 'a', 'Francia Corta 17 238.738 \n', 'a', '2023-02-23', 1, 0, '2.00');
+(10, 'a', 'a', 'Francia Corta 17 238.738 \n', 'a', '2023-02-23', 1, 0, '2.00'),
+(11, '', '', 'francia corta 30 2100.0', '', '2023-03-03', 1, 1, '0.00'),
+(12, 'a', 'a', 'francia corta 1 70.0 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(13, '', '', 'francia corta 30 2100.0', '', NULL, 0, 1, '0.00'),
+(14, 'a', 'a', 'test 1 52.54 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(15, 'a', 'a', 'test 1 52.57 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(16, 'a', 'a', 'testa 1 50.25 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(17, 'a', 'a', 'francia corta 1 70.05 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(18, '', '', 'francia corta 30 2101.5', '', NULL, 0, 1, '0.00'),
+(19, 'a', 'a', 'Francia Corta 1 15.75 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(20, '', '', 'Francia Corta 15 236.25', '', NULL, 0, 1, '0.00');
 
 -- --------------------------------------------------------
 
@@ -93,7 +103,7 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cognome`, `c_fiscale`, `mail`, `telefono`, `indirizzo`, `job_completati`, `job_falliti`) VALUES
-(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1', 0, 42),
+(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1', 0, 1),
 (18, 'client', 'user', 'user', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg', 0, 0),
 (21, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 0, 0),
 (22, 'employee', 'emp', 'emp', 'e', 'e', 'e', 'e', 'e', 'e', 0, 1),
@@ -133,10 +143,10 @@ CREATE TABLE `wines` (
 --
 
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
-(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 0, 0, 27),
-(3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 5, 0, 100),
-(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 1, 1, 100),
-(5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 20, 1, 8),
+(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 2, 0, 55),
+(3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 6, 0, 99),
+(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 3, 1, 98),
+(5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 21, 1, 7),
 (6, 'Barbaresco Meruzzano', 'Abrigo Orlando', 'Italia', 1995, 'Barbera', 'Frizzante, fruttato, bianco', 'Alta', 10, 1, 31),
 (7, 'Barbaresco DOCG \"Montersino\"', 'Abrigo Orlando', 'Italia', 2021, 'Barbera', 'Rosso, fermo, intenso', 'Media', 1, 0, 45),
 (8, 'Francia Corta', '1701 Francia Corta', 'Francia', 1987, 'Albana', 'Frizzante, fruttato, bianco', 'Alta', 18, 0, 47),
@@ -188,7 +198,7 @@ ALTER TABLE `wines`
 -- AUTO_INCREMENT per la tabella `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT per la tabella `thirdparty`
