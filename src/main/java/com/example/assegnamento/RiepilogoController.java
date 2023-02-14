@@ -93,7 +93,16 @@ public class RiepilogoController extends MyController {
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-            System.out.println("funge");
+
+            for(Vini vino: carrello.getCarrello())
+            {
+                if(Integer.valueOf(vino.getQuantita())<30)
+                {
+                    String text= vino.getNome()+" 15 "+15* vino.getPrezzo();
+                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",\""+text+"\" , \" \", NULL, 0, 1, 0)");
+                }
+            }
+
             root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
@@ -109,7 +118,16 @@ public class RiepilogoController extends MyController {
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-            System.out.println("funge");
+
+            for(Vini vino: carrello.getCarrello())
+            {
+                if(Integer.valueOf(vino.getQuantita())<30)
+                {
+                    String text= vino.getNome()+" 15 "+15* vino.getPrezzo();
+                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",\""+text+"\" , \" \", NULL, 0, 1, 0)");
+                }
+            }
+
             root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
