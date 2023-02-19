@@ -14,6 +14,9 @@ public class Carrello {
     private ObservableList<String> ordine = FXCollections.observableArrayList();
     private ObservableList<String> ordinenondisp = FXCollections.observableArrayList();
 
+    //prezzo che il cliente deve pagare
+    private int totale=0;
+
     Carrello(){}
 
     public static Carrello getIstance() {
@@ -59,4 +62,7 @@ public class Carrello {
     public void addOrdineNonDisp(String stringa){
         ordinenondisp.add(stringa);
     }
+
+    public void setTotale(int tot){totale=tot;}
+    public int getTotale(){return totale;}
 }
