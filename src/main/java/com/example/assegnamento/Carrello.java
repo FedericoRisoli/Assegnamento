@@ -15,7 +15,7 @@ public class Carrello {
     private ObservableList<String> ordinenondisp = FXCollections.observableArrayList();
 
     //prezzo che il cliente deve pagare
-    private int totale=0;
+    private double totale=0;
 
     Carrello(){}
 
@@ -63,6 +63,6 @@ public class Carrello {
         ordinenondisp.add(stringa);
     }
 
-    public void setTotale(int tot){totale=tot;}
-    public int getTotale(){return totale;}
+    public void setTotale(double tot){totale=tot;}
+    public double getTotale(){return totale;}
 }
