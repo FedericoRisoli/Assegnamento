@@ -500,9 +500,79 @@ public class PersonnelpageController extends MyController {
 
         GestioneDipButton.setVisible(false);
 
+         /** Inizio REPORT*/
+
+        ResultSet r= DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 AND `clienteCompletato` = 1 HAVING n<33");
+
+        //introiti
+        double introiti =0;
+        while (r.next())
+            introiti += r.getDouble("prezzo");
+        System.out.println("Introiti: "+introiti);
+
+        //spese
+        r=DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 HAVING n<33");
+        double spese = 0;
+        String ordine;
+        String[] righe;
+        String[] parole;
+        while (r.next()) {
+            ordine = r.getString("ordine");
+            righe = ordine.split("/n");
+            for(String riga : righe)
+            {
+                riga=riga.substring(0,riga.length()-1);
+                parole=riga.split(" ");
+                spese += Double.valueOf(parole[parole.length-1]);
+            }
+        }
+        //si fa *0.9 supponendo che il di comprare i vini al 90% del prezzo di vendita
+        //TODO arrotondami
+        System.out.println("Spese: "+spese*0.9);
+
+        //n. bottigle vendute
+        int bottiglie_vendute=0;
+        r=DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 AND `clienteCompletato` = 1 HAVING n<33");
+        while (r.next()) {
+            ordine = r.getString("ordine");
+            righe = ordine.split("/n");
+            for(String riga : righe)
+            {
+                riga=riga.substring(0,riga.length()-1);
+                parole=riga.split(" ");
+                bottiglie_vendute += Integer.valueOf(parole[parole.length-2]);
+            }
+        }
+        System.out.println("Bottiglie vendute: "+bottiglie_vendute);
+
+        //n. disponibili alla vendita
+        r=DBHelper.query("SELECT * FROM `wines`");
+        int disponibili=0;
+        while(r.next())
+            disponibili += r.getInt("vendite");
+        System.out.println("Bottiglie disponibili: "+disponibili);
+
+        //vendite per vino
+        System.out.println("---Vendite per vini---");
+        r=DBHelper.query("SELECT * FROM `wines`");
+        while(r.next())
+            System.out.println(r.getString("nome")+": "+r.getInt("vendite"));
+        System.out.println("---Fine Vendite per vini---");
+
+        //valutazione dipendenti
+        r=DBHelper.query("SELECT * FROM `utenti` WHERE `ruolo` LIKE \"employee\"");
+        System.out.println("---Valutazione Dipendenti---");
+
+        while(r.next())
+            System.out.println(r.getString("username")+" job completati: "+r.getInt("job_completati")+", job falliti: "+r.getInt("job_falliti"));
+
+        System.out.println("---Fine Valutazione Dipendenti---");
+
+        /** Fine REPORT*/
+
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB
-        ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY `anno` DESC");
+        r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY `anno` DESC");
 
         //tolgo duplicati
         List<Integer> anni = new ArrayList<>();
