@@ -404,8 +404,10 @@ public class PersonnelpageController extends MyController {
                 int lunghezza=variabiliRiga.length;
                 prezzoTotale+=Double.valueOf(variabiliRiga[lunghezza-1]);
                 String vino = "";
+
                 for(int n=0; n<lunghezza-2; n++)
                     vino=vino+" "+variabiliRiga[n];
+
                 vino = vino.substring(1);
                 System.out.println(vino);
                 ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE `nome` LIKE \""+vino+"\"");
