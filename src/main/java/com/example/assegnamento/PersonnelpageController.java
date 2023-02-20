@@ -13,6 +13,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,6 +75,8 @@ public class PersonnelpageController extends MyController {
     private TableColumn<Clienti, String> t_telefono;
     @FXML
     private TableColumn<Clienti, String> t_usern;
+    @FXML
+    private Button ReportMensileButton;
 
 
 
@@ -376,6 +380,116 @@ public class PersonnelpageController extends MyController {
             OrderTableView.setItems(tmp3);
         }
     }
+
+    @FXML
+    void OnClickGenerateReport(ActionEvent event) throws SQLException {
+        Alert alert;
+        String messaggio="";
+        String projectPath = System.getProperty("user.dir");
+        try {
+            File myObj = new File("Report.txt");
+            if (myObj.createNewFile()) {
+                messaggio = "File created: " + myObj.getName()+"\nPath: "+projectPath;
+            } else {
+                messaggio = "File already exists.\nPath: "+projectPath;
+            }
+        } catch (IOException e) {
+            messaggio = "An error occurred.";
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter myWriter = new FileWriter("Report.txt");
+
+            /** Inizio REPORT*/
+
+            ResultSet r= DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 AND `clienteCompletato` = 1 HAVING n<33");
+
+            //introiti
+            double introiti =0;
+            while (r.next())
+                introiti += r.getDouble("prezzo");
+            myWriter.write("Introiti: "+introiti);
+
+            //spese
+            r=DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 HAVING n<33");
+            double spese = 0;
+            String ordine;
+            String[] righe;
+            String[] parole;
+            while (r.next()) {
+                ordine = r.getString("ordine");
+                righe = ordine.split("/n");
+                for(String riga : righe)
+                {
+                    riga=riga.substring(0,riga.length()-1);
+                    parole=riga.split(" ");
+                    spese += Double.valueOf(parole[parole.length-1]);
+                }
+            }
+            //si fa *0.9 supponendo che il di comprare i vini al 90% del prezzo di vendita
+            //TODO arrotondami
+            myWriter.write("\nSpese: "+spese*0.9);
+
+            //n. bottigle vendute
+            int bottiglie_vendute=0;
+            r=DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 AND `clienteCompletato` = 1 HAVING n<33");
+            while (r.next()) {
+                ordine = r.getString("ordine");
+                righe = ordine.split("/n");
+                for(String riga : righe)
+                {
+                    riga=riga.substring(0,riga.length()-1);
+                    parole=riga.split(" ");
+                    bottiglie_vendute += Integer.valueOf(parole[parole.length-2]);
+                }
+            }
+            myWriter.write("\nBottiglie vendute: "+bottiglie_vendute);
+
+            //n. disponibili alla vendita
+            r=DBHelper.query("SELECT * FROM `wines`");
+            int disponibili=0;
+            while(r.next())
+                disponibili += r.getInt("vendite");
+            myWriter.write("\nBottiglie disponibili: "+disponibili);
+
+            //vendite per vino
+            myWriter.write("\n\n---Vendite per vini---");
+            r=DBHelper.query("SELECT * FROM `wines`");
+            while(r.next())
+                myWriter.write("\n"+r.getString("nome")+": "+r.getInt("vendite"));
+            myWriter.write("\n---Fine Vendite per vini---\n");
+
+            //valutazione dipendenti
+            r=DBHelper.query("SELECT * FROM `utenti` WHERE `ruolo` LIKE \"employee\"");
+            myWriter.write("\n\n---Valutazione Dipendenti---");
+
+            while(r.next())
+                myWriter.write("\n"+r.getString("username")+" job completati: "+r.getInt("job_completati")+", job falliti: "+r.getInt("job_falliti"));
+
+            myWriter.write("\n---Fine Valutazione Dipendenti---");
+
+            /** Fine REPORT*/
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
+
+        if (messaggio.equals("An error occurred"))
+            alert = new Alert(Alert.AlertType.ERROR);
+        else
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Info Report");
+        alert.setHeaderText(messaggio);
+        alert.showAndWait();
+    }
+
+
+
     @FXML
     public void OnButtonClickOrderComplete(ActionEvent actionEvent) {
 
@@ -422,8 +536,6 @@ public class PersonnelpageController extends MyController {
                     throw new RuntimeException(e);
                 }
             }
-
-
 
             text_lavoro_error.setVisible(false);
             DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \""+datepick.getValue()+"\", `completato` = '1' , `prezzo` = "+lavoro_text_prezzo.getText()+" WHERE `id` = "+lavoro.getItems().get(0).getId());
@@ -495,85 +607,18 @@ public class PersonnelpageController extends MyController {
 
     @FXML
     private void initialize() throws SQLException {
+        //TODO solo admin vede report
         createTask(server.getSocket(),this);
         Stage stage = (Stage) Stage.getWindows().get(0);
         stage.setOnCloseRequest(windowEvent -> logout());
 
         GestioneDipButton.setVisible(false);
 
-         /** Inizio REPORT*/
 
-        ResultSet r= DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 AND `clienteCompletato` = 1 HAVING n<33");
-
-        //introiti
-        double introiti =0;
-        while (r.next())
-            introiti += r.getDouble("prezzo");
-        System.out.println("Introiti: "+introiti);
-
-        //spese
-        r=DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 HAVING n<33");
-        double spese = 0;
-        String ordine;
-        String[] righe;
-        String[] parole;
-        while (r.next()) {
-            ordine = r.getString("ordine");
-            righe = ordine.split("/n");
-            for(String riga : righe)
-            {
-                riga=riga.substring(0,riga.length()-1);
-                parole=riga.split(" ");
-                spese += Double.valueOf(parole[parole.length-1]);
-            }
-        }
-        //si fa *0.9 supponendo che il di comprare i vini al 90% del prezzo di vendita
-        //TODO arrotondami
-        System.out.println("Spese: "+spese*0.9);
-
-        //n. bottigle vendute
-        int bottiglie_vendute=0;
-        r=DBHelper.query("SELECT *, DATEDIFF (`dataconsegna` , NOW() ) AS n FROM `ordinivendita` WHERE `completato` = 1 AND `clienteCompletato` = 1 HAVING n<33");
-        while (r.next()) {
-            ordine = r.getString("ordine");
-            righe = ordine.split("/n");
-            for(String riga : righe)
-            {
-                riga=riga.substring(0,riga.length()-1);
-                parole=riga.split(" ");
-                bottiglie_vendute += Integer.valueOf(parole[parole.length-2]);
-            }
-        }
-        System.out.println("Bottiglie vendute: "+bottiglie_vendute);
-
-        //n. disponibili alla vendita
-        r=DBHelper.query("SELECT * FROM `wines`");
-        int disponibili=0;
-        while(r.next())
-            disponibili += r.getInt("vendite");
-        System.out.println("Bottiglie disponibili: "+disponibili);
-
-        //vendite per vino
-        System.out.println("---Vendite per vini---");
-        r=DBHelper.query("SELECT * FROM `wines`");
-        while(r.next())
-            System.out.println(r.getString("nome")+": "+r.getInt("vendite"));
-        System.out.println("---Fine Vendite per vini---");
-
-        //valutazione dipendenti
-        r=DBHelper.query("SELECT * FROM `utenti` WHERE `ruolo` LIKE \"employee\"");
-        System.out.println("---Valutazione Dipendenti---");
-
-        while(r.next())
-            System.out.println(r.getString("username")+" job completati: "+r.getInt("job_completati")+", job falliti: "+r.getInt("job_falliti"));
-
-        System.out.println("---Fine Valutazione Dipendenti---");
-
-        /** Fine REPORT*/
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB
-        r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY `anno` DESC");
+        ResultSet r = DBHelper.query("SELECT `anno` FROM `wines` ORDER BY `anno` DESC");
 
         //tolgo duplicati
         List<Integer> anni = new ArrayList<>();
@@ -587,6 +632,7 @@ public class PersonnelpageController extends MyController {
         }
         if (data.Getrole().equals("admin")) {
             GestioneDipButton.setVisible(true);
+            ReportMensileButton.setVisible(true);
         }
 
         t_nome.setCellValueFactory(new PropertyValueFactory<Vini, String>("Nome"));
