@@ -352,7 +352,7 @@ public class PersonnelpageController extends MyController {
 
             while (r.next())
             {
-                tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
                 OrderTableView.setItems(tmp3);
             }
 
@@ -376,7 +376,7 @@ public class PersonnelpageController extends MyController {
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
             OrderTableView.setItems(tmp3);
         }
     }
@@ -559,7 +559,7 @@ public class PersonnelpageController extends MyController {
             try {
                 if(r.next())
                 {
-                    tmp4.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+                    tmp4.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
                     lavoro.setItems(tmp4);
                 }
             } catch (SQLException e) {
@@ -680,7 +680,7 @@ public class PersonnelpageController extends MyController {
 
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
             OrderTableView.setItems(tmp3);
         }
 

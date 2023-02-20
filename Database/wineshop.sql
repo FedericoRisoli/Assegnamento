@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 19, 2023 alle 18:02
+-- Creato il: Feb 20, 2023 alle 10:53
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 7.4.33
+-- Versione PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,6 +31,7 @@ CREATE TABLE `ordinivendita` (
   `id` int(11) NOT NULL,
   `nome` char(30) NOT NULL,
   `cognome` char(30) NOT NULL,
+  `Idcliente` int(11) NOT NULL,
   `ordine` text NOT NULL,
   `indirizzo` char(40) NOT NULL,
   `dataconsegna` date DEFAULT NULL,
@@ -43,24 +44,22 @@ CREATE TABLE `ordinivendita` (
 -- Dump dei dati per la tabella `ordinivendita`
 --
 
-INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES
-(3, 'a', 'a', 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-02-23', 1, 0, '453.00'),
-(7, 'Agostino', 'Poggi', 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-02-23', 1, 0, '453.00'),
-(8, 'a', 'a', 'test 1 52.5 \n', 'a', '2023-02-23', 0, 0, '2.00'),
-(9, 'a', 'a', 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '2023-02-23', 1, 0, '2.00'),
-(10, 'a', 'a', 'Francia Corta 17 238.738 \n', 'a', '2023-02-23', 1, 0, '2.00'),
-(11, '', '', 'francia corta 30 2100.0', '', '2023-03-03', 1, 1, '0.00'),
-(12, 'a', 'a', 'francia corta 1 70.0 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(13, '', '', 'francia corta 30 2100.0', '', '2024-02-05', 1, 1, '0.00'),
-(14, 'a', 'a', 'test 1 52.54 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(15, 'a', 'a', 'test 1 52.57 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(16, 'a', 'a', 'testa 1 50.25 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(17, 'a', 'a', 'francia corta 1 70.05 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(18, '', '', 'francia corta 30 2101.5', '', '2024-02-27', 1, 1, '1.00'),
-(19, 'a', 'a', 'Francia Corta 1 15.75 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(20, '', '', 'Francia Corta 15 236.25', '', NULL, 0, 1, '0.00'),
-(21, 'a', 'a', 'test 1 52.61 \nGhemme 1 20.0 \n', 'a', '2023-02-19', 1, 1, '0.00'),
-(22, 'a', 'a', 'test 1 52.65 \n', 'a', '2023-02-22', 1, 1, '52.65');
+INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `Idcliente`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES
+(3, 'a', 'a', 0, 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-02-23', 1, 0, '453.00'),
+(7, 'Agostino', 'Poggi', 0, 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-02-23', 1, 0, '453.00'),
+(8, 'a', 'a', 0, 'test 1 52.5 \n', 'a', '2023-02-23', 0, 0, '2.00'),
+(9, 'a', 'a', 0, 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '2023-02-23', 1, 0, '2.00'),
+(10, 'a', 'a', 0, 'Francia Corta 17 238.738 \n', 'a', '2023-02-23', 1, 0, '2.00'),
+(11, '', '', 0, 'francia corta 30 2100.0', '', '2023-03-03', 1, 1, '0.00'),
+(12, 'a', 'a', 0, 'francia corta 1 70.0 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(13, '', '', 0, 'francia corta 30 2100.0', '', NULL, 0, 1, '0.00'),
+(14, 'a', 'a', 0, 'test 1 52.54 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(15, 'a', 'a', 0, 'test 1 52.57 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(16, 'a', 'a', 0, 'testa 1 50.25 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(17, 'a', 'a', 0, 'francia corta 1 70.05 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(18, '', '', 0, 'francia corta 30 2101.5', '', NULL, 0, 1, '0.00'),
+(19, 'a', 'a', 0, 'Francia Corta 1 15.75 \n', 'a', '2023-02-17', 1, 1, '0.00'),
+(20, '', '', 0, 'Francia Corta 15 236.25', '', NULL, 0, 1, '0.00');
 
 -- --------------------------------------------------------
 

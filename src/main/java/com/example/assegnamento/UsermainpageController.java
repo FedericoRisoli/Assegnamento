@@ -238,4 +238,19 @@ public class UsermainpageController extends MyController{
             throw new RuntimeException(e);
         }
     }
+
+    public void OnButtonClickNotifiche(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("notifiche.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Notifiche");
+            stage.setScene(new Scene(root));
+            stage.setAlwaysOnTop(true);
+            stage.show();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -5,14 +5,16 @@ import javafx.scene.control.CheckBox;
 
 public class OrdiniVendita extends MyController {
     private final SimpleStringProperty Dataconsegna;
+    private  double Prezzo;
     private final SimpleStringProperty Nome;
     private final SimpleStringProperty Cognome;
+    private final SimpleStringProperty Idcliente;
     private final SimpleStringProperty Ordine;
     private final SimpleStringProperty Indirizzo;
     private final  SimpleStringProperty Id;
     private CheckBox check;
 
-    OrdiniVendita(String Id, String datac,String nom,String cog,String ord,String ind){
+    OrdiniVendita(String Id, String datac,String nom,String cog,String ord,String ind,double prezzo,String idcl){
         this.Dataconsegna=new SimpleStringProperty(datac);
         this.Nome=new SimpleStringProperty(nom);
         this.Cognome=new SimpleStringProperty(cog);
@@ -20,6 +22,8 @@ public class OrdiniVendita extends MyController {
         this.Indirizzo=new SimpleStringProperty(ind);
         this.check = new CheckBox("");
         this.Id= new SimpleStringProperty(Id);
+        this.Prezzo=prezzo;
+        this.Idcliente= new SimpleStringProperty(idcl);
 
 
     }
@@ -33,6 +37,9 @@ public class OrdiniVendita extends MyController {
     public String getNome() {
         return Nome.get();
     }
+    public String getIdcliente() {return Idcliente.get();}
+    public double getPrezzo() { return Prezzo; }
+
 
     public String getCognome() {
         return Cognome.get();
