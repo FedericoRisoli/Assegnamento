@@ -84,6 +84,9 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickProcedi(ActionEvent event) throws IOException  {
+
+        carrello.setTotale(Double.valueOf(label_prezzo.getText().substring(0,label_prezzo.getText().length()-2)));
+
         if(bonifico.isSelected()){
             Parent root = FXMLLoader.load(HelloApplication.class.getResource("pagobonifico.fxml"));
             Stage stage = new Stage();

@@ -187,7 +187,7 @@ class ClientHandler implements Runnable {
                                 int valore = r.getInt("job_falliti");
                                 valore++;
 
-                                DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\"WHERE id=\""+variabiliMessaggio[0]+"\"");
+                                DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\" WHERE id=\""+variabiliMessaggio[0]+"\"");
                             } catch (SQLException ex) {
                                 throw new RuntimeException(ex);
                             }
@@ -197,13 +197,13 @@ class ClientHandler implements Runnable {
                     else if (message.startsWith("COMPLETATO"))
                     {
                         message = message.replace("COMPLETATO","");
-                        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE id="+message);
+                        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE id=\""+message+"\"");
                         try {
                             r.next();
                             int valore = r.getInt("job_completati");
                             valore++;
-
-                            DBHelper.update("UPDATE `utenti` SET `job_falliti` = \""+valore+"\"WHERE id=\""+message+"\"");
+                            String query="UPDATE `utenti` SET `job_completati` = \""+valore+"\" WHERE id=\""+message+"\"";
+                            DBHelper.update(query);
 
                             if(!server.OrdVenditaIsEmpty())
                                 out.println(message+" "+server.getFirstOrdVendita());

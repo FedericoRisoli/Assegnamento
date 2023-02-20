@@ -23,8 +23,9 @@
 
 <AnchorPane maxHeight="1000.0" maxWidth="1200.0" minHeight="1000.0" minWidth="1200.0" pickOnBounds="false" prefHeight="1000.0" prefWidth="1200.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.PersonnelpageController">
    <children>
-      <ButtonBar layoutX="90.0" layoutY="41.0" prefHeight="40.0" prefWidth="801.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="309.0" AnchorPane.topAnchor="41.0">
+      <ButtonBar layoutX="90.0" layoutY="41.0" prefHeight="40.0" prefWidth="963.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="147.0" AnchorPane.topAnchor="41.0">
          <buttons>
+            <Button fx:id="ReportMensileButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#OnClickGenerateReport" prefHeight="36.0" prefWidth="179.0" text="Genera Report Mensile" visible="false" />
             <Button fx:id="GestioneDipButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#OnGestisciDipendentiClick" prefHeight="36.0" prefWidth="179.0" text="Gestisci Dipendenti" />
             <Button fx:id="modifypswbutton" mnemonicParsing="false" onAction="#OnModifyPSWButtonClick" prefHeight="36.0" prefWidth="194.0" text="ModifyPSW" />
             <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="36.0" prefWidth="192.0" styleClass="danger" text="Log Out" />
