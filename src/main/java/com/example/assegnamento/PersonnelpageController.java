@@ -400,6 +400,7 @@ public class PersonnelpageController extends MyController {
             String[] righeMessaggio= ordine.split("\n");
             for(String riga: righeMessaggio)
             {
+                riga=riga.substring(0,riga.length()-1);
                 String[] variabiliRiga=riga.split(" ");
                 int lunghezza=variabiliRiga.length;
                 prezzoTotale+=Double.valueOf(variabiliRiga[lunghezza-1]);
