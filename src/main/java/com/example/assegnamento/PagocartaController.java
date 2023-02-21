@@ -102,7 +102,7 @@ public class PagocartaController extends MyController {
                 throw new RuntimeException(e);
             }
 
-            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"', 1, 1,"+carrello.getTotale()+")");
+            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"','"+data.GetId()+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"', 1, 1,"+carrello.getTotale()+")");
 
             //aggiorno valori vini
             int q;
@@ -121,7 +121,9 @@ public class PagocartaController extends MyController {
             alert.showAndWait();
             Stage stage = (Stage) indietro.getScene().getWindow();
             stage.close();
+            data.SetSuccess(true);
         }
+
     }
 
 

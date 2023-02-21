@@ -82,6 +82,7 @@ public class NotificheController {
             if(item.getCheck().isSelected())
             {
                 p += item.getPrezzo();
+
             }
 
         }
@@ -97,7 +98,7 @@ public class NotificheController {
             Stage stage = new Stage();
             stage.setTitle("Pagamento con Bonifico");
             stage.setScene(new Scene(root));
-
+            stage.setAlwaysOnTop(true);
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -122,7 +123,7 @@ public class NotificheController {
             Stage stage = new Stage();
             stage.setTitle("Pagamento con Carta di Credito");
             stage.setScene(new Scene(root));
-
+            stage.setAlwaysOnTop(true);
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -131,6 +132,24 @@ public class NotificheController {
         }
 
         //TODO if pagato andato bene cliente completato = 1 altrimenti no ***DA FARE***
+        if(data.GetSuccess()==true)
+        {
+            Alert alert;
+            for (OrdiniVendita item : notifiche.getItems() )
+            {
+                if(item.getCheck().isSelected())
+                {
+                    DBHelper.update("UPDATE `ordinivendita` SET clienteCompletato=1 WHERE id=\""+item.getId()+"\" AND Idcliente=\""+item.getIdcliente()+"\" ");
+                    System.out.println("FATTO MMERDE");
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("");
+                    alert.setHeaderText("YEEEEEEEEEEEEE");
+                    alert.showAndWait();
+                }
+
+            }
+        }
+        data.SetSuccess(false);
 
     }
 }

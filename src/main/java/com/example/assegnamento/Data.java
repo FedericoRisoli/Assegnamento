@@ -7,6 +7,7 @@ public class Data {
     public String username;
     public String nome;
     public String cognome;
+    public boolean success;
 
     public boolean promo;
 
@@ -43,5 +44,7 @@ public class Data {
     public String Getname(){return nome;}
     public String Getsurname(){return cognome;}
     public String Getusername(){return username;}
+    public boolean GetSuccess(){return success;}
+    public void SetSuccess(boolean s){this.success=s;}
     public void reset(){this.id=-100;this.role="";this.username="";this.nome="";this.cognome="";};
 }

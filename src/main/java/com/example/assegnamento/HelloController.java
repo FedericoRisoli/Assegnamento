@@ -81,6 +81,7 @@ public class HelloController extends MyController {
         {
             data.Setname(tempn);
             data.Setsurname(temps);
+            data.SetSuccess(false);
             String role = c.getString("ruolo");
 
             if(role.equals("client"))
