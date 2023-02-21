@@ -103,6 +103,7 @@ public class PagoBonificoController extends MyController {
             alert.setTitle("Pagamento andato a buon fine");
             alert.setHeaderText("Pagamento avvenuto e ordine processato!");
             alert.showAndWait();
+            stage.setAlwaysOnTop(true);
             Stage stage = (Stage) indietro.getScene().getWindow();
             stage.close();
         }

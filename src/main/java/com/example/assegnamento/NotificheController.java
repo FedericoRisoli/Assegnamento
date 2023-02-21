@@ -58,6 +58,7 @@ public class NotificheController {
 
     @FXML
     private void initialize() throws SQLException {
+        tot.setText("");
         select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
         ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
@@ -70,11 +71,11 @@ public class NotificheController {
             tmp.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
             notifiche.setItems(tmp);
         }
+
     }
 
 
-    public void OnButtonClickAccetta(ActionEvent actionEvent)
-    {
+    public void OnButtonClickAccetta(ActionEvent actionEvent) throws SQLException {
         p=0;
 
         for (OrdiniVendita item : notifiche.getItems() )
@@ -82,6 +83,7 @@ public class NotificheController {
             if(item.getCheck().isSelected())
             {
                 p += item.getPrezzo();
+                tot.setText(prezzo.getText());
 
             }
 
@@ -98,7 +100,6 @@ public class NotificheController {
             Stage stage = new Stage();
             stage.setTitle("Pagamento con Bonifico");
             stage.setScene(new Scene(root));
-            stage.setAlwaysOnTop(true);
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
@@ -130,8 +131,6 @@ public class NotificheController {
 
 
         }
-
-        //TODO if pagato andato bene cliente completato = 1 altrimenti no ***DA FARE***
         if(data.GetSuccess()==true)
         {
             Alert alert;
@@ -150,6 +149,20 @@ public class NotificheController {
             }
         }
         data.SetSuccess(false);
+        notifiche.getItems().clear();
+        select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
+        ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
+        consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
+        prezzo.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Prezzo"));
+        ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `clienteCompletato`='0' AND `completato`='1' AND `Idcliente`=\""+data.GetId()+"\"");
+        ObservableList<OrdiniVendita> tmp = FXCollections.observableArrayList();
+
+        while (r.next())
+        {
+            tmp.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+            notifiche.setItems(tmp);
+        }
+
 
     }
 }

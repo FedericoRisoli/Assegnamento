@@ -120,6 +120,7 @@ public class PagocartaController extends MyController {
             alert.setHeaderText("Pagamento avvenuto e ordine processato!");
             alert.showAndWait();
             Stage stage = (Stage) indietro.getScene().getWindow();
+
             stage.close();
             data.SetSuccess(true);
         }
