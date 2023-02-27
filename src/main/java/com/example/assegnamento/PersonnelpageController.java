@@ -603,8 +603,6 @@ public class PersonnelpageController extends MyController {
         killChildThread();
     }
 
-
-
     @FXML
     private void initialize() throws SQLException {
         //TODO solo admin vede report
