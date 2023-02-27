@@ -554,7 +554,7 @@ public class PersonnelpageController extends MyController {
             System.out.println("IL MESSAGGIO è "+message);
             lavoro.getItems().clear();
 
-            ResultSet r = DBHelper.query("SELECT `id`,`nome`,`cognome`,`ordine`,`indirizzo`,`dataconsegna` FROM `ordinivendita` WHERE `completato` LIKE 0 AND `id` LIKE \""+message+"\" ;");
+            ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `completato` LIKE 0 AND `id` LIKE \""+message+"\" ;");
             ObservableList<OrdiniVendita> tmp4 = FXCollections.observableArrayList();
             try {
                 if(r.next())
@@ -608,6 +608,7 @@ public class PersonnelpageController extends MyController {
     @FXML
     private void initialize() throws SQLException {
         //TODO solo admin vede report
+
         createTask(server.getSocket(),this);
         Stage stage = (Stage) Stage.getWindows().get(0);
         stage.setOnCloseRequest(windowEvent -> logout());
@@ -663,7 +664,7 @@ public class PersonnelpageController extends MyController {
         t_codicefiscale.setCellValueFactory(new PropertyValueFactory<Clienti,String>("CodiceFiscale"));
 
         ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
-        r = DBHelper.query("SELECT `cognome`, `nome`, `username`,`mail`,`telefono`,`indirizzo`,`c_fiscale` FROM `utenti` ORDER BY `cognome` DESC");
+        r = DBHelper.query("SELECT * FROM `utenti` ORDER BY `cognome` DESC");
         while (r.next())
         {
             tmp2.add(new Clienti(r.getString("cognome"),r.getString("nome"),r.getString("username"),r.getString("mail"),r.getString("telefono"),r.getString("indirizzo"),r.getString("c_fiscale")));
@@ -675,7 +676,7 @@ public class PersonnelpageController extends MyController {
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_orderadd.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        r = DBHelper.query("SELECT `id`,`dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
+        r = DBHelper.query("SELECT * FROM `ordinivendita` ORDER BY `dataconsegna`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
         while (r.next())

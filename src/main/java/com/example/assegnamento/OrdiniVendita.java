@@ -22,7 +22,7 @@ public class OrdiniVendita extends MyController {
         this.Indirizzo=new SimpleStringProperty(ind);
         this.check = new CheckBox("");
         this.Id= new SimpleStringProperty(Id);
-        this.Prezzo=prezzo;
+        this.Prezzo=new Double(prezzo);
         this.Idcliente= new SimpleStringProperty(idcl);
 
 

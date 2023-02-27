@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -23,6 +24,8 @@ public class HelloController extends MyController {
     Parent root;
 
     Data data=Data.getInstance();
+    String tempn;
+    String temps;
 
     @FXML
     private Label errorText;
@@ -62,12 +65,11 @@ public class HelloController extends MyController {
 
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+username.getText()+"\" AND `password` LIKE \""+password.getText()+"\"");
         ResultSet c = DBHelper.query("SELECT `ruolo` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
-        ResultSet n = DBHelper.query("SELECT `nome` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
-        ResultSet s = DBHelper.query("SELECT `cognome` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //role selection
-        n.next();
-        s.next();
-        String tempn=n.getString("nome");
-        String temps =s.getString("cognome");
+        ResultSet n = DBHelper.query("SELECT `nome` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //name selection
+        ResultSet s = DBHelper.query("SELECT `cognome` FROM `utenti` WHERE `username` LIKE \""+username.getText()+"\""); //surname selection
+
+
+
         //in caso di errore
         if (!r.next()||username.getText().isBlank()||password.getText().isBlank())
         {
@@ -75,14 +77,29 @@ public class HelloController extends MyController {
             return;
         }
 
-        int id = DBHelper.idgetter(username);
         //cambio scena
         if(c.next())
         {
+            int id = DBHelper.idgetter(username);
             data.Setname(tempn);
             data.Setsurname(temps);
             data.SetSuccess(false);
             String role = c.getString("ruolo");
+            if(n.next()){
+                tempn=n.getString("nome");
+            }
+            else{
+                errorText.setOpacity(1);//QUESTO GENERA ERRORE FIXAMI
+                return;
+            }
+            if( s.next())
+            {
+                temps =s.getString("cognome");
+            }
+            else {
+                errorText.setOpacity(1);//QUESTO GENERA ERRORE FIXAMI
+                return;
+            }
 
             if(role.equals("client"))
             {
@@ -110,6 +127,7 @@ public class HelloController extends MyController {
 
             }
         }
+
     }
 
     /*@FXML
