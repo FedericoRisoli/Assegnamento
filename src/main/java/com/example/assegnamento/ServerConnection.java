@@ -22,10 +22,7 @@ public class ServerConnection {
     }
 
     public static ServerConnection getInstance() {
-        if (instance == null) {
-            instance = new ServerConnection();
-        }
-        return instance;
+        return new ServerConnection();
     }
 
     public void sendMessage(String message) {
