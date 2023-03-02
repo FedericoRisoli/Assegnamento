@@ -158,7 +158,6 @@ public class PersonnelpageController extends MyController {
     private Label text_lavoro_error;
     @FXML
     private Button skipButton;
-    //non finito
 
     @FXML
     void OnButtonSkipClick(ActionEvent event){
@@ -487,7 +486,6 @@ public class PersonnelpageController extends MyController {
         alert.setHeaderText(messaggio);
         alert.showAndWait();
     }
-
 
 
     @FXML

@@ -123,7 +123,7 @@ class ClientHandler implements Runnable {
 
 
             //timeout in millisecondi
-            //socket.setSoTimeout(10_000);
+            socket.setSoTimeout(10_000);
 
             System.out.println("Connessione Riuscita");
 
