@@ -71,6 +71,10 @@ public class NotificheController {
         }
 
     }
+    public void OnButtonClickIndietro(ActionEvent actionEvent) {
+        Stage stage = (Stage) backbutton.getScene().getWindow();
+        stage.close();
+    }
 
 
     public void OnButtonClickAccetta(ActionEvent actionEvent) throws SQLException {
@@ -101,16 +105,6 @@ public class NotificheController {
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-
-            try {
-                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
         }
         else {
             Parent root = null;
@@ -162,4 +156,5 @@ public class NotificheController {
 
 
     }
+
 }

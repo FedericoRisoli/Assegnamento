@@ -96,7 +96,7 @@ public class PagoBonificoController extends MyController {
                 v = Integer.valueOf(item.getVendite())  + (int) item.getSpin().getValue();
                 DBHelper.update("UPDATE `wines` SET `quantita`="+q+", `vendite`="+v+" WHERE `id`="+item.getId());
             }
-            data.SetSuccess(true);
+
 
             //show info e chiudi
             alert = new Alert(Alert.AlertType.INFORMATION);
@@ -105,6 +105,7 @@ public class PagoBonificoController extends MyController {
             alert.showAndWait();
             Stage stage = (Stage) indietro.getScene().getWindow();
             stage.close();
+            data.SetSuccess(true);
         }
 
     }

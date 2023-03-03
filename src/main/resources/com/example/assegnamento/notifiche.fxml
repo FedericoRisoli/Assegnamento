@@ -34,7 +34,7 @@
          </font>
       </Text>
       <Button fx:id="Accetta" defaultButton="true" layoutX="623.0" layoutY="404.0" mnemonicParsing="false" onAction="#OnButtonClickAccetta" prefHeight="36.0" prefWidth="90.0" text="Accetta" />
-      <Button fx:id="backbutton" cancelButton="true" layoutX="88.0" layoutY="404.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="90.0" text="Annulla" />
+      <Button fx:id="backbutton" cancelButton="true" layoutX="88.0" layoutY="404.0" mnemonicParsing="false" onAction="#OnButtonClickIndietro" prefHeight="36.0" prefWidth="90.0" text="Annulla" />
       <Label fx:id="testfisso" layoutX="498.0" layoutY="342.0" prefHeight="35.0" prefWidth="125.0" text="Prezzo Totale :">
          <font>
             <Font size="18.0" />

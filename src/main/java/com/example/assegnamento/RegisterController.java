@@ -231,6 +231,7 @@ public class RegisterController extends MyController {
         cfiscale.setVisible(true);
         pass.setVisible(true);
         mail.setVisible(true);
+        indirizzo.setVisible(true);
         Registrati.setText("Registra");
         usr.setDisable(false);
         telefono.setDisable(false);
