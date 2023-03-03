@@ -159,8 +159,6 @@ public class UsermainpageController extends MyController{
 
     @FXML
     private void initialize() throws SQLException, IOException {
-        //fa partire il thread di ascolto message reciver task
-        new Thread(task).start();
 
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
@@ -218,10 +216,6 @@ public class UsermainpageController extends MyController{
 
     }
 
-    @Override
-    public void handleMessage(String message) {
-        System.out.println("OVERRIDE RIUSCITO! FUNGE! IL MESSAGGIO ERA"+message);
-    }
 
 
     public void OnButtonClickImieiOrdini(ActionEvent actionEvent) {
