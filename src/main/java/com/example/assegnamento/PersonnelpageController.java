@@ -604,7 +604,7 @@ public class PersonnelpageController extends MyController {
     @FXML
     private void initialize() throws SQLException {
         //TODO solo admin vede report
-
+        connect();
         createTask(server.getSocket(),this);
         Stage stage = (Stage) Stage.getWindows().get(0);
         stage.setOnCloseRequest(windowEvent -> logout());

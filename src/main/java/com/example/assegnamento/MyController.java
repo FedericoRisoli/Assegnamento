@@ -12,7 +12,7 @@ import java.net.Socket;
 
 public class MyController {
 
-    ServerConnection server=ServerConnection.getInstance();
+    ServerConnection server = null;
 
     //inizializzazione nel controller figlio con createTask
     MessageReceiverTask task;
@@ -21,7 +21,13 @@ public class MyController {
     Scene scene;
     Parent root;
 
+    public void connect(){
+        if (server == null)
+            server = ServerConnection.getInstance();
+    }
+
     public void handleMessage(String message) {
+        connect();
         if (message.equals("Chiusura Thread Figlio, arrivederci"))
             System.out.println(message);
         else
@@ -36,10 +42,13 @@ public class MyController {
 
 
     public void sendMessage(String message){
+        if (server == null)
+            server = ServerConnection.getInstance();
         server.sendMessage(message);
     }
 
     public void killChildThread(){
+        connect();
         task.stop();
         server.sendMessage("Chiusura Thread Figlio, arrivederci");
     }
