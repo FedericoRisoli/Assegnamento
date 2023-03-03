@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -224,7 +225,7 @@ public class UsermainpageController extends MyController{
             Stage stage = new Stage();
             stage.setTitle("I Miei Ordini");
             stage.setScene(new Scene(root));
-            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
 
@@ -239,7 +240,7 @@ public class UsermainpageController extends MyController{
             Stage stage = new Stage();
             stage.setTitle("Notifiche");
             stage.setScene(new Scene(root));
-            stage.setAlwaysOnTop(true);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
 

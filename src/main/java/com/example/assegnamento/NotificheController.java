@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class NotificheController {
     Scene scene;
@@ -124,7 +122,6 @@ public class NotificheController {
             Stage stage = new Stage();
             stage.setTitle("Pagamento con Carta di Credito");
             stage.setScene(new Scene(root));
-            stage.setAlwaysOnTop(true);
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
