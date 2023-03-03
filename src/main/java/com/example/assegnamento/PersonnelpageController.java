@@ -390,7 +390,7 @@ public class PersonnelpageController extends MyController {
             if (myObj.createNewFile()) {
                 messaggio = "File created: " + myObj.getName()+"\nPath: "+projectPath;
             } else {
-                messaggio = "File already exists.\nPath: "+projectPath;
+                messaggio = "File Sovrascritto.\nPath: "+projectPath;
             }
         } catch (IOException e) {
             messaggio = "An error occurred.";
@@ -421,14 +421,18 @@ public class PersonnelpageController extends MyController {
                 righe = ordine.split("/n");
                 for(String riga : righe)
                 {
-                    riga=riga.substring(0,riga.length()-1);
-                    parole=riga.split(" ");
-                    spese += Double.valueOf(parole[parole.length-1]);
+                    if(riga.length()!=0)
+                    {
+                        riga=riga.substring(0,riga.length()-1);
+                        parole=riga.split(" ");
+                        spese += Double.valueOf(parole[parole.length-1]);
+                    }
                 }
             }
             //si fa *0.9 supponendo che il di comprare i vini al 90% del prezzo di vendita
             //TODO arrotondami
-            myWriter.write("\nSpese: "+spese*0.9);
+            spese=roundToTwoDecimalPlaces(spese*0.9);
+            myWriter.write("\nSpese: "+spese);
 
             //n. bottigle vendute
             int bottiglie_vendute=0;
@@ -438,9 +442,11 @@ public class PersonnelpageController extends MyController {
                 righe = ordine.split("/n");
                 for(String riga : righe)
                 {
-                    riga=riga.substring(0,riga.length()-1);
-                    parole=riga.split(" ");
-                    bottiglie_vendute += Integer.valueOf(parole[parole.length-2]);
+                    if(riga.length()!=0) {
+                        riga = riga.substring(0, riga.length() - 1);
+                        parole = riga.split(" ");
+                        bottiglie_vendute += Integer.valueOf(parole[parole.length - 2]);
+                    }
                 }
             }
             myWriter.write("\nBottiglie vendute: "+bottiglie_vendute);
@@ -485,6 +491,10 @@ public class PersonnelpageController extends MyController {
         alert.setTitle("Info Report");
         alert.setHeaderText(messaggio);
         alert.showAndWait();
+    }
+
+    public static double roundToTwoDecimalPlaces(double num) {
+        return Math.round(num * 100.0) / 100.0;
     }
 
 
@@ -603,7 +613,6 @@ public class PersonnelpageController extends MyController {
 
     @FXML
     private void initialize() throws SQLException {
-        //TODO solo admin vede report
         connect();
         createTask(server.getSocket(),this);
         Stage stage = (Stage) Stage.getWindows().get(0);
