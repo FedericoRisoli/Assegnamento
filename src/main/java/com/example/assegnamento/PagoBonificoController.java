@@ -55,6 +55,7 @@ public class PagoBonificoController extends MyController {
 
         // use add() method to add the days to the given date
         //Standard se ci sono i vini arrivano in 3 giorni
+        String dateToday = sdf.format(cal.getTime());
         cal.add(Calendar.DAY_OF_MONTH, +3);
         String dateAfter = sdf.format(cal.getTime());
 
@@ -85,7 +86,7 @@ public class PagoBonificoController extends MyController {
                 throw new RuntimeException(e);
             }
 
-            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"','"+data.GetId()+"', '"+text+"', '"+r.getString("indirizzo")+"', '"+dateAfter+"', 1, 1,"+carrello.getTotale()+")");
+            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"','"+data.GetId()+"', '"+text+"', '"+r.getString("indirizzo")+"','"+dateToday+"' , '"+dateAfter+"', 1, 1,"+carrello.getTotale()+")");
 
             //aggiorno valori vini
             int q;

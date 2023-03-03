@@ -351,7 +351,7 @@ public class PersonnelpageController extends MyController {
 
             while (r.next())
             {
-                tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+                tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
                 OrderTableView.setItems(tmp3);
             }
 
@@ -375,7 +375,7 @@ public class PersonnelpageController extends MyController {
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
             OrderTableView.setItems(tmp3);
         }
     }
@@ -516,8 +516,6 @@ public class PersonnelpageController extends MyController {
             /**
              * aggiornare bottiglie
              */
-            //TODO PREZZO TOTALE SERVE PER IL RESOCONTO
-            double prezzoTotale=0.00;
             String ordine = lavoro.getItems().get(0).getOrdine();
             String[] righeMessaggio= ordine.split("\n");
             for(String riga: righeMessaggio)
@@ -525,7 +523,6 @@ public class PersonnelpageController extends MyController {
                 riga=riga.substring(0,riga.length()-1);
                 String[] variabiliRiga=riga.split(" ");
                 int lunghezza=variabiliRiga.length;
-                prezzoTotale+=Double.valueOf(variabiliRiga[lunghezza-1]);
                 String vino = "";
 
                 for(int n=0; n<lunghezza-2; n++)
@@ -567,7 +564,7 @@ public class PersonnelpageController extends MyController {
             try {
                 if(r.next())
                 {
-                    tmp4.add(new OrdiniVendita(r.getString("id") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+                    tmp4.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
                     lavoro.setItems(tmp4);
                 }
             } catch (SQLException e) {
@@ -686,7 +683,7 @@ public class PersonnelpageController extends MyController {
 
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
             OrderTableView.setItems(tmp3);
         }
 

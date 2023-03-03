@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Feb 20, 2023 alle 10:53
+-- Creato il: Mar 03, 2023 alle 16:07
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.2.0
+-- Versione PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,7 @@ CREATE TABLE `ordinivendita` (
   `Idcliente` int(11) NOT NULL,
   `ordine` text NOT NULL,
   `indirizzo` char(40) NOT NULL,
+  `dataordine` date NOT NULL DEFAULT '1800-01-01',
   `dataconsegna` date DEFAULT NULL,
   `completato` tinyint(1) NOT NULL,
   `clienteCompletato` tinyint(1) NOT NULL,
@@ -44,22 +45,24 @@ CREATE TABLE `ordinivendita` (
 -- Dump dei dati per la tabella `ordinivendita`
 --
 
-INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `Idcliente`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES
-(3, 'a', 'a', 0, 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '2023-02-23', 1, 0, '453.00'),
-(7, 'Agostino', 'Poggi', 0, 'francia corta 21 1337.7 \n', 'via Campus 1', '2023-02-23', 1, 0, '453.00'),
-(8, 'a', 'a', 0, 'test 1 52.5 \n', 'a', '2023-02-23', 0, 0, '2.00'),
-(9, 'a', 'a', 0, 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '2023-02-23', 1, 0, '2.00'),
-(10, 'a', 'a', 0, 'Francia Corta 17 238.738 \n', 'a', '2023-02-23', 1, 0, '2.00'),
-(11, '', '', 0, 'francia corta 30 2100.0', '', '2023-03-03', 1, 1, '0.00'),
-(12, 'a', 'a', 0, 'francia corta 1 70.0 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(13, '', '', 0, 'francia corta 30 2100.0', '', NULL, 0, 1, '0.00'),
-(14, 'a', 'a', 0, 'test 1 52.54 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(15, 'a', 'a', 0, 'test 1 52.57 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(16, 'a', 'a', 0, 'testa 1 50.25 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(17, 'a', 'a', 0, 'francia corta 1 70.05 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(18, '', '', 0, 'francia corta 30 2101.5', '', NULL, 0, 1, '0.00'),
-(19, 'a', 'a', 0, 'Francia Corta 1 15.75 \n', 'a', '2023-02-17', 1, 1, '0.00'),
-(20, '', '', 0, 'Francia Corta 15 236.25', '', NULL, 0, 1, '0.00');
+INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `Idcliente`, `ordine`, `indirizzo`, `dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES
+(3, 'a', 'a', 21, 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '1800-01-01', '2023-02-23', 1, 1, '453.00'),
+(7, 'Agostino', 'Poggi', 0, 'francia corta 21 1337.7 \n', 'via Campus 1', '1800-01-01', '2023-02-23', 1, 0, '453.00'),
+(8, 'a', 'a', 0, 'test 1 52.5 \n', 'a', '1800-01-01', '2023-02-23', 0, 0, '2.00'),
+(9, 'a', 'a', 0, 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '1800-01-01', '2023-02-23', 1, 0, '2.00'),
+(10, 'a', 'a', 0, 'Francia Corta 17 238.738 \n', 'a', '1800-01-01', '2023-02-23', 1, 0, '2.00'),
+(11, '', '', 0, 'francia corta 30 2100.0', '', '1800-01-01', '2023-03-03', 1, 1, '0.00'),
+(12, 'a', 'a', 0, 'francia corta 1 70.0 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00'),
+(13, '', '', 0, 'francia corta 30 2100.0', '', '1800-01-01', NULL, 0, 1, '0.00'),
+(14, 'a', 'a', 0, 'test 1 52.54 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00'),
+(15, 'a', 'a', 0, 'test 1 52.57 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00'),
+(16, 'a', 'a', 0, 'testa 1 50.25 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00'),
+(17, 'a', 'a', 0, 'francia corta 1 70.05 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00'),
+(18, '', '', 0, 'francia corta 30 2101.5', '', '1800-01-01', NULL, 0, 1, '0.00'),
+(19, 'a', 'a', 0, 'Francia Corta 1 15.75 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00'),
+(20, '', '', 0, 'Francia Corta 15 236.25', '', '1800-01-01', NULL, 0, 1, '0.00'),
+(23, 'a', 'a', 21, '', 'a', '1800-01-01', '2023-03-06', 1, 1, '453.00'),
+(24, 'a', 'a', 21, 'test 1 52.69 \n', 'a', '2023-03-03', '2023-03-06', 1, 1, '52.69');
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,7 @@ CREATE TABLE `wines` (
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
 (1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 2, 0, 115),
 (3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 6, 0, 99),
-(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 5, 1, 96),
+(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 6, 1, 95),
 (5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 21, 1, 7),
 (6, 'Barbaresco Meruzzano', 'Abrigo Orlando', 'Italia', 1995, 'Barbera', 'Frizzante, fruttato, bianco', 'Alta', 10, 1, 31),
 (7, 'Barbaresco DOCG \"Montersino\"', 'Abrigo Orlando', 'Italia', 2021, 'Barbera', 'Rosso, fermo, intenso', 'Media', 1, 0, 45),
@@ -199,7 +202,7 @@ ALTER TABLE `wines`
 -- AUTO_INCREMENT per la tabella `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT per la tabella `thirdparty`
