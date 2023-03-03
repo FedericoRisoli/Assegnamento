@@ -165,6 +165,7 @@ public class RegisterController extends MyController {
         if (data.Getrole()=="admin")
         {
             ActionBar.setVisible(true);
+            regradio.setSelected(true);
         }
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti` WHERE ruolo LIKE 'employee' ORDER BY 'username' ASC");
 

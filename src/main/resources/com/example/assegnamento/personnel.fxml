@@ -164,7 +164,7 @@
                            <content>
                               <TableView fx:id="OrderTableView" prefHeight="714.0" prefWidth="801.0" styleClass="striped">
                                  <columns>
-                                    <TableColumn fx:id="t_dataconsegna" prefWidth="114.0" text="Data consegna" />
+                                    <TableColumn fx:id="t_dataordine" prefWidth="114.0" text="Data Ordine" />
                                     <TableColumn fx:id="t_ordername" prefWidth="93.0" text="Nome" />
                                     <TableColumn fx:id="t_ordersurname" prefWidth="71.0" text="Cognome" />
                                     <TableColumn fx:id="t_ordine" prefWidth="82.0" text="Ordine" />

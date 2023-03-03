@@ -62,6 +62,7 @@ public class NotificheController {
         prezzo.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Prezzo"));
         ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `clienteCompletato`='0' AND `completato`='1' AND `Idcliente`=\""+data.GetId()+"\"");
         ObservableList<OrdiniVendita> tmp = FXCollections.observableArrayList();
+        rbon.setSelected(true);
 
         while (r.next())
         {

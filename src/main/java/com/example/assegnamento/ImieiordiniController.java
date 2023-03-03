@@ -53,7 +53,7 @@ public class ImieiordiniController {
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_indirizzo.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
         t_dataconsegna.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
-        r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `nome` LIKE \""+data.Getname()+"\" AND `cognome` LIKE \""+data.Getsurname()+"\"  ORDER BY `dataconsegna`;");
+        r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `Idcliente` LIKE \""+data.GetId()+"\"  ORDER BY `dataordine`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
         while (r.next())

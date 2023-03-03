@@ -120,7 +120,7 @@ public class PersonnelpageController extends MyController {
     @FXML
     private TableView<OrdiniVendita> OrderTableView;
     @FXML
-    private TableColumn<OrdiniVendita, String> t_dataconsegna;
+    private TableColumn<OrdiniVendita, String> t_dataordine;
     @FXML
     private TableColumn<OrdiniVendita, String> t_orderadd;
 
@@ -345,7 +345,7 @@ public class PersonnelpageController extends MyController {
         {
             String firstdate=initialdate.getValue().toString();
             String seconddate=finaldate.getValue().toString();
-            ResultSet r=DBHelper.query("SELECT `id`, `dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
+            ResultSet r=DBHelper.query("SELECT * FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
             OrderTableView.getItems().clear();
             ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
@@ -366,7 +366,7 @@ public class PersonnelpageController extends MyController {
     }
     @FXML
     void OnClearOrderButtonClick(ActionEvent event) throws SQLException {
-        t_dataconsegna.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
+        t_dataordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("DataOrdine"));
         t_ordername.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
@@ -673,7 +673,7 @@ public class PersonnelpageController extends MyController {
             ClientTableView.setItems(tmp2);
         }
 
-        t_dataconsegna.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
+        t_dataordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("DataOrdine"));
         t_ordername.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));

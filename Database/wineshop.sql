@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 03, 2023 alle 16:07
+-- Creato il: Mar 03, 2023 alle 16:47
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 7.4.33
 
@@ -34,7 +34,7 @@ CREATE TABLE `ordinivendita` (
   `Idcliente` int(11) NOT NULL,
   `ordine` text NOT NULL,
   `indirizzo` char(40) NOT NULL,
-  `dataordine` date NOT NULL DEFAULT '1800-01-01',
+  `dataordine` date NOT NULL,
   `dataconsegna` date DEFAULT NULL,
   `completato` tinyint(1) NOT NULL,
   `clienteCompletato` tinyint(1) NOT NULL,
