@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.time.Year;
+import java.util.Calendar;
 
 
 public class RiepilogoController extends MyController {
@@ -72,6 +75,9 @@ public class RiepilogoController extends MyController {
     @FXML
     private Label titletext;
 
+    int year = Year.now().getValue();
+    int month = Calendar.getInstance().get(Calendar.MONTH)+1;//+1 perchè ha base 0
+
     @FXML
     void OnClickAnulla(ActionEvent event) throws IOException {
             root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
@@ -84,6 +90,19 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickProcedi(ActionEvent event) throws IOException  {
+
+        // create instance of the SimpleDateFormat that matches the given date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        //create instance of the Calendar class and set the date to the given date
+        Calendar cal = Calendar.getInstance();
+
+        // use add() method to add the days to the given date
+        //Standard se ci sono i vini arrivano in 3 giorni
+        String dateToday = sdf.format(cal.getTime());
+        //cal.add(Calendar.DAY_OF_MONTH, +3);
+        //String dateAfter = sdf.format(cal.getTime());
+
 
         carrello.setTotale(Double.valueOf(label_prezzo.getText().substring(0,label_prezzo.getText().length()-2)));
 
@@ -102,7 +121,7 @@ public class RiepilogoController extends MyController {
                 if(Integer.valueOf(vino.getQuantita())<30)
                 {
                     String text= vino.getNome()+" 15 "+15* vino.getPrezzo();
-                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",\""+text+"\" , \" \", NULL, 0, 1, 0)");
+                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
 
@@ -127,7 +146,7 @@ public class RiepilogoController extends MyController {
                 if(Integer.valueOf(vino.getQuantita())<30)
                 {
                     String text= vino.getNome()+" 15 "+15* vino.getPrezzo();
-                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",\""+text+"\" , \" \", NULL, 0, 1, 0)");
+                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
 
@@ -142,6 +161,21 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickOrdinaNonDisponibili(ActionEvent event) {
+
+
+        // create instance of the SimpleDateFormat that matches the given date
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        //create instance of the Calendar class and set the date to the given date
+        Calendar cal = Calendar.getInstance();
+
+        // use add() method to add the days to the given date
+        //Standard se ci sono i vini arrivano in 3 giorni
+        String dateToday = sdf.format(cal.getTime());
+        //cal.add(Calendar.DAY_OF_MONTH, +3);
+        //String dateAfter = sdf.format(cal.getTime());
+
+
         Alert alert ;
         if(adrrfield.getText().isEmpty())
         {
@@ -157,7 +191,8 @@ public class RiepilogoController extends MyController {
             alert.setHeaderText("Il tuo rodine e'stato inoltrato al personale");
             alert.showAndWait();
         }
-        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `ordine`, `indirizzo`, `dataconsegna`, `completato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',NULL,'0')" );
+        //TODO aggiungere prezzo
+        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
 
     }
 

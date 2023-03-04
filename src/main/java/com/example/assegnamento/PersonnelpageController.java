@@ -251,7 +251,7 @@ public class PersonnelpageController extends MyController {
         System.out.println(nome);
         if(anno==null)
         {
-             r= DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \""+nome+"\""); //dipendenti e admin possono ricercare e/o
+             r= DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o
         }
         else if (nome.isEmpty())
         {
@@ -259,7 +259,7 @@ public class PersonnelpageController extends MyController {
         }
         else
         {
-            r=DBHelper.query("SELECT * FROM `wines` WHERE anno LIKE \"%"+anno+"%\" AND nome LIKE \""+nome+"\""); //dipendenti e admin possono ricercare e/o
+            r=DBHelper.query("SELECT * FROM `wines` WHERE anno LIKE \"%"+anno+"%\" AND nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o
         }
 
         //clear
