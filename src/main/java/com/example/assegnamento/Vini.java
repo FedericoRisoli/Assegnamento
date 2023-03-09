@@ -47,11 +47,11 @@ public class Vini {
 
         double tmp=0;
         if (qualita.equals("Alta"))
-            tmp=70;
-        else if (qualita.equals("Media"))
             tmp=50;
+        else if (qualita.equals("Media"))
+            tmp=30;
         else
-            tmp=20;
+            tmp=10;
 
         tmp=tmp+Double.valueOf(vendite)/20;
 

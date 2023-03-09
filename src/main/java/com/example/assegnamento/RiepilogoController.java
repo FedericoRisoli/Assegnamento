@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.Year;
 import java.util.Calendar;
@@ -209,8 +211,37 @@ public class RiepilogoController extends MyController {
             }
             else
                 ordinanondisponibili.setVisible(false);
-            System.out.println("HEY SONO: "+data.Getname());
-            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
+            int lunghezza = carrello.getOrdineNonDisp().size();
+            int i = 0;
+            double prezzo=0;
+            String ordine="";
+            ResultSet r;
+            while(lunghezza>i)
+            {
+                try {
+                    r = DBHelper.query("SELECT * FROM `wines` WHERE `id` ="+carrello.getOrdineNonDisp().get(i)+"");
+                    r.next();
+                    i++;
+                    if(r.getString("qualita").equals("Alta"))
+                        prezzo=50.00;
+                    else if (r.getString("qualita").equals("Media")) {
+                        prezzo=30.00;
+                    }
+                    else
+                        prezzo=10.00;
+
+                    prezzo+= r.getInt("vendite")/20;
+                    prezzo=Math.round(prezzo * 100.0) / 100.0;
+
+                    ordine+=r.getString("nome")+" "+carrello.getOrdineNonDisp().get(i)+" "+prezzo+"\n";
+                    i++;
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+
+            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+ordine+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
         }
 
     }
@@ -275,9 +306,9 @@ public class RiepilogoController extends MyController {
             textflow.getChildren().add(new Text("Nome: "+item.getNome() + " Q.ta: "));
             textflow.getChildren().add(new Text("x "+item.getSpinnerValueString()+"\n"));
             //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
-            carrello.addOrdineNonDisp(item.getNome());
+            carrello.addOrdineNonDisp(Integer.toString(item.getId()));
             carrello.addOrdineNonDisp(item.getSpinnerValueString());
-            //carrello.addOrdineNonDisp(Integer.toString((int) item.getSpin().getValue())); l'ho commentata perche' aggiungeva anche la quantita selezionata cosi nell ordine insrisce slo  la quantita mancante dimmi tu se va bene o no
+
 
         }
         label_prezzo.setText(Double.toString(round(totale, 2)) + " €");
