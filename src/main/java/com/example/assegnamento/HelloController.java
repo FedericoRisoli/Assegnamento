@@ -81,8 +81,7 @@ public class HelloController extends MyController {
         if(c.next())
         {
             int id = DBHelper.idgetter(username);
-            data.Setname(tempn);
-            data.Setsurname(temps);
+
             data.SetSuccess(false);
             String role = c.getString("ruolo");
             if(n.next()){
@@ -100,7 +99,8 @@ public class HelloController extends MyController {
                 errorText.setOpacity(1);//QUESTO GENERA ERRORE FIXAMI
                 return;
             }
-
+            data.Setname(tempn);
+            data.Setsurname(temps);
             if(role.equals("client"))
             {
                 data.Setid(id);//setto l 'íd da usare in un altra scena es modifypsw

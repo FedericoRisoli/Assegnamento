@@ -209,7 +209,7 @@ public class RiepilogoController extends MyController {
             }
             else
                 ordinanondisponibili.setVisible(false);
-
+            System.out.println("HEY SONO: "+data.Getname());
             DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
         }
 
