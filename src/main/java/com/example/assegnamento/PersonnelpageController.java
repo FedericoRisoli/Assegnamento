@@ -305,6 +305,8 @@ public class PersonnelpageController extends MyController {
             tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
             tabella.setItems(tmp);
         }
+        nome_vino.clear();
+        annata.setValue("");
     }
     public void OnButtonClickSearchClient(ActionEvent actionEvent) throws SQLException {
         String surname= surnamefield.getText();
@@ -333,6 +335,7 @@ public class PersonnelpageController extends MyController {
             tmp2.add(new Clienti(r.getString("cognome"),r.getString("nome"),r.getString("username"),r.getString("mail"),r.getString("telefono"),r.getString("indirizzo"),r.getString("c_fiscale")));
             ClientTableView.setItems(tmp2);
         }
+        surnamefield.clear();
     }
     @FXML
     void OnModifyPSWButtonClick()
@@ -388,6 +391,7 @@ public class PersonnelpageController extends MyController {
             tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
             OrderTableView.setItems(tmp3);
         }
+
     }
 
     @FXML
@@ -718,4 +722,19 @@ public class PersonnelpageController extends MyController {
 
     }
 
+    public void OnNotificheClick(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(HelloApplication.class.getResource("notifiche.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Notifiche");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

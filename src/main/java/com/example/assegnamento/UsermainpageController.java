@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,7 +23,8 @@ import java.util.List;
 public class UsermainpageController extends MyController{
 
 
-
+    @FXML
+    private ToggleButton CambiaStile;
 
     Carrello carrello = Carrello.getIstance();
 
@@ -141,10 +143,24 @@ public class UsermainpageController extends MyController{
 
     @FXML
     void OnButtonClickSearch(ActionEvent event) throws SQLException {
-        String anno = annata.getValue();
+        ResultSet r = null;
+        String anno = "";
+        anno=annata.getValue();
         String nome = nome_vino.getText();
-
-        ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%" + nome + "%\" AND anno = " + anno);
+        System.out.println(anno);
+        System.out.println(nome);
+        if(anno==null)
+        {
+            r= DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o
+        }
+        else if (nome.isEmpty())
+        {
+            r = DBHelper.query("SELECT * FROM `wines` WHERE `anno` LIKE \"%"+anno+"%\""); //dipendenti e admin possono ricercare e/o
+        }
+        else
+        {
+            r=DBHelper.query("SELECT * FROM `wines` WHERE anno LIKE \"%"+anno+"%\" AND nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o
+        }
 
         //clear
         tabella.getItems().clear();
@@ -153,12 +169,35 @@ public class UsermainpageController extends MyController{
 
         while(r.next())
         {
-            tmp.add(new Vini(r.getInt("id"), r.getString("nome"),r.getString("produttore"),r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"),r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
+            tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
         }
         tabella.setItems(tmp);
+
     }
 
+    public void OnButtonClearWineClick(ActionEvent actionEvent) throws SQLException {
+        t_nome.setCellValueFactory(new PropertyValueFactory<Vini, String>("Nome"));
+        t_produttore.setCellValueFactory(new PropertyValueFactory<Vini, String>("p1"));
+        t_provenienza.setCellValueFactory(new PropertyValueFactory<Vini, String>("p2"));
+        t_anno.setCellValueFactory(new PropertyValueFactory<Vini, String>("a"));
+        t_vitigno.setCellValueFactory(new PropertyValueFactory<Vini, String>("v"));
+        t_note.setCellValueFactory(new PropertyValueFactory<Vini, String>("not"));
+        t_selected.setCellValueFactory(new PropertyValueFactory<Vini, CheckBox>("check"));
+        t_qta.setCellValueFactory(new PropertyValueFactory<Vini, Spinner<Integer>>("spin"));
+        t_prezzo.setCellValueFactory(new PropertyValueFactory<Vini, Double>("prezzo"));
 
+        ObservableList<Vini> tmp = FXCollections.observableArrayList();
+
+        //popolo ListView
+        ResultSet r = DBHelper.query("SELECT * FROM `wines` ORDER BY `promo` DESC");
+        while(r.next())
+        {
+            tmp.add(new Vini(r.getInt("id"), r.getString("nome"), r.getString("produttore"), r.getString("provenienza"), r.getString("anno"), r.getString("vitigno"), r.getString("notetecniche"), r.getString("qualita"), r.getString("vendite"), r.getString("promo"),r.getString("quantita")));
+            tabella.setItems(tmp);
+        }
+        nome_vino.clear();
+        annata.setValue("");
+    }
     @FXML
     private void initialize() throws SQLException, IOException {
 
@@ -248,5 +287,23 @@ public class UsermainpageController extends MyController{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void OnButtonClhangeStyle(ActionEvent actionEvent) {
+        AnchorPane root = new AnchorPane();
+        root.getChildren().add(CambiaStile);
+        if(CambiaStile.isSelected()){
+            // Rimpiazziamo il foglio di stile attuale con uno nuovo quando il pulsante è selezionato
+            Scene scene = root.getScene();
+            scene.getStylesheets().setAll("primer-light.css");
+        }
+        else {
+            // Rimpiazziamo il foglio di stile attuale con quello predefinito quando il pulsante non è selezionato
+            Scene scene = root.getScene();
+            scene.getStylesheets().setAll("primer-dark.css");
+        }
+
+
+
     }
 }
