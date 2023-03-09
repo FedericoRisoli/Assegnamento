@@ -98,34 +98,9 @@ class ClientHandler implements Runnable {
             // Ottieni gli stream di input e output dal socket
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            //TODO ELIMINARE QUESTA PARTE DUPLICATA
-            //leggo id utente e tipo
-            message = in.readLine();
-            System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
-            if (message.startsWith("employee")){
-                message = message.replace("employee","");
-                int id = Integer.valueOf(message);
-                server.addImpiegato(id);
-                if (!server.OrdVenditaIsEmpty())
-                {
-                    out.println(id+" "+ server.getFirstOrdVendita());
-                }
-
-            } else if (message.startsWith("admin")) {
-                message = message.replace("admin","");
-                int id = Integer.valueOf(message);
-                server.addImpiegato(id);
-                if (!server.OrdVenditaIsEmpty())
-                {
-                    out.println(id+" "+ server.getFirstOrdVendita());
-                }
-            }
 
 
-            //timeout in millisecondi
-            socket.setSoTimeout(10_000);
-
-            System.out.println("Connessione Riuscita");
+            System.out.println("Inizio lavori");
 
             String[] variabiliMessaggio;
             while(true) {
@@ -219,6 +194,10 @@ class ClientHandler implements Runnable {
                         server.addOrdVendita(Integer.valueOf(variabiliMessaggio[1]));
                         out.println(variabiliMessaggio[0]+" "+server.getFirstOrdVendita());
                     }
+                    else if (message.startsWith("ADDWORK")) {
+                        message = message.replace("ADDWORK","");
+                        server.addOrdVendita(Integer.valueOf(message));
+                    }
 
                     if (message.equals("STOP")) {
                         System.out.println("Chiusura Connessione con client");
@@ -230,7 +209,8 @@ class ClientHandler implements Runnable {
                     }
 
 
-
+                    //timeout in millisecondi
+                    socket.setSoTimeout(10_000);
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
                     System.out.println("Nessun messaggio ricevuto");

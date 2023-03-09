@@ -168,7 +168,7 @@ public class RiepilogoController extends MyController {
     }
 
     @FXML
-    void OnClickOrdinaNonDisponibili(ActionEvent event) throws IOException {
+    void OnClickOrdinaNonDisponibili(ActionEvent event) throws IOException, SQLException {
 
 
         // create instance of the SimpleDateFormat that matches the given date
@@ -242,13 +242,30 @@ public class RiepilogoController extends MyController {
             }
 
             DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+ordine+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
+            r=DBHelper.query("SELECT * FROM `ordinivendita` WHERE id = (SELECT MAX(`id`) FROM `ordinivendita`)");
+            r.next();
+            sendMessage("ADDWORK"+(r.getInt("id")));
         }
 
+    }
+
+    public void logout(){
+        System.out.println("Stage is closing");
+
+        //ALTRE FUNZIONI UTILI PER LOGOUT QUI
+
+        //NON chiudere mai socket
+        //chiudo thread
+        killChildThread();
     }
 
 
     @FXML
     private void initialize() throws IOException {
+        connect();
+        createTask(server.getSocket(),this);
+        Stage stage = (Stage) Stage.getWindows().get(0);
+        stage.setOnCloseRequest(windowEvent -> logout());
 
         double prezzo = 0;
         int bottiglie = 0;
