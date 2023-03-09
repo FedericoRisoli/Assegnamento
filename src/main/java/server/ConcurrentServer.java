@@ -52,7 +52,8 @@ public class ConcurrentServer {
     }
 
     public void addImpiegato(int value) {
-        impiegatiOnline.add(value);
+        if(!impiegatiOnline.contains(value))
+        {impiegatiOnline.add(value);}
     }
 
     //questo rimuove per ID dell'impiegato, per rimuovere per posizione della lista serve un metodo differente o una modifica
