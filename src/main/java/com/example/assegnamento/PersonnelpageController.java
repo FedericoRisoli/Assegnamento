@@ -345,7 +345,7 @@ public class PersonnelpageController extends MyController {
         {
             String firstdate=initialdate.getValue().toString();
             String seconddate=finaldate.getValue().toString();
-            ResultSet r=DBHelper.query("SELECT * FROM `ordinivendita` WHERE `dataconsegna` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
+            ResultSet r=DBHelper.query("SELECT * FROM `ordinivendita` WHERE `dataordine` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
             OrderTableView.getItems().clear();
             ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
