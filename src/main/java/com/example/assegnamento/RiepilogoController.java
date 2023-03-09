@@ -238,7 +238,7 @@ public class RiepilogoController extends MyController {
             subtotale = subtotale + tmp;
             //casse12
             tmp = prezzo * 12 * 0.9 * casse12;
-            textflow.getChildren().add(new Text(casse12 + " casse da 12 bottiglie, prezzo " + tmp + " €\n"));
+            textflow.getChildren().add(new Text(casse12 + " casse da 12 bottiglie, prezzo " + round(tmp,2) + " €\n"));
             subtotale = subtotale + tmp;
             if (casse6 + casse12 >= 3) {
                 textflow.getChildren().add(new Text("Sconto casse multiple -3%, prezzo " + round(subtotale * 0.97 - subtotale, 2) + " €\n"));
