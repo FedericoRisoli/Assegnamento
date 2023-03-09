@@ -371,7 +371,7 @@ public class PersonnelpageController extends MyController {
         t_ordersurname.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         t_orderadd.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Indirizzo"));
-        ResultSet r = DBHelper.query("SELECT `id` ,`dataconsegna`,`nome`,`cognome`,`ordine`,`indirizzo` FROM `ordinivendita` ORDER BY `dataconsegna`;");
+        ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` ORDER BY `dataconsegna`;");
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
         while (r.next())
         {
