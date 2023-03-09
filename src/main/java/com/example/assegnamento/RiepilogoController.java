@@ -80,7 +80,9 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickAnulla(ActionEvent event) throws IOException {
-            root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+            if (data.Getrole().equals("client"))
+                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
