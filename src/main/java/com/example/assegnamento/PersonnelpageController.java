@@ -172,6 +172,8 @@ public class PersonnelpageController extends MyController {
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
         carrello.clear();
+        //logout();
+        killChildThread();
 
         //separo disponibili e non
         ObservableList<Vini> lista = FXCollections.observableArrayList();

@@ -82,6 +82,7 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickAnulla(ActionEvent event) throws IOException {
+            logout();
             root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
             if (data.Getrole().equals("client"))
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
@@ -128,7 +129,7 @@ public class RiepilogoController extends MyController {
                     DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
-
+            logout();
             root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
             if (data.Getrole().equals("client"))
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
@@ -155,7 +156,7 @@ public class RiepilogoController extends MyController {
                     DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
-
+            logout();
             root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
             if (data.Getrole().equals("client"))
                 root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
@@ -201,6 +202,7 @@ public class RiepilogoController extends MyController {
 
             if(!procedi.isVisible())
             {
+                logout();
                 root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
                 if (data.Getrole().equals("client"))
                     root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
