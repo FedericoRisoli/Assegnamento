@@ -79,6 +79,7 @@ public class UsermainpageController extends MyController{
     //non finito
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
+        carrello.clear();
 
         //separo disponibili e non
         ObservableList<Vini> lista = FXCollections.observableArrayList();

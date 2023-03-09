@@ -171,20 +171,30 @@ public class PersonnelpageController extends MyController {
 
     @FXML
     void OnButtonClickBuy(ActionEvent event) {
+        carrello.clear();
+
+        //separo disponibili e non
         ObservableList<Vini> lista = FXCollections.observableArrayList();
+        ObservableList<Vini> listaNonDisp = FXCollections.observableArrayList();
         for (Vini item : tabella.getItems() )
         {
             if(item.getCheck().isSelected())
-                lista.add(item);
+                if(item.getDisponibilita())
+                    lista.add(item);
+                else
+                    listaNonDisp.add(item);
         }
+        //FINE separo disponibili e non
+
         //apro nuova pagina per confermare l'ordine e pago
-        System.out.println(lista);
-        //passo lista al prossimo controller
+        System.out.println(lista);//console vedo disponibili
+        //passo liste al prossimo controller
         carrello.setCarrello(lista);
+        carrello.setNondisp(listaNonDisp);
         System.out.println(carrello.getCarrello());
 
-        //se il carrello non è vuoto
-        if (!carrello.getCarrello().isEmpty()) {
+        //se hai selezionato vini
+        if ( !carrello.getCarrello().isEmpty() || !carrello.getNondisp().isEmpty() ) {
             //cambio scena
             Stage stage;
             Scene scene;

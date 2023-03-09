@@ -127,7 +127,9 @@ public class RiepilogoController extends MyController {
                 }
             }
 
-            root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+            if (data.Getrole().equals("client"))
+                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -152,7 +154,9 @@ public class RiepilogoController extends MyController {
                 }
             }
 
-            root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+            if (data.Getrole().equals("client"))
+                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -162,7 +166,7 @@ public class RiepilogoController extends MyController {
     }
 
     @FXML
-    void OnClickOrdinaNonDisponibili(ActionEvent event) {
+    void OnClickOrdinaNonDisponibili(ActionEvent event) throws IOException {
 
 
         // create instance of the SimpleDateFormat that matches the given date
@@ -188,13 +192,26 @@ public class RiepilogoController extends MyController {
         }
         else
         {
-            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Il tuo ordine e' stato ricevuto");
             alert.setHeaderText("Il tuo rodine e'stato inoltrato al personale");
             alert.showAndWait();
+
+            if(!procedi.isVisible())
+            {
+                root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+                if (data.Getrole().equals("client"))
+                    root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else
+                ordinanondisponibili.setVisible(false);
+
+            DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
         }
-        //TODO aggiungere prezzo
-        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`) VALUES (NULL, \'"+data.Getname()+"\',\'"+data.Getsurname()+"\',"+data.GetId()+",\'"+carrello.getOrdineNonDisp()+"\',\'"+adrrfield.getText()+"\',\""+dateToday+"\",NULL,'0',0)" );
 
     }
 
@@ -211,7 +228,6 @@ public class RiepilogoController extends MyController {
         double tmp;
 
         textflow.getChildren().add(new Text("\t\nVINI NEL CARRELLO: \n\n"));
-        carrello.clear();
         for (Vini item : carrello.getCarrello()) {
             textflow.getChildren().add(new Text(item.getNome()));
             carrello.addOrdine(item.getNome());
