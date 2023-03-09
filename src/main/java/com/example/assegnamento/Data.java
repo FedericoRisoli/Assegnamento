@@ -46,5 +46,5 @@ public class Data {
     public String Getusername(){return username;}
     public boolean GetSuccess(){return success;}
     public void SetSuccess(boolean s){this.success=s;}
-    public void reset(){this.id=-100;this.role="";this.username="";this.nome="";this.cognome="";};
+    public void reset(){this.id=-100;this.role=null;this.username="";this.nome="";this.cognome="";};
 }

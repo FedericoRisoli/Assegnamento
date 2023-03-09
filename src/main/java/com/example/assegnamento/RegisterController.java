@@ -145,7 +145,6 @@ public class RegisterController extends MyController {
                 }
             else
                 {
-
                     DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"client\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\",0,0) ");
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Resitrazione avvenuta ");
