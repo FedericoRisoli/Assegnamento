@@ -45,7 +45,7 @@ class DataTest {
         //data.SetPromo(true);
         data.reset();
         assertEquals(data.GetId(), -100);
-        assertEquals(data.Getrole(), "");
+        assertEquals(data.Getrole(), null);
         assertEquals(data.Getusername(), "");
         assertEquals(data.Getname(),"");
         assertEquals(data.Getsurname(),"");
