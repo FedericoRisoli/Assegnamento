@@ -518,6 +518,9 @@ public class PersonnelpageController extends MyController {
         LocalDate data_consegna=datepick.getValue();
         LocalDate current_date = LocalDate.now();
         int comparason = current_date.compareTo(data_consegna);
+        if(lavoro_text_prezzo.getText().endsWith(".")){
+            lavoro_text_prezzo.setText(lavoro_text_prezzo.getText()+"00");
+        }
 
 
         //check
@@ -715,7 +718,7 @@ public class PersonnelpageController extends MyController {
         lavoro_text_prezzo.textProperty().addListener((observable, oldValue, newValue) -> {
             // Verifica se il testo immesso dall'utente contiene solo caratteri numerici
             // Verifica se il testo immesso dall'utente contiene solo numeri e un solo punto decimale
-            if (!newValue.matches("\\d*(\\.\\d{0,2})?") || (newValue.contains(".") && newValue.endsWith("."))) {
+            if (!newValue.matches("\\d*(\\.\\d{0,2})?")) {
                 lavoro_text_prezzo.setText(oldValue);
             }
         });
