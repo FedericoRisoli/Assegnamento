@@ -124,6 +124,13 @@ public class Vini {
 
     public Spinner getSpin() { return spin;}
 
+    public int getSpinnerValue(){
+        return spin.getValue();
+    }
+    public String getSpinnerValueString(){
+        return Integer.toString(spin.getValue());
+    }
+
     public int getId() {
         return id.get();
     }

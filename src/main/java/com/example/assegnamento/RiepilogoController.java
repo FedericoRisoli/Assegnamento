@@ -208,10 +208,8 @@ public class RiepilogoController extends MyController {
         double totale = 0;
         double tmp;
 
-
         textflow.getChildren().add(new Text("\t\nVINI NEL CARRELLO: \n\n"));
-        carrello.clearOrdine();//evito bug
-        carrello.clearOrdineNonDisp();//evito bug
+        carrello.clear();
         for (Vini item : carrello.getCarrello()) {
             textflow.getChildren().add(new Text(item.getNome()));
             carrello.addOrdine(item.getNome());
@@ -257,10 +255,10 @@ public class RiepilogoController extends MyController {
             textflow.getChildren().add(new Text("\tVINI NON DISPONIBILI:\n\n"));
         for (Vini item : carrello.getNondisp()) {
             textflow.getChildren().add(new Text("Nome: "+item.getNome() + " Q.ta: "));
-            textflow.getChildren().add(new Text("x "+item.getQuantita()+"\n"));
+            textflow.getChildren().add(new Text("x "+item.getSpinnerValueString()+"\n"));
             //aggiungo nome e q.ta a lista di non disponibili per far l'ordine successivamente
             carrello.addOrdineNonDisp(item.getNome());
-            carrello.addOrdineNonDisp(item.getQuantita());
+            carrello.addOrdineNonDisp(item.getSpinnerValueString());
             //carrello.addOrdineNonDisp(Integer.toString((int) item.getSpin().getValue())); l'ho commentata perche' aggiungeva anche la quantita selezionata cosi nell ordine insrisce slo  la quantita mancante dimmi tu se va bene o no
 
         }

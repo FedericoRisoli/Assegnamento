@@ -65,4 +65,11 @@ public class Carrello {
 
     public void setTotale(double tot){totale=tot;}
     public double getTotale(){return totale;}
+
+    public void clear(){
+        lista.clear();
+        nondisp.clear();
+        ordine.clear();
+        ordinenondisp.clear();
+    }
 }
