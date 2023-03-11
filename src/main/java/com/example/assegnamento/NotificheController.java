@@ -42,11 +42,6 @@ public class NotificheController {
     @FXML
     private TableView<OrdiniVendita> notifiche;
     @FXML
-    private Label testfisso;
-
-    @FXML
-    private Label tot;
-    @FXML
     private RadioButton rbon;
 
     @FXML
@@ -55,7 +50,6 @@ public class NotificheController {
 
     @FXML
     private void initialize() throws SQLException {
-        tot.setText("");
         select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
         ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
@@ -85,8 +79,6 @@ public class NotificheController {
             if(item.getCheck().isSelected())
             {
                 p += item.getPrezzo();
-                tot.setText(prezzo.getText());
-
             }
 
         }
