@@ -82,7 +82,7 @@ public class RiepilogoController extends MyController {
 
     @FXML
     void OnClickAnulla(ActionEvent event) throws IOException {
-            if(data.role.equals("client"))
+            if(!data.role.equals("client"))
                 logout();
             root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
             if (data.Getrole().equals("client"))
@@ -130,7 +130,7 @@ public class RiepilogoController extends MyController {
                     DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
-            if(data.role.equals("client"))
+            if(!data.role.equals("client"))
                 logout();
             root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
             if (data.Getrole().equals("client"))
@@ -158,7 +158,7 @@ public class RiepilogoController extends MyController {
                     DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
-            if(data.role.equals("client"))
+            if(!data.role.equals("client"))
                 logout();
             root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
             if (data.Getrole().equals("client"))
@@ -205,7 +205,7 @@ public class RiepilogoController extends MyController {
 
             if(!procedi.isVisible())
             {
-                if(data.role.equals("client"))
+                if(!data.role.equals("client"))
                     logout();
                 root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
                 if (data.Getrole().equals("client"))
