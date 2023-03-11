@@ -116,19 +116,12 @@ public class NotificheController {
         }
         if(data.GetSuccess()==true)
         {
-            Alert alert;
             for (OrdiniVendita item : notifiche.getItems() )
             {
                 if(item.getCheck().isSelected())
                 {
                     DBHelper.update("UPDATE `ordinivendita` SET clienteCompletato=1 WHERE id=\""+item.getId()+"\" AND Idcliente=\""+item.getIdcliente()+"\" ");
-                    System.out.println("FATTO MMERDE");
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("");
-                    alert.setHeaderText("YEEEEEEEEEEEEE");
-                    alert.showAndWait();
                 }
-
             }
         }
         data.SetSuccess(false);
