@@ -356,6 +356,7 @@ public class PersonnelpageController extends MyController {
         }
     }
     public void OnButtonClickSearchOrder(ActionEvent actionEvent) throws SQLException {
+        //TODO null?
         if(initialdate.getValue().isBefore(finaldate.getValue()))
         {
             String firstdate=initialdate.getValue().toString();
@@ -446,7 +447,6 @@ public class PersonnelpageController extends MyController {
                 }
             }
             //si fa *0.9 supponendo che il di comprare i vini al 90% del prezzo di vendita
-            //TODO arrotondami
             spese=roundToTwoDecimalPlaces(spese*0.9);
             myWriter.write("\nSpese: "+spese);
 
@@ -535,36 +535,38 @@ public class PersonnelpageController extends MyController {
             /**
              * aggiornare bottiglie
              */
-            String ordine = lavoro.getItems().get(0).getOrdine();
-            String[] righeMessaggio= ordine.split("\n");
-            for(String riga: righeMessaggio)
-            {
-                riga=riga.substring(0,riga.length()-1);
-                String[] variabiliRiga=riga.split(" ");
-                int lunghezza=variabiliRiga.length;
-                String vino = "";
+            if(!lavoro.getItems().isEmpty()) {
+                String ordine = lavoro.getItems().get(0).getOrdine();
+                String[] righeMessaggio = ordine.split("\n");
+                for (String riga : righeMessaggio) {
+                    riga = riga.substring(0, riga.length() - 1);
+                    String[] variabiliRiga = riga.split(" ");
+                    int lunghezza = variabiliRiga.length;
+                    String vino = "";
 
-                for(int n=0; n<lunghezza-2; n++)
-                    vino=vino+" "+variabiliRiga[n];
+                    for (int n = 0; n < lunghezza - 2; n++)
+                        vino = vino + " " + variabiliRiga[n];
 
-                vino = vino.substring(1);
-                System.out.println(vino);
-                ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE `nome` LIKE \""+vino+"\"");
-                try {
-                    r.next();
-                    int qta = r.getInt("quantita");
-                    int id = r.getInt("id");
-                    qta+=Integer.valueOf(variabiliRiga[lunghezza-2]);
-                    DBHelper.update("UPDATE `wines` SET `quantita` =\""+qta+"\" WHERE id =\""+id+"\"");
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    vino = vino.substring(1);
+                    System.out.println(vino);
+                    ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE `nome` LIKE \"" + vino + "\"");
+                    try {
+                        r.next();
+                        int qta = r.getInt("quantita");
+                        int id = r.getInt("id");
+                        qta += Integer.valueOf(variabiliRiga[lunghezza - 2]);
+                        DBHelper.update("UPDATE `wines` SET `quantita` =\"" + qta + "\" WHERE id =\"" + id + "\"");
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-            }
 
-            text_lavoro_error.setVisible(false);
-            DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \""+datepick.getValue()+"\", `completato` = '1' , `prezzo` = "+lavoro_text_prezzo.getText()+" WHERE `id` = "+lavoro.getItems().get(0).getId());
-            lavoro.getItems().clear();
-            sendMessage("COMPLETATO"+ data.GetId());
+
+                text_lavoro_error.setVisible(false);
+                DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \"" + datepick.getValue() + "\", `completato` = '1' , `prezzo` = " + lavoro_text_prezzo.getText() + " WHERE `id` = " + lavoro.getItems().get(0).getId());
+                lavoro.getItems().clear();
+                sendMessage("COMPLETATO" + data.GetId());
+            }
         }
 
     }
@@ -622,7 +624,7 @@ public class PersonnelpageController extends MyController {
         sendMessage(message);
         System.out.println(message);
 
-        //NON CHIUDERE MAI IL SOCKET
+        //NON CHIUDERE SOCKET
         //chiudo thread
         killChildThread();
     }
@@ -707,7 +709,9 @@ public class PersonnelpageController extends MyController {
         }
 
         //mando messaggio
-        sendMessage(data.role+data.GetId());
+        //NON TOGLIERE QUESTO IF, FIXA UN BUG
+        if(!data.role.equals("client"))
+            sendMessage(data.role+data.GetId());
 
 
         t_n.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
