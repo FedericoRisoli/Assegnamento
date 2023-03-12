@@ -18,8 +18,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PersonnelpageController extends MyController {
@@ -158,6 +160,8 @@ public class PersonnelpageController extends MyController {
     private Label text_lavoro_error;
     @FXML
     private Button skipButton;
+    @FXML
+    private Label error_data;
 
     @FXML
     void OnButtonSkipClick(ActionEvent event){
@@ -514,19 +518,40 @@ public class PersonnelpageController extends MyController {
     }
 
 
+
+    public static boolean isValidDate(String dateStr) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        try
+        {
+            Date date = sdf.parse(dateStr);
+            return true;
+        } catch (Exception e)
+        {
+            return false;
+        }
+    }
+
+
     @FXML
     public void OnButtonClickOrderComplete(ActionEvent actionEvent) {
-
-        LocalDate data_consegna=datepick.getValue();
+        int comparason=1;
+        LocalDate data_consegna=null;
+        try {
+            data_consegna = datepick.getValue();
+        }catch(Exception q){
+            data_consegna = null;
+        }
         LocalDate current_date = LocalDate.now();
-        int comparason = current_date.compareTo(data_consegna);
+        if(!(data_consegna == null)&&(isValidDate(data_consegna.toString())))
+            comparason = current_date.compareTo(data_consegna);
         if(lavoro_text_prezzo.getText().endsWith(".")){
             lavoro_text_prezzo.setText(lavoro_text_prezzo.getText()+"00");
         }
 
 
         //check
-        if((data_consegna==null)||(comparason>0))
+        if((data_consegna==null)||(comparason>0)||(!isValidDate(data_consegna.toString())))
             {text_lavoro_error.setText("Data scelta non valida"); text_lavoro_error.setVisible(true);}
         else if(lavoro_text_prezzo.getText().isEmpty())
             {text_lavoro_error.setText("Prezzo non valido"); text_lavoro_error.setVisible(true);}
