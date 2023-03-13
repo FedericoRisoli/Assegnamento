@@ -520,8 +520,8 @@ public class PersonnelpageController extends MyController {
 
 
     public static boolean isValidDate(String dateStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        sdf.setLenient(true);
         try
         {
             Date date = sdf.parse(dateStr);
