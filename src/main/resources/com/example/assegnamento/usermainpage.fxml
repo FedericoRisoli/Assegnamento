@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -27,7 +26,6 @@
       </ButtonBar>
       <VBox alignment="CENTER" layoutX="50.0" layoutY="588.0" prefHeight="204.0" prefWidth="174.0" spacing="20.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="50.0">
          <children>
-            <ToggleButton fx:id="CambiaStile" mnemonicParsing="false" onAction="#OnButtonClhangeStyle" text="Cambia Colori" />
             <Button fx:id="ImieiordiniButton" mnemonicParsing="false" onAction="#OnButtonClickImieiOrdini" prefHeight="36.0" prefWidth="192.0" styleClass="accent" text="I Miei Ordini" />
             <Button fx:id="notifichebutton" layoutX="10.0" layoutY="66.0" mnemonicParsing="false" onAction="#OnButtonClickNotifiche" prefHeight="36.0" prefWidth="192.0" styleClass="accent" text="Notifiche" />
             <Button fx:id="log_out" mnemonicParsing="false" onAction="#OnButtonClickLogOut" prefHeight="36.0" prefWidth="192.0" styleClass="danger" text="Log Out" />
