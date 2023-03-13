@@ -122,23 +122,28 @@ public class RiepilogoController extends MyController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
 
-            for(Vini vino: carrello.getCarrello())
+            if(!ordinanondisponibili.isVisible())
             {
-                if(Integer.valueOf(vino.getQuantita())<30)
+                for(Vini vino: carrello.getCarrello())
                 {
-                    String text= vino.getNome()+" 15 "+15* vino.getPrezzo();
-                    DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
+                    if(Integer.valueOf(vino.getQuantita())<30)
+                    {
+                        String text= vino.getNome()+" 15 "+15* vino.getPrezzo();
+                        DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
+                    }
                 }
+                if(!data.role.equals("client"))
+                    logout();
+                root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+                if (data.Getrole().equals("client"))
+                    root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             }
-            if(!data.role.equals("client"))
-                logout();
-            root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
-            if (data.Getrole().equals("client"))
-                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            else
+                procedi.setVisible(false);
         }
         else {
             Parent root = FXMLLoader.load(HelloApplication.class.getResource("pagocarta.fxml"));
@@ -158,15 +163,20 @@ public class RiepilogoController extends MyController {
                     DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, \" \", \" \",0 ,\""+text+"\" , \" \",\""+dateToday+"\", NULL, 0, 1, 0)");
                 }
             }
-            if(!data.role.equals("client"))
-                logout();
-            root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
-            if (data.Getrole().equals("client"))
-                root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
-            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+
+            if(!ordinanondisponibili.isVisible()) {
+                if (!data.role.equals("client"))
+                    logout();
+                root = FXMLLoader.load(getClass().getResource("personnel.fxml"));
+                if (data.Getrole().equals("client"))
+                    root = FXMLLoader.load(getClass().getResource("usermainpage.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else
+                procedi.setVisible(false);
         }
 
     }
