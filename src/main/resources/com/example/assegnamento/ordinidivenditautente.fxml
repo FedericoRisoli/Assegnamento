@@ -13,7 +13,7 @@
       <Button fx:id="back" mnemonicParsing="false" onAction="#OnButtonClickBack" prefHeight="36.0" prefWidth="192.0" styleClass="danger" text="Indietro" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" />
       <ScrollPane layoutX="30.0" layoutY="113.0" prefHeight="375.0" prefWidth="736.0" AnchorPane.bottomAnchor="112.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="63.0" AnchorPane.topAnchor="113.0">
          <content>
-            <TableView fx:id="tabella" prefHeight="380.0" prefWidth="700.0" styleClass="striped">
+            <TableView fx:id="tabella" prefHeight="380.0" prefWidth="700.0">
               <columns>
                   <TableColumn fx:id="t_nome" prefWidth="114.0" text="Nome" />
                   <TableColumn fx:id="t_cognome" prefWidth="97.0" text="Cognome" />

@@ -22,7 +22,7 @@
             <TextField fx:id="username" maxWidth="200.0" prefWidth="200.0" promptText="Username" />
             <PasswordField fx:id="password" maxWidth="200.0" prefHeight="25.0" prefWidth="190.0" promptText="Password" />
             <Label fx:id="errorText" opacity="0.0" styleClass="danger" text="Username/Password non corretti" textFill="#c90000" />
-            <Button fx:id="login" onAction="#onLoginButtonClick" styleClass="accent" text="Login" />
+            <Button fx:id="login" onAction="#onLoginButtonClick" prefWidth="120.0" styleClass="accent" text="Login" />
             <Button mnemonicParsing="false" onAction="#OnClickOpenRegister" text="Registra Cliente">
                <padding>
                   <Insets top="10.0" />
@@ -44,14 +44,14 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="0.20000000298023224" blue="0.5333333611488342" />
+                        <Color red="0.8627451062202454" green="0.7882353067398071" blue="0.7137255072593689" />
                      </color>
                   </Stop>
                </stops>
             </LinearGradient>
          </stroke>
       </Line>
-      <Circle fill="#9e1751" layoutX="405.0" layoutY="386.0" radius="5.0" stroke="TRANSPARENT" strokeType="INSIDE" translateY="-1.0" />
+      <Circle fill="#dcc9b6" layoutX="405.0" layoutY="386.0" radius="5.0" stroke="TRANSPARENT" strokeType="INSIDE" translateY="-1.0" />
       <ImageView cache="true" fitHeight="300.0" fitWidth="300.0" layoutX="447.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="50.0">
          <image>
             <Image url="@../../../img/wine-bottle.png" />
