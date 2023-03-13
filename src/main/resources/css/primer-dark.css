@@ -56,9 +56,9 @@
   -color-fg-subtle: #dcc9b6;
   -color-fg-emphasis: #000000;
   -color-bg-default: #2a172c;
-  -color-bg-overlay: #dcc9b6;
+  -color-bg-overlay: #8957e5;
   -color-bg-subtle: #8957e5;
-  -color-bg-inset: #dcc9b6;
+  -color-bg-inset: #8957e5;
   -color-border-default: #30363d;
   -color-border-muted: #21262d;
   -color-border-subtle: rgb(220, 201, 182);
@@ -66,11 +66,11 @@
   -color-neutral-emphasis-plus: #6e7681;
   -color-neutral-emphasis: #6e7681;
   -color-neutral-muted: rgba(110, 118, 129, 0.4);
-  -color-neutral-subtle: rgb(220, 201, 182);
+  -color-neutral-subtle: rgb(42, 23, 44);
   -color-accent-fg: #dcc9b6;
   -color-accent-emphasis: #f9f5e3;
   -color-accent-muted: rgb(232, 225, 224);
-  -color-accent-subtle: rgb(220, 201, 182);
+  -color-accent-subtle: rgb(59, 27, 136);
   -color-warning-fg: #d29922;
   -color-warning-emphasis: #9e6a03;
   -color-warning-muted: rgba(187, 128, 9, 0.4);

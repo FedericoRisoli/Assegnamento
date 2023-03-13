@@ -671,7 +671,10 @@ public class PersonnelpageController extends MyController {
         createTask(server.getSocket(),this);
         Stage stage = (Stage) Stage.getWindows().get(0);
         stage.setOnCloseRequest(windowEvent -> logout());
-
+        tabella.setStyle("-fx-background-color: #2A172CFF;");
+        ClientTableView.setStyle("-fx-background-color: #2A172CFF;");
+        lavoro.setStyle("-fx-background-color: #2A172CFF;");
+        OrderTableView.setStyle("-fx-background-color: #2A172CFF;");
         GestioneDipButton.setVisible(false);
 
 

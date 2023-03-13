@@ -47,7 +47,7 @@ public class ImieiordiniController {
     @FXML
     private void initialize() throws SQLException, IOException {
         ResultSet r;
-
+        tabella.setStyle("-fx-background-color: #2A172CFF;");
         t_nome.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Nome"));
         t_cognome.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Cognome"));
         t_ordine.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));

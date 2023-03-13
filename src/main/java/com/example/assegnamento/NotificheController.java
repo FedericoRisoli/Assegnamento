@@ -50,6 +50,7 @@ public class NotificheController {
 
     @FXML
     private void initialize() throws SQLException {
+        notifiche.setStyle("-fx-background-color: #2A172CFF;");
         select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
         ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
         consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));

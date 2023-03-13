@@ -47,7 +47,7 @@ public class PromoController extends MyController {
         t_prezzo.setCellValueFactory(new PropertyValueFactory<Vini, Double>("prezzo"));
 
         ObservableList<Vini> tmp = FXCollections.observableArrayList();
-
+        tabella.setStyle("-fx-background-color: #2A172CFF;");
 
         //popolo ListView
         r = DBHelper.query("SELECT * FROM `wines` WHERE promo LIKE '1'");

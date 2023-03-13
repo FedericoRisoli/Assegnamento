@@ -196,7 +196,7 @@ public class UsermainpageController extends MyController{
     }
     @FXML
     private void initialize() throws SQLException, IOException {
-
+        tabella.setStyle("-fx-background-color: #2A172CFF;");
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede
         //get annate from DB

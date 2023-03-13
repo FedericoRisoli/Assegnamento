@@ -45,7 +45,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color />
+                        <Color red="0.16470588743686676" green="0.09019608050584793" blue="0.1725490242242813" />
                      </color>
                   </Stop>
                </stops>
@@ -63,7 +63,7 @@
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color />
+                        <Color red="0.16470588743686676" green="0.09019608050584793" blue="0.1725490242242813" />
                      </color>
                   </Stop>
                </stops>
@@ -76,9 +76,9 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="884.0" prefWidth="1144.0">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="32.0" layoutY="97.0" prefHeight="156.0" prefWidth="714.0" AnchorPane.bottomAnchor="481.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="332.0" AnchorPane.topAnchor="97.0">
+                        <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="32.0" layoutY="97.0" prefHeight="80.0" prefWidth="714.0" AnchorPane.bottomAnchor="563.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="332.0" AnchorPane.topAnchor="97.0">
                            <content>
-                              <TableView fx:id="lavoro" prefHeight="59.0" prefWidth="714.0">
+                              <TableView fx:id="lavoro" prefHeight="87.0" prefWidth="714.0">
                                  <columns>
                                     <TableColumn fx:id="t_n" prefWidth="139.0" text="Nome" />
                                     <TableColumn fx:id="t_c" prefWidth="93.0" text="Cognome" />
@@ -103,6 +103,21 @@
                            </font>
                         </Label>
                         <Button fx:id="skipButton" layoutX="832.0" layoutY="331.0" mnemonicParsing="false" onAction="#OnButtonSkipClick" prefHeight="36.0" prefWidth="145.0" text="Completa Dopo" />
+                        <Text layoutX="32.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prezzo: Inserire prezzo a cui vendere l'ordine. " wrappingWidth="712.8642578125">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="32.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NB: Se sono vuoti i campi -&gt; ordine automatico" wrappingWidth="712.8642578125">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="32.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nel campo ordine il formato e' [Nome del vino] [quantita' ] [prezzo a cui vendiamo quella quantita' ]" wrappingWidth="712.8642578125">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </content>
