@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -22,9 +21,6 @@ import java.util.List;
 
 public class UsermainpageController extends MyController{
 
-
-    @FXML
-    private ToggleButton CambiaStile;
 
     Carrello carrello = Carrello.getIstance();
 
@@ -289,21 +285,4 @@ public class UsermainpageController extends MyController{
         }
     }
 
-    public void OnButtonClhangeStyle(ActionEvent actionEvent) {
-        AnchorPane root = new AnchorPane();
-        root.getChildren().add(CambiaStile);
-        if(CambiaStile.isSelected()){
-            // Rimpiazziamo il foglio di stile attuale con uno nuovo quando il pulsante è selezionato
-            Scene scene = root.getScene();
-            scene.getStylesheets().setAll("primer-light.css");
-        }
-        else {
-            // Rimpiazziamo il foglio di stile attuale con quello predefinito quando il pulsante non è selezionato
-            Scene scene = root.getScene();
-            scene.getStylesheets().setAll("primer-dark.css");
-        }
-
-
-
-    }
 }

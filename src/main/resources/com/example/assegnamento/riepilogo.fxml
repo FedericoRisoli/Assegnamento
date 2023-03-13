@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="628.0" prefWidth="943.0" stylesheets="@../../../css/primer-dark.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.assegnamento.RiepilogoController">
    <children>
-      <Button fx:id="annulla" layoutX="86.0" layoutY="487.0" mnemonicParsing="false" onAction="#OnClickAnulla" text="Annulla Ordine" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
+      <Button fx:id="annulla" layoutX="86.0" layoutY="487.0" mnemonicParsing="false" onAction="#OnClickAnulla" text="Indietro" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0">
          <styleClass>
             <String fx:value="danger" />
             <String fx:value="button-outlined" />
