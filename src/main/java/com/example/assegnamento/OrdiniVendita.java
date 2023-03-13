@@ -3,7 +3,7 @@ package com.example.assegnamento;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.CheckBox;
 
-public class OrdiniVendita extends MyController {
+public class OrdiniVendita{
     private final SimpleStringProperty Dataconsegna;
     private  double Prezzo;
     private final SimpleStringProperty Nome;
