@@ -29,7 +29,6 @@ public class Vini {
     private boolean disponibile=false;    //ci sono abbastanza bottiglie per l'ordine?
 
 
-    //https://www.youtube.com/watch?v=fnU1AlyuguE
     Vini(Integer id, String nom, String prod, String prov, String anno, String vitigno, String note, String qualita, String vendite, String promo, String qta)
     {
         this.Nome= new SimpleStringProperty(nom);
