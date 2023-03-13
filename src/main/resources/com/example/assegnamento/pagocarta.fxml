@@ -18,13 +18,8 @@
       <Label layoutX="150.0" layoutY="251.0" text="CVV" />
       <ChoiceBox fx:id="mese" layoutX="369.0" layoutY="178.0" prefHeight="46.0" prefWidth="88.0" />
       <ChoiceBox fx:id="anno" layoutX="483.0" layoutY="178.0" prefHeight="46.0" prefWidth="107.0" />
-      <Button fx:id="indietro" layoutX="124.0" layoutY="384.0" mnemonicParsing="false" onAction="#OnClickIndietro" text="Annulla Ordine" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="100.0">
-         <styleClass>
-            <String fx:value="danger" />
-            <String fx:value="button-outlined" />
-         </styleClass>
-      </Button>
-      <Button fx:id="paga" layoutX="554.0" layoutY="376.0" mnemonicParsing="false" onAction="#OnClickPaga" styleClass="success" text="Paga" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="100.0" />
+      <Button fx:id="indietro" layoutX="124.0" layoutY="384.0" mnemonicParsing="false" onAction="#OnClickIndietro" styleClass="button-outlined" text="Indietro" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="100.0" />
+      <Button fx:id="paga" layoutX="554.0" layoutY="376.0" mnemonicParsing="false" onAction="#OnClickPaga" styleClass="accent" text="Paga" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="100.0" />
       <Label fx:id="errore" layoutX="233.0" layoutY="318.0" opacity="0.0" text="Wops, qualcosa è andato storto">
          <styleClass>
             <String fx:value="danger" />
