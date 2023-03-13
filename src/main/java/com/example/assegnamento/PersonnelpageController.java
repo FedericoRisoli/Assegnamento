@@ -360,29 +360,40 @@ public class PersonnelpageController extends MyController {
         }
     }
     public void OnButtonClickSearchOrder(ActionEvent actionEvent) throws SQLException {
-        //TODO null?
-        if(initialdate.getValue().isBefore(finaldate.getValue()))
+
+        if((initialdate.getValue()!=null)&&(finaldate.getValue()!=null))
         {
-            String firstdate=initialdate.getValue().toString();
-            String seconddate=finaldate.getValue().toString();
-            ResultSet r=DBHelper.query("SELECT * FROM `ordinivendita` WHERE `dataordine` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
-            OrderTableView.getItems().clear();
-            ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
-
-            while (r.next())
+            System.out.println("nonulle");
+            if((isValidDate(initialdate.getValue().toString()))&&(isValidDate(finaldate.getValue().toString())))
             {
-                tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
-                OrderTableView.setItems(tmp3);
-            }
+                System.out.println("valide");
+                if(initialdate.getValue().isBefore(finaldate.getValue()))
+                {
+                    System.out.println("intervallo");
+                    error_data.setText("");
+                    String firstdate=initialdate.getValue().toString();
+                    String seconddate=finaldate.getValue().toString();
+                    ResultSet r=DBHelper.query("SELECT * FROM `ordinivendita` WHERE `dataordine` BETWEEN \""+firstdate+"\" AND \""+seconddate+"\"");
+                    OrderTableView.getItems().clear();
+                    ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
 
+                    while (r.next())
+                    {
+                        tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+                        OrderTableView.setItems(tmp3);
+                    }
+
+                }
+                else{
+                        error_data.setText("Intervallo invalido");
+                }
+            }
+            else
+                error_data.setText("Formato data errato");
         }
-        else{
-            Alert alert;
-            alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Date Error");
-            alert.setHeaderText("La Data iniziale dev'essere precedente a quella finale.\n Data1 prima di Data2");
-            alert.showAndWait();
-        }
+        else
+            error_data.setText("Formato data errato");
+
     }
     @FXML
     void OnClearOrderButtonClick(ActionEvent event) throws SQLException {
