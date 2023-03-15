@@ -15,7 +15,7 @@ class CarrelloTest {
     private ObservableList<String> ordine;
     private ObservableList<String> ordinenondisp;
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp(){
         carrello = Carrello.getIstance();
         lista = FXCollections.observableArrayList();
         nondisp = FXCollections.observableArrayList();
