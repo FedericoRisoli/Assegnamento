@@ -136,6 +136,7 @@ public class RegisterController extends MyController {
         }
         else  //Registrazione normale
         {
+            this.stage.setTitle("Registrazione Cliente");
             if ((usr.getText().isBlank()) || (telefono.getText().isBlank()) || (pass.getText().isEmpty()) || (nome.getText().isBlank()) || (indirizzo.getText().isBlank()) || (cognome.getText().isBlank()) || (cfiscale.getText().isBlank()) || (mail.getText().isBlank()))
                 {
                     alert = new Alert(Alert.AlertType.ERROR);
@@ -163,6 +164,7 @@ public class RegisterController extends MyController {
         userselector.setVisible(false);
         if (data.Getrole()=="admin")
         {
+            Registrati.setText("Registra");
             ActionBar.setVisible(true);
             regradio.setSelected(true);
         }

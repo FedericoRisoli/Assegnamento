@@ -223,7 +223,7 @@ public class PersonnelpageController extends MyController {
             data.SetRole("admin");
             Parent root = FXMLLoader.load(HelloApplication.class.getResource("register.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("Registrazione Cliente");
+            stage.setTitle("Registrazione Impiegato");
             stage.setScene(new Scene(root));
             //blocca finestra prima
             stage.initModality(Modality.APPLICATION_MODAL);
