@@ -12,11 +12,12 @@ public class OrdiniVendita{
     private final SimpleStringProperty Ordine;
     private final SimpleStringProperty Indirizzo;
     private final  SimpleStringProperty Id;
+    private final  SimpleStringProperty firmaimp;
 
     private final SimpleStringProperty DataOrdine;
     private CheckBox check;
 
-    OrdiniVendita(String Id, String dataord, String datac,String nom,String cog,String ord,String ind,double prezzo,String idcl){
+    OrdiniVendita(String Id, String dataord, String datac,String nom,String cog,String ord,String ind,double prezzo,String idcl,String firmimp){
         this.Dataconsegna=new SimpleStringProperty(datac);
         this.Nome=new SimpleStringProperty(nom);
         this.Cognome=new SimpleStringProperty(cog);
@@ -27,6 +28,7 @@ public class OrdiniVendita{
         this.Prezzo=new Double(prezzo);
         this.Idcliente= new SimpleStringProperty(idcl);
         this.DataOrdine = new SimpleStringProperty(dataord);
+        this.firmaimp=new SimpleStringProperty(firmimp);
 
     }
     public CheckBox getCheck() {
@@ -40,6 +42,7 @@ public class OrdiniVendita{
         return Nome.get();
     }
     public String getIdcliente() {return Idcliente.get();}
+    public String getFirm() {return firmaimp.get();}
     public double getPrezzo() { return Prezzo; }
 
 

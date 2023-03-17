@@ -379,7 +379,7 @@ public class PersonnelpageController extends MyController {
 
                     while (r.next())
                     {
-                        tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+                        tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
                         OrderTableView.setItems(tmp3);
                     }
 
@@ -406,7 +406,7 @@ public class PersonnelpageController extends MyController {
         ObservableList<OrdiniVendita> tmp3 = FXCollections.observableArrayList();
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
             OrderTableView.setItems(tmp3);
         }
 
@@ -599,7 +599,7 @@ public class PersonnelpageController extends MyController {
 
 
                 text_lavoro_error.setVisible(false);
-                DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \"" + datepick.getValue() + "\", `completato` = '1' , `prezzo` = " + lavoro_text_prezzo.getText() + " WHERE `id` = " + lavoro.getItems().get(0).getId());
+                DBHelper.update("UPDATE `ordinivendita` SET `dataconsegna` = \"" + datepick.getValue() + "\", `completato` = '1' , `prezzo` = " + lavoro_text_prezzo.getText() + ", `firmaimpiegato` = "+data.GetId()+" WHERE `id` = " + lavoro.getItems().get(0).getId());
                 lavoro.getItems().clear();
                 sendMessage("COMPLETATO" + data.GetId());
             }
@@ -621,7 +621,7 @@ public class PersonnelpageController extends MyController {
             try {
                 if(r.next())
                 {
-                    tmp4.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+                    tmp4.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
                     lavoro.setItems(tmp4);
                 }
             } catch (SQLException e) {
@@ -743,7 +743,7 @@ public class PersonnelpageController extends MyController {
 
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+            tmp3.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
             OrderTableView.setItems(tmp3);
         }
 

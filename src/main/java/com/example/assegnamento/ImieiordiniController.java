@@ -58,7 +58,7 @@ public class ImieiordiniController {
 
         while (r.next())
         {
-            tmp3.add(new OrdiniVendita( r.getString("id"),r.getString("dataordine"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente")));
+            tmp3.add(new OrdiniVendita( r.getString("id"),r.getString("dataordine"),r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
             tabella.setItems(tmp3);
         }
 
