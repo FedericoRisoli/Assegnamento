@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 848, 476);
         stage.getIcons().add(new Image("https://cdn-icons-png.flaticon.com/512/168/168570.png"));
-        stage.setTitle("Welcome to Wine Shop!");
+        stage.setTitle("Wine Shop");
         stage.setScene(scene);
         stage.setResizable(false); //make scenes Unresizables
         stage.show();
