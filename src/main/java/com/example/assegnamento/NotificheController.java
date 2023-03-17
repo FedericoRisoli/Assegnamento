@@ -143,4 +143,28 @@ public class NotificheController {
 
     }
 
+    public void OnButtonClickRifiuta(ActionEvent actionEvent) throws SQLException {
+        for (OrdiniVendita item : notifiche.getItems() ) {
+            if (item.getCheck().isSelected()) {
+                DBHelper.update("UPDATE `ordinivendita` SET clienteCompletato=1 WHERE id=\"" + item.getId() + "\" AND Idcliente=\"" + item.getIdcliente() + "\" ");
+            }
+        }
+
+        data.SetSuccess(false);
+        notifiche.getItems().clear();
+        select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
+        ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
+        consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
+        prezzo.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Prezzo"));
+        ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `clienteCompletato`='0' AND `completato`='1' AND `Idcliente`=\""+data.GetId()+"\"");
+        ObservableList<OrdiniVendita> tmp = FXCollections.observableArrayList();
+
+        while (r.next())
+        {
+        tmp.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
+        notifiche.setItems(tmp);
+        }
+
+
+        }
 }

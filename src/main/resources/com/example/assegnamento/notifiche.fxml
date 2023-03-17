@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -39,5 +40,11 @@
             <ToggleGroup fx:id="payment" />
          </toggleGroup></RadioButton>
       <RadioButton fx:id="rcar" layoutX="84.0" layoutY="366.0" mnemonicParsing="false" text="Carta di Credito" toggleGroup="$payment" />
+      <Button fx:id="Rifiuta" defaultButton="true" layoutX="463.0" layoutY="404.0" mnemonicParsing="false" onAction="#OnButtonClickRifiuta" prefHeight="36.0" prefWidth="90.0" text="Rifiuta">
+         <styleClass>
+            <String fx:value="button-outlined" />
+            <String fx:value="danger" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>
