@@ -677,6 +677,8 @@ public class PersonnelpageController extends MyController {
         OrderTableView.setStyle("-fx-background-color: #2A172CFF;");
         GestioneDipButton.setVisible(false);
 
+        sendMessage("MESSAGGIO TEST");
+
 
 
         //funziona, bisogna allargare abbastanza la finestra altrimenti non si vede

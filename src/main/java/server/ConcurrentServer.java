@@ -104,11 +104,14 @@ class ClientHandler implements Runnable {
             System.out.println("Inizio lavori");
 
             String[] variabiliMessaggio;
+
             while(true) {
 
                 // Legge il messaggio del client
                 try {
                     message = in.readLine();
+                    if(message.startsWith("MESSAGGIO TEST"))
+                        out.println("RICEVUTO");
                     // utilizza il messaggio
                     System.out.println("Ho ricevuto il tuo messaggio: '" + message + "'");
                     //ottengo nuovo lavoro dal server, altrimenti tempo scaduto
