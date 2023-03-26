@@ -210,7 +210,7 @@ public class RiepilogoController extends MyController {
         {
             alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Il tuo ordine e' stato ricevuto");
-            alert.setHeaderText("Il tuo rodine e'stato inoltrato al personale");
+            alert.setHeaderText("Il tuo ordine e'stato inoltrato al personale");
             alert.showAndWait();
 
             if(!procedi.isVisible())

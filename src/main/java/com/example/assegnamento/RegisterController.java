@@ -86,6 +86,16 @@ public class RegisterController extends MyController {
             return;
 
         }
+        r = DBHelper.query("SELECT `c_fiscale` FROM `utenti` WHERE `c_fiscale` LIKE \""+cfiscale.getText()+"\""); //query per controllo del cod fisc nel db
+        if (r.next())//controllo che l'username non sia gia' nel DB
+        {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Codice Fiscale gia' Presente ");
+            alert.setHeaderText("Codice fiscale gia' presente nel Database (Controllare correttezza)");
+            alert.showAndWait();
+            return;
+
+        }
         if(data.Getrole()!=null)
         {
             if (data.Getrole().equals("admin"))
@@ -102,6 +112,7 @@ public class RegisterController extends MyController {
                         }
                     else
                         {
+
                             //Registro Impiegato
                             DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\",0,0) ");
                             alert = new Alert(Alert.AlertType.INFORMATION);
@@ -136,6 +147,7 @@ public class RegisterController extends MyController {
         }
         else  //Registrazione normale
         {
+
             this.stage.setTitle("Registrazione Cliente");
             if ((usr.getText().isBlank()) || (telefono.getText().isBlank()) || (pass.getText().isEmpty()) || (nome.getText().isBlank()) || (indirizzo.getText().isBlank()) || (cognome.getText().isBlank()) || (cfiscale.getText().isBlank()) || (mail.getText().isBlank()))
                 {
