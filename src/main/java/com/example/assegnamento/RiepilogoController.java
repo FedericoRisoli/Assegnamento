@@ -273,6 +273,7 @@ public class RiepilogoController extends MyController {
         //NON chiudere mai socket
         //chiudo thread
         killChildThread();
+        close();
     }
 
 
