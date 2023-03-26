@@ -112,7 +112,6 @@ public class RegisterController extends MyController {
                         }
                     else
                         {
-
                             //Registro Impiegato
                             DBHelper.update("INSERT INTO `utenti` VALUES (NULL,\"employee\", \"" + usr.getText() + "\" , \"" + pass.getText() + "\", \"" + nome.getText() + "\", \"" + cognome.getText() + "\" , \"" + cfiscale.getText() + "\", \"" + mail.getText() + "\", \"" + telefono.getText() + "\", \"" + indirizzo.getText() + "\",0,0) ");
                             alert = new Alert(Alert.AlertType.INFORMATION);
@@ -147,7 +146,7 @@ public class RegisterController extends MyController {
         }
         else  //Registrazione normale
         {
-
+            stage = (Stage) Indietro.getScene().getWindow();
             this.stage.setTitle("Registrazione Cliente");
             if ((usr.getText().isBlank()) || (telefono.getText().isBlank()) || (pass.getText().isEmpty()) || (nome.getText().isBlank()) || (indirizzo.getText().isBlank()) || (cognome.getText().isBlank()) || (cfiscale.getText().isBlank()) || (mail.getText().isBlank()))
                 {
