@@ -86,6 +86,16 @@ public class RegisterController extends MyController {
             return;
 
         }
+        r = DBHelper.query("SELECT `c_fiscale` FROM `utenti` WHERE `c_fiscale` LIKE \""+cfiscale.getText()+"\""); //query per controllo del cod fisc nel db
+        if (r.next())//controllo che l'username non sia gia' nel DB
+        {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Codice Fiscale gia' Presente ");
+            alert.setHeaderText("Codice fiscale gia' presente nel Database (Controllare correttezza)");
+            alert.showAndWait();
+            return;
+
+        }
         if(data.Getrole()!=null)
         {
             if (data.Getrole().equals("admin"))
