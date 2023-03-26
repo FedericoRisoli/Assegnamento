@@ -29,6 +29,10 @@ public class ServerConnection {
         out.println(message);
     }
 
+    public void close(){
+        out.close();
+    }
+
     public Socket getSocket() {
         return socket;
     }

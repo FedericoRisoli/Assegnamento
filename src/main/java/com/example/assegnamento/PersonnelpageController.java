@@ -663,6 +663,7 @@ public class PersonnelpageController extends MyController {
         //NON CHIUDERE SOCKET
         //chiudo thread
         killChildThread();
+        close();
     }
 
     @FXML
