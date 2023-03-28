@@ -47,9 +47,6 @@ public class MyController {
         server.sendMessage(message);
     }
 
-    public void close(){
-        server.close();
-    }
 
     public void killChildThread(){
         connect();

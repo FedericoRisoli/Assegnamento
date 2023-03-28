@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mar 17, 2023 alle 11:53
+-- Creato il: Mar 28, 2023 alle 18:59
 -- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.2.0
+-- Versione PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,48 +47,10 @@ CREATE TABLE `ordinivendita` (
 --
 
 INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`, `Idcliente`, `ordine`, `indirizzo`, `dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`, `firmaimpiegato`) VALUES
-(3, 'a', 'a', 21, 'test 1 52.5 \nfrancia corta 1 70.0 \n', 'a', '1800-01-01', '2023-02-23', 1, 1, '453.00', NULL),
-(7, 'Agostino', 'Poggi', 0, 'francia corta 21 1337.7 \n', 'via Campus 1', '1800-01-01', '2023-02-23', 1, 0, '453.00', NULL),
-(8, 'a', 'a', 0, 'test 1 52.5 \n', 'a', '1800-01-01', '2023-03-10', 1, 0, '10.00', NULL),
-(9, 'a', 'a', 0, 'test 1 52.5 \nPink Desire 27 904.05 \nBarbaresco DOCG \"Montersino\" 1 50.0 \n', 'a', '1800-01-01', '2023-02-23', 1, 0, '2.00', NULL),
-(10, 'a', 'a', 0, 'Francia Corta 17 238.738 \n', 'a', '1800-01-01', '2023-02-23', 1, 0, '2.00', NULL),
-(11, '', '', 0, 'francia corta 30 2100.0', '', '1800-01-01', '2023-03-03', 1, 1, '0.00', NULL),
-(12, 'a', 'a', 0, 'francia corta 1 70.0 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00', NULL),
-(13, '', '', 0, 'francia corta 30 2100.0', '', '1800-01-01', '2023-03-25', 1, 1, '250.00', NULL),
-(14, 'a', 'a', 0, 'test 1 52.54 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00', NULL),
-(15, 'a', 'a', 0, 'test 1 52.57 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00', NULL),
-(16, 'a', 'a', 0, 'testa 1 50.25 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00', NULL),
-(17, 'a', 'a', 0, 'francia corta 1 70.05 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00', NULL),
-(18, '', '', 0, 'francia corta 30 2101.5', '', '1800-01-01', '2023-03-25', 1, 1, '250.00', NULL),
-(19, 'a', 'a', 0, 'Francia Corta 1 15.75 \n', 'a', '1800-01-01', '2023-02-17', 1, 1, '0.00', NULL),
-(20, '', '', 0, 'Francia Corta 15 236.25', '', '1800-01-01', '2023-03-25', 1, 1, '250.00', NULL),
-(24, 'a', 'a', 21, 'test 1 52.69 \n', 'a', '2023-03-03', '2023-03-06', 1, 1, '52.69', NULL),
-(25, 'null', 'null', 22, '[Francia Corta, 33]', 'ehsi', '2023-03-09', NULL, 0, 0, '0.00', NULL),
-(26, 'null', 'null', 26, '[Francia Corta, 11]', 'ezz', '2023-03-09', NULL, 0, 0, '0.00', NULL),
-(27, 'Tito', 'Fiorentino', 26, '[Francia Corta, 17]', 'qwerty', '2023-03-09', NULL, 0, 0, '0.00', NULL),
-(28, 'Tito', 'Fiorentino', 26, 'Francia Corta 19 11.0\n', 'Eh si', '2023-03-09', '2023-03-16', 1, 0, '50.00', NULL),
-(29, 'Tito', 'Fiorentino', 26, 'Francia Corta 16 11.0\n', 'cappolo', '2023-03-09', NULL, 0, 0, '0.00', NULL),
-(30, 'a', 'a', 21, 'Barbaresco DOCG \"Montersino\" 18 485.91 \n', 'a', '2023-03-09', '2023-03-12', 1, 1, '485.91', NULL),
-(31, 'a', 'a', 21, 'Barbaresco Meruzzano 19 649.64 \n', 'a', '2023-03-09', '2023-03-12', 1, 1, '649.64', NULL),
-(32, 'Agostino', 'Poggi', 1, 'Francia Corta 15 11.0\n', 'zzz', '2023-03-09', '2023-03-25', 1, 0, '250.00', 26),
-(33, '', '', 0, 'Barbaresco Meruzzano 15 578.85', '', '2023-03-17', '2023-03-25', 1, 1, '250.00', 26);
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `thirdparty`
---
-
-CREATE TABLE `thirdparty` (
-  `id` int(11) NOT NULL,
-  `servizio` enum('corriere','fornitore') NOT NULL,
-  `nome` char(30) NOT NULL,
-  `cognome` char(30) NOT NULL,
-  `mail` char(30) NOT NULL,
-  `telefono` char(13) NOT NULL,
-  `codicefiscale` char(20) NOT NULL,
-  `indirizzoaziendale` char(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(28, 'Tito', 'Fiorentino', 26, 'Francia Corta 19 11.0\n', 'Via Torino 8', '2023-03-09', NULL, 0, 0, '50.00', NULL),
+(29, 'Tito', 'Fiorentino', 26, 'Francia Corta 16 11.0\n', 'via Torini, 8', '2023-03-09', NULL, 0, 0, '0.00', NULL),
+(32, 'Agostino', 'Poggi', 1, 'Francia Corta 15 11.0\n', 'Via Milano 9', '2023-03-09', NULL, 0, 0, '250.00', NULL),
+(34, 'Agostino', 'Poggi', 1, 'Francia Corta 17 11.0\n', 'Via Milano 9', '2023-03-19', NULL, 1, 0, '1.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -116,23 +78,19 @@ CREATE TABLE `utenti` (
 --
 
 INSERT INTO `utenti` (`id`, `ruolo`, `username`, `password`, `nome`, `cognome`, `c_fiscale`, `mail`, `telefono`, `indirizzo`, `job_completati`, `job_falliti`) VALUES
-(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1', 3, 171),
-(18, 'client', 'user', 'EZZ', 're', 'serg', 'srg', 'dsfg', 'sdfg', 'sdfg', 0, 0),
-(21, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 0, 197),
-(22, 'employee', 'emp', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 1, 212),
+(1, 'admin', 'admin', 'admin', 'Agostino', 'Poggi', 'fhfusjfio', 'A.Poggi@unipr.it', '3333333333', 'via Campus 1', 0, 6),
+(22, 'employee', 'emp', 'emp', 'e', 'e', 'e', 'e', 'e', 'e', 0, 0),
 (23, 'employee', 'fromani', 'fromanivinobuono', 'Franco', 'Romani', 'CLNCZD60T17I473M', 'mciglia@gmail.com', '03161986517', 'Via Vicenza, 15 , 40013-Bologna BO', 0, 0),
 (24, 'employee', 'Lucius.Pisani', 'delfino', 'Lucius', 'Pisani', 'BGFDQG74C04I260L', 'l.pis@gmail.com', '05210246834', 'Discesa Gaiola, 93, 85043-Cerri PZ', 0, 0),
 (25, 'employee', 'genovesina', 'vinibuoni', 'Paola', 'Genovesi', 'SMKNRI88C04F187W', 'genovesina73@libero.it', '0520896544', 'Via Moiariello, 29, 12010-Vinadio CN', 0, 0),
-(26, 'employee', 'Tito', 'tito', 'Tito', 'Fiorentino', 'MSNVMF86M68M045Q', 'fiorentino@gmail.com', '07201380537', 'Via Palermo, 12, 98040-Soccorso ME', 3, 85),
+(26, 'employee', 'Tito', 'tito', 'Tito', 'Fiorentino', 'MSNVMF86M68M045Q', 'fiorentino@gmail.com', '07201380537', 'Via Palermo, 12, 98040-Soccorso ME', 0, 0),
 (27, 'employee', 'Giorgia01', 'emp', 'Giorgia', 'Cremonesi', 'FHBDBG86T51D045Q', ' GiorgiaCremonesi@gmail.com', '4567897474', 'Via Gaetano Donizetti, 92, 37040-Locara', 0, 0),
 (28, 'client', '4L4K4Z4M', 'unamagia', 'Elia', 'Candida', 'HVHHTB55C23B195C', 'staiattento@gmail.com', '9876541230', 'via Campus 1, PARMA', 0, 0),
 (29, 'client', 'WhiteHunter', '1111111111', 'Federico', 'Risoli', 'GLZLFZ77A26F773U', 'risolia@gmail.com', '4832185138', 'via Campus 2, PARMA', 0, 0),
 (30, 'client', 'Unipsilo', 'cartello', 'Olivia', 'Spinu', 'QRHSSJ44S46G273S', 'ocimicidae.matematica@gmail.com', '9874563218', 'via Campus 3, PARMA', 0, 0),
 (31, 'corriere', NULL, NULL, 'Paolo', 'Terenas', 'trnpla11T29R449A', 'terenasSRL@gmail.com', '6974456622', 'Barriera di Milano 4, Torino', 0, 0),
 (32, 'fornitore', NULL, NULL, 'Lucio', 'Dalla', 'tgdng88T29R969A', 'LupoLucioDalla@speedywine.com', '3496942011', 'via Palermo 4, Parma', 0, 0),
-(34, 'client', 'aw', 'aw', 'aw', 'aw', 'aw', 'aw', 'aw', 'aw', 0, 0),
-(35, 'client', 'sw', 'sw', 'sw', 'sw', 'sw', 'sw', 'sw', 'sw', 0, 0),
-(36, 'client', 'uuuu', 'uuu', 'uuu', 'uuu', 'uuu', 'uu', 'uu', 'uu', 0, 0);
+(37, 'client', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -159,12 +117,10 @@ CREATE TABLE `wines` (
 --
 
 INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno`, `notetecniche`, `qualita`, `vendite`, `promo`, `quantita`) VALUES
-(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 2, 0, 224),
-(3, 'testa', 'pr1', '', 2000, 'vit1', 'text', 'Media', 6, 0, 99),
-(4, 'test', 'pr1', '0', 2000, 'vit1', 'text', 'Alta', 6, 1, 96),
-(5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 21, 1, 7),
-(6, 'Barbaresco Meruzzano', 'Abrigo Orlando', 'Italia', 1995, 'Barbera', 'Frizzante, fruttato, bianco', 'Alta', 29, 1, 27),
-(7, 'Barbaresco DOCG \"Montersino\"', 'Abrigo Orlando', 'Italia', 2021, 'Barbera', 'Rosso, fermo, intenso', 'Media', 19, 0, 27),
+(1, 'francia corta', 'unipr', 'parma', 2022, 'rtewgserg', 'sergsdrgzxcv', 'Alta', 2, 0, 241),
+(5, 'Francia Corta', '1701 Francia Corta', 'Francia', 1990, 'Albana', 'Frizzante, fruttato, bianco', 'Bassa', 28, 1, 5),
+(6, 'Barbaresco Meruzzano', 'Abrigo Orlando', 'Italia', 1995, 'Barbera', 'Frizzante, fruttato, bianco', 'Alta', 53, 1, 3),
+(7, 'Barbaresco DOCG Montersino', 'Abrigo Orlando', 'Italia', 2021, 'Barbera', 'Rosso, fermo, intenso', 'Media', 23, 0, 23),
 (8, 'Francia Corta', '1701 Francia Corta', 'Francia', 1987, 'Albana', 'Frizzante, fruttato, bianco', 'Alta', 18, 0, 47),
 (9, 'Ghemme', 'Alamos', 'Italia', 1999, 'Barolo bianco', 'Frizzante, fruttato, bianco', 'Bassa', 1, 0, 999),
 (10, 'Greco di Tufo', 'Conti Di Buscareto', 'Italia', 2000, 'Biancolella', 'Rosso, fermo, delicato', 'Media', 1, 1, 123),
@@ -173,8 +129,8 @@ INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno
 (13, 'Montefalco Sagrantino', 'Francoli', 'Italia', 2019, 'Durella', 'Rosso, fermo, delicato', 'Media', 0, 0, 69),
 (14, 'Montello rosso', 'Illica', 'Italia', 2012, 'Falanghina', 'Rosè, frizzante, delicato', 'Bassa', 32, 0, 120),
 (15, 'Purple Desire', 'Desirè Wines', 'Inghilterra', 2019, 'Purple Magic', 'Rosso, fruttato', 'Bassa', 31, 0, 44),
-(16, 'White Desire', 'Desirè Wines', 'Inghilterra', 2000, 'White Magic', 'Bianco, fruttato', 'Alta', 0, 0, 34),
-(17, 'Pink Desire', 'Desirè Wines', 'Inghilterra', 1999, 'Pink Magic', 'Rosè, fruttato', 'Media', 27, 1, 2);
+(16, 'White Desire', 'Desirè Wines', 'Inghilterra', 2000, 'White Magic', 'Bianco, fruttato', 'Alta', 0, 1, 34),
+(17, 'Pink Desire', 'Desirè Wines', 'Inghilterra', 1999, 'Pink Magic', 'Rosè, fruttato', 'Media', 27, 1, 20);
 
 --
 -- Indici per le tabelle scaricate
@@ -184,12 +140,6 @@ INSERT INTO `wines` (`id`, `nome`, `produttore`, `provenienza`, `anno`, `vitigno
 -- Indici per le tabelle `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `thirdparty`
---
-ALTER TABLE `thirdparty`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -214,19 +164,13 @@ ALTER TABLE `wines`
 -- AUTO_INCREMENT per la tabella `ordinivendita`
 --
 ALTER TABLE `ordinivendita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT per la tabella `thirdparty`
---
-ALTER TABLE `thirdparty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT per la tabella `utenti`
 --
 ALTER TABLE `utenti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'chiave primaria', AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT per la tabella `wines`

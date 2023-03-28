@@ -142,10 +142,10 @@ public class Vini {
         //ci sono abbastanza bottiglie per l'ordine?
         if (spin.getValue()<=Integer.valueOf(this.quantita.get()))
         {
-            System.out.println("Ci sono abbastanza bottiglie");
+            //System.out.println("Ci sono abbastanza bottiglie");
             disponibile=true;
         }
-        else System.out.println("NOOOOOOOOOOOOOOO");
+        else disponibile=false;
         return disponibile;
     }
 }

@@ -113,7 +113,7 @@
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <Text layoutX="32.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nel campo ordine il formato e' [Nome del vino] [quantita' ] [prezzo a cui vendiamo quella quantita' ]" wrappingWidth="712.8642578125">
+                        <Text layoutX="32.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nel campo ordine il formato e' [Nome del vino] [quantita' ] [prezzo a cui vendiamo una di quelle bottiglie]" wrappingWidth="712.8642578125">
                            <font>
                               <Font size="15.0" />
                            </font>

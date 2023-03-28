@@ -193,11 +193,11 @@ public class PersonnelpageController extends MyController {
         //FINE separo disponibili e non
 
         //apro nuova pagina per confermare l'ordine e pago
-        System.out.println(lista);//console vedo disponibili
+        //System.out.println(lista);//console vedo disponibili
         //passo liste al prossimo controller
         carrello.setCarrello(lista);
         carrello.setNondisp(listaNonDisp);
-        System.out.println(carrello.getCarrello());
+        //System.out.println(carrello.getCarrello());
 
         //se hai selezionato vini
         if ( !carrello.getCarrello().isEmpty() || !carrello.getNondisp().isEmpty() ) {
@@ -263,8 +263,8 @@ public class PersonnelpageController extends MyController {
         String anno = "";
         anno=annata.getValue();
         String nome = nome_vino.getText();
-        System.out.println(anno);
-        System.out.println(nome);
+        //System.out.println(anno);
+        //System.out.println(nome);
         if(anno==null)
         {
              r= DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o
@@ -363,13 +363,13 @@ public class PersonnelpageController extends MyController {
 
         if((initialdate.getValue()!=null)&&(finaldate.getValue()!=null))
         {
-            System.out.println("nonulle");
+            //System.out.println("nonulle");
             if((isValidDate(initialdate.getValue().toString()))&&(isValidDate(finaldate.getValue().toString())))
             {
-                System.out.println("valide");
+                //System.out.println("valide");
                 if(initialdate.getValue().isBefore(finaldate.getValue()))
                 {
-                    System.out.println("intervallo");
+                    //System.out.println("intervallo");
                     error_data.setText("");
                     String firstdate=initialdate.getValue().toString();
                     String seconddate=finaldate.getValue().toString();
@@ -507,9 +507,9 @@ public class PersonnelpageController extends MyController {
 
             /** Fine REPORT*/
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
+            //System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            //System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
@@ -584,7 +584,7 @@ public class PersonnelpageController extends MyController {
                         vino = vino + " " + variabiliRiga[n];
 
                     vino = vino.substring(1);
-                    System.out.println(vino);
+                    //System.out.println(vino);
                     ResultSet r = DBHelper.query("SELECT * FROM `wines` WHERE `nome` LIKE \"" + vino + "\"");
                     try {
                         r.next();
@@ -663,7 +663,6 @@ public class PersonnelpageController extends MyController {
         //NON CHIUDERE SOCKET
         //chiudo thread
         killChildThread();
-        close();
     }
 
     @FXML

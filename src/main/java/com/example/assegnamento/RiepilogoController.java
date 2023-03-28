@@ -273,7 +273,6 @@ public class RiepilogoController extends MyController {
         //NON chiudere mai socket
         //chiudo thread
         killChildThread();
-        close();
     }
 
 
@@ -311,7 +310,7 @@ public class RiepilogoController extends MyController {
             //automaticamente viene arrotondato per difetto
             casse6 = bottiglie / 6;
             bottiglie = bottiglie - 6 * casse6;
-            System.out.println(casse6);
+            //System.out.println(casse6);
 
             prezzo = item.getPrezzo();
             subtotale = prezzo * bottiglie;
@@ -363,9 +362,9 @@ public class RiepilogoController extends MyController {
         {
             //in alternativa si può usare la lista di vini carrello.getNondisp().getnome() e .getquantita()
 
-            System.out.println("LE INFORMAZIONI NECESSARIE SUI VINI SI TROVANO IN CARRELLO.GETNONDISP" +
-                    "LE INFO SONO REGISTRATE COME NOME VINO AGLI INDICI PARI E Q.TA AI DISPARI così\n" +
-                    carrello.getOrdineNonDisp());
+           // System.out.println("LE INFORMAZIONI NECESSARIE SUI VINI SI TROVANO IN CARRELLO.GETNONDISP" +
+             //       "LE INFO SONO REGISTRATE COME NOME VINO AGLI INDICI PARI E Q.TA AI DISPARI così\n" +
+               //     carrello.getOrdineNonDisp());
 
 
             pagbuttonsbar.setVisible(false);

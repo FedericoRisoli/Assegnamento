@@ -93,11 +93,11 @@ public class UsermainpageController extends MyController{
         //FINE separo disponibili e non
 
         //apro nuova pagina per confermare l'ordine e pago
-        System.out.println(lista);//console vedo disponibili
+        //System.out.println(lista);//console vedo disponibili
         //passo liste al prossimo controller
         carrello.setCarrello(lista);
         carrello.setNondisp(listaNonDisp);
-        System.out.println(carrello.getCarrello());
+        //System.out.println(carrello.getCarrello());
 
         //se hai selezionato vini
         if ( !carrello.getCarrello().isEmpty() || !carrello.getNondisp().isEmpty() ) {
@@ -143,8 +143,8 @@ public class UsermainpageController extends MyController{
         String anno = "";
         anno=annata.getValue();
         String nome = nome_vino.getText();
-        System.out.println(anno);
-        System.out.println(nome);
+        //System.out.println(anno);
+        //System.out.println(nome);
         if(anno==null)
         {
             r= DBHelper.query("SELECT * FROM `wines` WHERE nome LIKE \"%"+nome+"%\""); //dipendenti e admin possono ricercare e/o

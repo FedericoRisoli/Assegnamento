@@ -99,8 +99,8 @@ public class PagocartaController extends MyController {
             try {
                 r.next();
             } catch (SQLException e) {
-                System.out.println("Wops, sembrerebbe che il tuo utente sia stato cancellato\n\n");
-                throw new RuntimeException(e);
+               // System.out.println("Wops, sembrerebbe che il tuo utente sia stato cancellato\n\n");
+               // throw new RuntimeException(e);
             }
 
             DBHelper.update("INSERT INTO `ordinivendita` (`id`, `nome`, `cognome`,`Idcliente`, `ordine`, `indirizzo`,`dataordine`, `dataconsegna`, `completato`, `clienteCompletato`, `prezzo`) VALUES (NULL, '"+r.getString("nome")+"', '"+r.getString("cognome")+"','"+data.GetId()+"', '"+text+"', '"+r.getString("indirizzo")+"','"+dateToday+"' , '"+dateAfter+"', 1, 1,"+carrello.getTotale()+")");

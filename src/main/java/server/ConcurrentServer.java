@@ -77,7 +77,7 @@ public class ConcurrentServer {
             // Crea un nuovo thread per gestire la connessione del client
             Thread thread = new Thread(new ClientHandler(clientSocket));
             thread.start();
-            System.out.println("Inizio Lavori");
+            //System.out.println("Inizio Lavori");
         }
     }
 }
@@ -101,7 +101,7 @@ class ClientHandler implements Runnable {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 
 
-            System.out.println("Inizio lavori");
+            System.out.println("Client Handler Eseguito");
 
             String[] variabiliMessaggio;
             while(true) {
@@ -214,7 +214,7 @@ class ClientHandler implements Runnable {
                     socket.setSoTimeout(10_000);
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
-                    System.out.println("Nessun messaggio ricevuto");
+                    //System.out.println("Nessun messaggio ricevuto");
 
                     //mando messaggio a tutti
                      if(!server.OrdVenditaIsEmpty())
