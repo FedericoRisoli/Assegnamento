@@ -1,4 +1,4 @@
-## Istallazione e configurazione:
+## Installazione e configurazione:
 Scaricare dalla release la documentazione e seguirne i passaggi
 
 ## Testo Originale:
