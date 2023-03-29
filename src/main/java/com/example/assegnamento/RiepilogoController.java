@@ -142,8 +142,10 @@ public class RiepilogoController extends MyController {
                 stage.setScene(scene);
                 stage.show();
             }
-            else
+            else if(data.GetSuccess()==true) {
                 procedi.setVisible(false);
+                data.SetSuccess(false);
+            }
         }
         else {
             Parent root = FXMLLoader.load(HelloApplication.class.getResource("pagocarta.fxml"));
@@ -175,8 +177,10 @@ public class RiepilogoController extends MyController {
                 stage.setScene(scene);
                 stage.show();
             }
-            else
+            else if(data.GetSuccess()==true) {
                 procedi.setVisible(false);
+                data.SetSuccess(false);
+            }
         }
 
     }
@@ -367,7 +371,7 @@ public class RiepilogoController extends MyController {
                //     carrello.getOrdineNonDisp());
 
 
-            pagbuttonsbar.setVisible(false);
+
             pagtext.setVisible(false);
             div1.setVisible(false);
             titletext.setText("Proposta di Acquisto:");

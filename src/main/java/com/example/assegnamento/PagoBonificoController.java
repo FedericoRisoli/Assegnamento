@@ -105,8 +105,9 @@ public class PagoBonificoController extends MyController {
             alert.setHeaderText("Pagamento avvenuto e ordine processato!");
             alert.showAndWait();
             Stage stage = (Stage) indietro.getScene().getWindow();
-            stage.close();
             data.SetSuccess(true);
+            stage.close();
+
         }
 
     }
