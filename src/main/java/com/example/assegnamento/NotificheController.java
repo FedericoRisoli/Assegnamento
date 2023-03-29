@@ -74,72 +74,77 @@ public class NotificheController {
 
     public void OnButtonClickAccetta(ActionEvent actionEvent) throws SQLException {
         p=0;
+        boolean selected=false;
 
         for (OrdiniVendita item : notifiche.getItems() )
         {
             if(item.getCheck().isSelected())
             {
                 p += item.getPrezzo();
+                selected=true;
             }
 
         }
-        carrello.setTotale(p);
-        if(rbon.isSelected())
-        {
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(HelloApplication.class.getResource("pagobonifico.fxml"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Stage stage = new Stage();
-            stage.setTitle("Pagamento con Bonifico");
-            stage.setScene(new Scene(root));
-            //blocca finestra prima
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-        }
-        else {
-            Parent root = null;
-            try {
-                root = FXMLLoader.load(HelloApplication.class.getResource("pagocarta.fxml"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Stage stage = new Stage();
-            stage.setTitle("Pagamento con Carta di Credito");
-            stage.setScene(new Scene(root));
-            //blocca finestra prima
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-
-        }
-        if(data.GetSuccess()==true)
-        {
-            for (OrdiniVendita item : notifiche.getItems() )
+        if(selected==true){
+            carrello.setTotale(p);
+            if(rbon.isSelected())
             {
-                if(item.getCheck().isSelected())
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(HelloApplication.class.getResource("pagobonifico.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = new Stage();
+                stage.setTitle("Pagamento con Bonifico");
+                stage.setScene(new Scene(root));
+                //blocca finestra prima
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+            }
+            else {
+                Parent root = null;
+                try {
+                    root = FXMLLoader.load(HelloApplication.class.getResource("pagocarta.fxml"));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = new Stage();
+                stage.setTitle("Pagamento con Carta di Credito");
+                stage.setScene(new Scene(root));
+                //blocca finestra prima
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.showAndWait();
+
+
+            }
+            if(data.GetSuccess()==true)
+            {
+                for (OrdiniVendita item : notifiche.getItems() )
                 {
-                    DBHelper.update("UPDATE `ordinivendita` SET clienteCompletato=1 WHERE id=\""+item.getId()+"\" AND Idcliente=\""+item.getIdcliente()+"\" ");
+                    if(item.getCheck().isSelected())
+                    {
+                        DBHelper.update("UPDATE `ordinivendita` SET clienteCompletato=1 WHERE id=\""+item.getId()+"\" AND Idcliente=\""+item.getIdcliente()+"\" ");
+                    }
                 }
             }
-        }
-        data.SetSuccess(false);
-        notifiche.getItems().clear();
-        select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
-        ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
-        consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
-        prezzo.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Prezzo"));
-        ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `clienteCompletato`='0' AND `completato`='1' AND `Idcliente`=\""+data.GetId()+"\"");
-        ObservableList<OrdiniVendita> tmp = FXCollections.observableArrayList();
+            data.SetSuccess(false);
+            notifiche.getItems().clear();
+            select.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,CheckBox>("check"));
+            ord.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Ordine"));
+            consprev.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Dataconsegna"));
+            prezzo.setCellValueFactory(new PropertyValueFactory<OrdiniVendita,String>("Prezzo"));
+            ResultSet r = DBHelper.query("SELECT * FROM `ordinivendita` WHERE `clienteCompletato`='0' AND `completato`='1' AND `Idcliente`=\""+data.GetId()+"\"");
+            ObservableList<OrdiniVendita> tmp = FXCollections.observableArrayList();
 
-        while (r.next())
-        {
-            tmp.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
-            notifiche.setItems(tmp);
-        }
+            while (r.next())
+            {
+                tmp.add(new OrdiniVendita(r.getString("id"),r.getString("dataordine") ,r.getString("dataconsegna"),r.getString("nome"),r.getString("cognome"),r.getString("ordine"),r.getString("indirizzo"),r.getDouble("prezzo"),r.getString("Idcliente"),r.getString("firmaimpiegato")));
+                notifiche.setItems(tmp);
+            }
 
+            selected=false;
+        }
 
     }
 
