@@ -211,7 +211,7 @@ class ClientHandler implements Runnable {
 
 
                     //timeout in millisecondi
-                    socket.setSoTimeout(10_000);
+                    socket.setSoTimeout(30_000);
                 } catch (SocketTimeoutException e) {
                     // nessun messaggio disponibile entro il timeout
                     //System.out.println("Nessun messaggio ricevuto");

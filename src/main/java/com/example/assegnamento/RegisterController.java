@@ -76,6 +76,15 @@ public class RegisterController extends MyController {
         ResultSet r = DBHelper.query("SELECT `username` FROM `utenti`WHERE `username` LIKE \""+usr.getText()+"\""); //query per controllo d username nel db
         Alert alert = null;
         //ci sono campi bianchi? o la password è vuota?
+        if (cfiscale.getLength()>16||cfiscale.getLength()<16)//controllo che l'username non sia gia' nel DB
+        {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Codice Fiscale non Valido");
+            alert.setHeaderText("Codice fiscale di lunghezza errata");
+            alert.showAndWait();
+            return;
+
+        }
 
         if (r.next())//controllo che l'username non sia gia' nel DB
         {

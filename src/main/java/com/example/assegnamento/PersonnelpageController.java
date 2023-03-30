@@ -316,7 +316,7 @@ public class PersonnelpageController extends MyController {
     }
     public void OnButtonClickSearchClient(ActionEvent actionEvent) throws SQLException {
         String surname= surnamefield.getText();
-        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE cognome LIKE \"%"+surname+"%\"");
+        ResultSet r = DBHelper.query("SELECT * FROM `utenti` WHERE cognome LIKE \"%"+surname+"%\" AND (`ruolo` LIKE \"employee\" OR `ruolo` LIKE \"client\" OR `ruolo` LIKE \"admin\")");
         ClientTableView.getItems().clear();
         ObservableList<Clienti> tmp=FXCollections.observableArrayList();
         while(r.next())
@@ -335,7 +335,7 @@ public class PersonnelpageController extends MyController {
         t_codicefiscale.setCellValueFactory(new PropertyValueFactory<Clienti,String>("CodiceFiscale"));
 
         ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
-        ResultSet r = DBHelper.query("SELECT `cognome`, `nome`, `username`,`mail`,`telefono`,`indirizzo`,`c_fiscale` FROM `utenti` ORDER BY `cognome` DESC");
+        ResultSet r = DBHelper.query("SELECT `cognome`, `nome`, `username`,`mail`,`telefono`,`indirizzo`,`c_fiscale` FROM `utenti`WHERE `ruolo` LIKE \"employee\" OR `ruolo` LIKE \"client\" OR `ruolo` LIKE \"admin\" ORDER BY `cognome` DESC");
         while (r.next())
         {
             tmp2.add(new Clienti(r.getString("cognome"),r.getString("nome"),r.getString("username"),r.getString("mail"),r.getString("telefono"),r.getString("indirizzo"),r.getString("c_fiscale")));
@@ -726,7 +726,7 @@ public class PersonnelpageController extends MyController {
         t_codicefiscale.setCellValueFactory(new PropertyValueFactory<Clienti,String>("CodiceFiscale"));
 
         ObservableList<Clienti> tmp2 = FXCollections.observableArrayList();
-        r = DBHelper.query("SELECT * FROM `utenti` ORDER BY `cognome` DESC");
+        r = DBHelper.query("SELECT * FROM `utenti` WHERE `ruolo` LIKE \"employee\" OR `ruolo` LIKE \"client\" OR `ruolo` LIKE \"admin\" ORDER BY `cognome` DESC");
         while (r.next())
         {
             tmp2.add(new Clienti(r.getString("cognome"),r.getString("nome"),r.getString("username"),r.getString("mail"),r.getString("telefono"),r.getString("indirizzo"),r.getString("c_fiscale")));

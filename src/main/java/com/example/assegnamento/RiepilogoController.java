@@ -357,6 +357,7 @@ public class RiepilogoController extends MyController {
         if (carrello.getOrdine().isEmpty()) {
             procedi.setVisible(false);
             adrrfield.setVisible(false);
+            pagbuttonsbar.setVisible(false);
         }
         if (carrello.getNondisp().isEmpty()) {
             ordinanondisponibili.setVisible(false);
