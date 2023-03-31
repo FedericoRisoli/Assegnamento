@@ -486,7 +486,7 @@ public class PersonnelpageController extends MyController {
             r=DBHelper.query("SELECT * FROM `wines`");
             int disponibili=0;
             while(r.next())
-                disponibili += r.getInt("vendite");
+                disponibili += r.getInt("quantita");
             myWriter.write("\nBottiglie disponibili: "+disponibili);
 
             //vendite per vino
